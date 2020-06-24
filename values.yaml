@@ -1,0 +1,39 @@
+pullPolicy: Always
+
+klustair:
+    image: gicara/klustair 
+    tag: latest
+    dockerUser: <USER>
+    dockerPass: <PASSWORD>
+    AnchoreCliUrl: "http://klustair-dev-anchore-engine-api:8228"
+    mongodbURL: klustair-dev-mongodb:27017/klustair
+
+klustair-frontend:
+    image: gicara/klustair-frontend 
+    tag: latest
+    url:
+    mongodb:
+    dbhost:
+    dbport:
+    dbdatabase:
+    dbusername:
+    dbpassword:
+
+mongodb:
+    enabled: true
+    mongodbRootPassword: secretpassword
+    mongodbUsername: my-user
+    mongodbPassword: my-password
+    mongodbDatabase: klustair
+    
+anchore-engine:
+    enabled: true
+
+    postgresql:
+        postgresPassword: mySecret
+        persistence:
+            size: 20Gi
+
+    anchoreGlobal:
+        defaultAdminPassword: adminpass
+        defaultAdminEmail: random@gmail.com
