@@ -6,18 +6,19 @@ klustair:
     dockerUser: <USER>
     dockerPass: <PASSWORD>
     AnchoreCliUrl: "http://klustair-dev-anchore-engine-api:8228"
-    mongodbURL: klustair-dev-mongodb:27017/klustair
+    mongodbURL: mongodb://my-user:my-password@klustair-dev-mongodb:27017/klustair
 
-klustair-frontend:
+klustairfrontend:
     image: gicara/klustair-frontend 
     tag: latest
-    url:
-    mongodb:
-    dbhost:
-    dbport:
-    dbdatabase:
-    dbusername:
-    dbpassword:
+    appkey: base64:pT9Zg64zbBgDDmH7WZXO+Kv4/NuA2zlVFAn/Jg7IV2A=
+    url: klustair.shoks.ch
+    dbconnection: mongodb
+    dbhost: klustair-dev-mongodb
+    dbport: 27017
+    dbdatabase: klustair
+    dbusername: my-user
+    dbpassword: my-password
 
 mongodb:
     enabled: true

@@ -18,45 +18,6 @@ spec:
         app: klustair
     spec:
       containers:
-        - name: klustair-frontend
-          image: {{ .Values.klustair-frontend.image }}:{{ .Values.klustair-frontend.tag }}
-          imagePullPolicy: {{ .Values.pullPolicy }}
-          command: ["tail", "-f", "/dev/null"]
-          env:
-            - name: APP_NAME
-              value: "klustair"
-            - name: APP_ENV
-              value: "production"
-            - name: APP_DEBUG
-              value: "false"
-            - name: APP_URL
-              value: {{ .Values.klustair-frontend.url | quote}}
-            - name: DB_CONNECTION
-              value: {{ .Values.klustair-frontend.mongodb | quote}}
-            - name: DB_HOST
-              value: {{ .Values.klustair-frontend.dbhost | quote}}
-            - name: DB_PORT
-              value: {{ .Values.klustair-frontend.dbport | quote}}
-            - name: DB_DATABASE
-              value: {{ .Values.klustair-frontend.dbdatabase | quote}}
-            - name: DB_USERNAME
-              value: {{ .Values.klustair-frontend.dbusername | quote}}
-            - name: DB_PASSWORD
-              value: {{ .Values.klustair-frontend.dbpassword | quote}}
-            - name: BROADCAST_DRIVER
-              value: "log"
-            - name: CACHE_DRIVER
-              value: "file"
-            - name: QUEUE_CONNECTION
-              value: "sync"
-            - name: SESSION_DRIVER
-              value: "file"
-            - name: SESSION_LIFETIME
-              value: "120"
-          volumeMounts:
-            - name: kubeconfig
-              mountPath: "/configs"
-              readOnly: true
         - name: klustair-runner
           image: {{ .Values.klustair.image }}:{{ .Values.klustair.tag }}
           imagePullPolicy: {{ .Values.pullPolicy }}
