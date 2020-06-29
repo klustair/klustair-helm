@@ -35,6 +35,8 @@ spec:
               value: {{ .Values.klustair.AnchoreCliUrl }}
             - name: KUBECONFIG
               value: /configs/kube.config
+            - name: MONGODB_CONNECTION
+              value: "mongodb://{{ .Values.mongodb.mongodbUsername }}:{{ .Values.mongodb.mongodbPassword }}@{{ .Release.Name }}-mongodb:20217/{{ .Values.mongodb.mongodbDatabase }}"
           volumeMounts:
             - name: kubeconfig
               mountPath: "/configs"

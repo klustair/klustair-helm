@@ -6,7 +6,6 @@ klustair:
     dockerUser: <USER>
     dockerPass: <PASSWORD>
     AnchoreCliUrl: "http://klustair-dev-anchore-engine-api:8228"
-    mongodbURL: mongodb://my-user:my-password@klustair-dev-mongodb:27017/klustair
 
 klustairfrontend:
     image: gicara/klustair-frontend
