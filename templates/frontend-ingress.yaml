@@ -1,0 +1,19 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: {{ template "name" . }}-ingress
+  labels:
+    app: {{ template "name" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+  annotations:
+spec:
+  rules:
+  - host: {{ .Values.klustairfrontend.url }}
+    http:
+      paths:
+      - backend:
+          serviceName: {{ template "name" . }}-frontend-service
+          servicePort: 80
+        path: /

@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "name" . }}-frontend
+  labels:
+    app: {{ template "name" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: klustair-frontend
+  template:
+    metadata:
+      labels:
+        app: klustair-frontend
+    spec:
+      containers:
+        - name: klustair-frontend
+          image: {{ .Values.klustairfrontend.image }}:{{ .Values.klustairfrontend.tag }}
+          imagePullPolicy: {{ .Values.pullPolicy }}
+          #command: ["tail", "-f", "/dev/null"]
+          env:
+            - name: APACHE_DOCUMENT_ROOT
+              value: {{ .Values.klustairfrontend.apachedocumentroot | quote}}
+            - name: APP_NAME
+              value: "klustair"
+            - name: APP_ENV
+              value: "local"
+            - name: APP_KEY
+              value: {{ .Values.klustairfrontend.appkey | quote}}
+            - name: APP_DEBUG
+              value: "true"
+            - name: APP_URL
+              value: "http://{{ .Values.klustairfrontend.url }}"
+            - name: DB_CONNECTION
+              value: mongodb
+            - name: DB_HOST
+              value: {{ .Release.Name }}-mongodb
+            - name: DB_PORT
+              value: {{ .Values.klustairfrontend.dbport | quote}}
+            - name: DB_DATABASE
+              value: {{ .Values.klustairfrontend.dbdatabase | quote}}
+            - name: DB_USERNAME
+              value: {{ .Values.mongodb.mongodbUsername | quote}}
+            - name: DB_PASSWORD
+              value: {{ .Values.mongodb.mongodbPassword | quote}}
+            - name: DB_AUTHENTICATION_DATABASE
+              value: {{ .Values.mongodb.mongodbDatabase | quote}}
+            - name: BROADCAST_DRIVER
+              value: "log"
+            - name: CACHE_DRIVER
+              value: "file"
+            - name: QUEUE_CONNECTION
+              value: "sync"
+            - name: SESSION_DRIVER
+              value: "file"
+            - name: SESSION_LIFETIME
+              value: "120"

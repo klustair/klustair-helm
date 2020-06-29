@@ -9,16 +9,12 @@ klustair:
     mongodbURL: mongodb://my-user:my-password@klustair-dev-mongodb:27017/klustair
 
 klustairfrontend:
-    image: gicara/klustair-frontend 
+    image: gicara/klustair-frontend
     tag: latest
+    apachedocumentroot: /var/www/public
     appkey: base64:pT9Zg64zbBgDDmH7WZXO+Kv4/NuA2zlVFAn/Jg7IV2A=
     url: klustair.shoks.ch
-    dbconnection: mongodb
-    dbhost: klustair-dev-mongodb
     dbport: 27017
-    dbdatabase: klustair
-    dbusername: my-user
-    dbpassword: my-password
 
 mongodb:
     enabled: true
@@ -38,3 +34,16 @@ anchore-engine:
     anchoreGlobal:
         defaultAdminPassword: adminpass
         defaultAdminEmail: random@gmail.com
+
+service:
+  #type: ClusterIP
+  #type: NodePort
+  type: LoadBalancer
+
+  ## Provide any additional annotations which may be required. This can be used to
+  ## set the LoadBalancer service type to internal only.
+  ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer
+  ##
+  annotations: {}
+  labels: {}
+  loadBalancerIP:
