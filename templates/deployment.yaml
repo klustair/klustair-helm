@@ -36,7 +36,7 @@ spec:
             - name: KUBECONFIG
               value: /configs/kube.config
             - name: MONGODB_CONNECTION
-              value: "mongodb://{{ .Values.mongodb.mongodbUsername }}:{{ .Values.mongodb.mongodbPassword }}@{{ .Release.Name }}-mongodb:20217/{{ .Values.mongodb.mongodbDatabase }}"
+              value: "mongodb://{{ .Values.mongodb.mongodbUsername }}:{{ .Values.mongodb.mongodbPassword }}@{{ .Release.Name }}-mongodb:27017/{{ .Values.mongodb.mongodbDatabase }}"
           volumeMounts:
             - name: kubeconfig
               mountPath: "/configs"
