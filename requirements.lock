@@ -1,7 +1,6 @@
 dependencies:
 - name: anchore-engine
-  repository: https://kubernetes-charts.storage.googleapis.com/
-  version: 1.6.9
-- name: postgresql
-  repository: https://charts.bitnami.com/bitnami/
-  version: "8"
+  repository: https://charts.anchore.io
+  version: 1.9.0
+digest: sha256:7287f30df193094ffe50625405787df06dc264c7d5eb8b25d1c53f7ed97bd398
+generated: "2020-09-01T16:36:25.086453+02:00"
