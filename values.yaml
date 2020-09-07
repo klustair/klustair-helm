@@ -18,8 +18,11 @@ klustairfrontend:
 anchore-engine:
     enabled: true
 
-    postgresql:
-        postgresPassword: mySecret
+    postgresql:  
+        postgresUser: anchoreengine
+        postgresPassword: anchore-postgres,123
+        postgresDatabase: anchore
+
         persistence:
             size: 20Gi
 

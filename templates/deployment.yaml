@@ -35,8 +35,14 @@ spec:
               value: {{ .Values.klustair.AnchoreCliUrl }}
             - name: KUBECONFIG
               value: /configs/kube.config
-            - name: MONGODB_CONNECTION
-              value: "mongodb://{{ .Values.mongodb.mongodbUsername }}:{{ .Values.mongodb.mongodbPassword }}@{{ .Release.Name }}-mongodb:27017/{{ .Values.mongodb.mongodbDatabase }}"
+            - name: DB_HOST
+              value: {{ .Release.Name }}-postgresql
+            - name: DB_DATABASE
+              value: {{ index .Values "anchore-engine" "postgresql" "postgresDatabase" }}
+            - name: DB_USERNAME
+              value: {{ index .Values "anchore-engine" "postgresql" "postgresUser" }}
+            - name: DB_PASSWORD
+              value: {{ index .Values "anchore-engine" "postgresql" "postgresPassword" }}
           volumeMounts:
             - name: kubeconfig
               mountPath: "/configs"

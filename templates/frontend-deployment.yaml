@@ -36,19 +36,19 @@ spec:
             - name: APP_URL
               value: "http://{{ .Values.klustairfrontend.url }}"
             - name: DB_CONNECTION
-              value: mongodb
+              value: pgsql
             - name: DB_HOST
-              value: {{ .Release.Name }}-mongodb
+              value: {{ .Release.Name }}-postgresql
             - name: DB_PORT
-              value: {{ .Values.klustairfrontend.dbport | quote}}
+              value: "5432"
             - name: DB_DATABASE
-              value: {{ .Values.klustairfrontend.dbdatabase | quote}}
+              value: {{ index .Values "anchore-engine" "postgresql" "postgresDatabase" }}
             - name: DB_USERNAME
-              value: {{ .Values.mongodb.mongodbUsername | quote}}
+              value: {{ index .Values "anchore-engine" "postgresql" "postgresUser" }}
             - name: DB_PASSWORD
-              value: {{ .Values.mongodb.mongodbPassword | quote}}
+              value: {{ index .Values "anchore-engine" "postgresql" "postgresPassword" }}
             - name: DB_AUTHENTICATION_DATABASE
-              value: {{ .Values.mongodb.mongodbDatabase | quote}}
+              value: {{ index .Values "anchore-engine" "postgresql" "postgresDatabase" }}
             - name: BROADCAST_DRIVER
               value: "log"
             - name: CACHE_DRIVER
