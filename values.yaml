@@ -14,13 +14,6 @@ klustairfrontend:
     appkey: base64:pT9Zg64zbBgDDmH7WZXO+Kv4/NuA2zlVFAn/Jg7IV2A=
     url: klustair.shoks.ch
     dbport: 27017
-
-mongodb:
-    enabled: true
-    mongodbRootPassword: secretpassword
-    mongodbUsername: my-user
-    mongodbPassword: my-password
-    mongodbDatabase: klustair
     
 anchore-engine:
     enabled: true
