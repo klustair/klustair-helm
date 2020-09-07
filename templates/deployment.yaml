@@ -23,10 +23,6 @@ spec:
           imagePullPolicy: {{ .Values.pullPolicy }}
           command: ["tail", "-f", "/dev/null"]
           env:
-            - name: DOCKER_USER
-              value: {{ .Values.klustair.dockerUser }}
-            - name: DOCKER_PASS
-              value: {{ .Values.klustair.dockerPass }}
             - name: ANCHORE_CLI_USER
               value: "admin"
             - name: ANCHORE_CLI_PASS

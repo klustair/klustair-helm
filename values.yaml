@@ -3,8 +3,6 @@ pullPolicy: Always
 klustair:
     image: gicara/klustair 
     tag: latest
-    dockerUser: <USER>
-    dockerPass: <PASSWORD>
     AnchoreCliUrl: "http://klustair-dev-anchore-engine-api:8228"
 
 klustairfrontend:
