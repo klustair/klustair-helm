@@ -1,0 +1,50 @@
+{{- if .Values.cronjob.enabled -}}
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: scanner
+spec:
+  schedule: {{ .Values.cronjob.schedule }}
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: hello
+            image: busybox
+            args:
+            - /bin/sh
+            - -c
+            - date; echo Hello from the Kubernetes cluster
+          - name: klustair-runner
+            image: {{ .Values.klustair.image }}:{{ .Values.klustair.tag }}
+            imagePullPolicy: {{ .Values.pullPolicy }}
+            #command: ["scanner.py", "-v"]
+            command: ["tail", "-f", "/dev/null"]
+            env:
+              - name: ANCHORE_CLI_USER
+                value: "admin"
+              - name: ANCHORE_CLI_PASS
+                value: {{ index .Values "anchore-engine" "anchoreGlobal" "defaultAdminPassword" }}
+              - name: ANCHORE_CLI_URL
+                value: {{ .Values.klustair.AnchoreCliUrl }}
+              - name: KUBECONFIG
+                value: /configs/kube.config
+              - name: DB_HOST
+                value: {{ .Release.Name }}-postgresql
+              - name: DB_DATABASE
+                value: {{ index .Values "anchore-engine" "postgresql" "postgresDatabase" }}
+              - name: DB_USERNAME
+                value: {{ index .Values "anchore-engine" "postgresql" "postgresUser" }}
+              - name: DB_PASSWORD
+                value: {{ index .Values "anchore-engine" "postgresql" "postgresPassword" }}
+            volumeMounts:
+              - name: kubeconfig
+                mountPath: "/configs"
+                readOnly: true
+          restartPolicy: OnFailure
+          volumes:
+          - name: kubeconfig
+            secret:
+                secretName: {{ .Release.Name }}-kubeconfig
+{{- end }}

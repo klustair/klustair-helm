@@ -29,14 +29,18 @@ anchore-engine:
         defaultAdminEmail: random@gmail.com
 
 service:
-  #type: ClusterIP
-  #type: NodePort
-  type: LoadBalancer
+    #type: ClusterIP
+    #type: NodePort
+    type: LoadBalancer
 
-  ## Provide any additional annotations which may be required. This can be used to
-  ## set the LoadBalancer service type to internal only.
-  ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer
-  ##
-  annotations: {}
-  labels: {}
-  loadBalancerIP:
+    ## Provide any additional annotations which may be required. This can be used to
+    ## set the LoadBalancer service type to internal only.
+    ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer
+    ##
+    annotations: {}
+    labels: {}
+    loadBalancerIP:
+
+cronjob: 
+    enables: false
+    schedule : "15 9 * * *"
