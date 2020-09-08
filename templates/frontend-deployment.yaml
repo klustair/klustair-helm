@@ -61,3 +61,7 @@ spec:
               value: "120"
             - name: ANCHORE_API_URL
               value: "http://{{ .Release.Name }}-anchore-engine-api:8228"
+            - name: ANCHORE_CLI_USER
+              value: "admin"
+            - name: ANCHORE_CLI_PASS
+              value: {{ index .Values "anchore-engine" "anchoreGlobal" "defaultAdminPassword" }}
