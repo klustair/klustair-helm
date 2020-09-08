@@ -59,3 +59,5 @@ spec:
               value: "file"
             - name: SESSION_LIFETIME
               value: "120"
+            - name: ANCHORE_API_URL
+              value: "http://{{ .Release.Name }}-anchore-engine-api:8228"
