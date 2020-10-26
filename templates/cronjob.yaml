@@ -1,10 +1,10 @@
-{{- if .Values.klustair-runner.enabled -}}
+{{- if index .Values "klustair-runner" "enabled" -}}
 apiVersion: batch/v1beta1
 kind: CronJob
 metadata:
   name: scanner
 spec:
-  schedule: {{ .Values.klustair-runner.schedule }}
+  schedule: {{ index .Values "klustair-runner" "schedule" }}
   jobTemplate:
     spec:
       template:
@@ -13,7 +13,7 @@ spec:
           - name: klustair-runner
             image: {{ .Values.klustair.image }}:{{ .Values.klustair.tag }}
             imagePullPolicy: {{ .Values.pullPolicy }}
-            command: ["runner.py", "--verbose", "--namespacesblacklist", "{{ .Values.klustair-runner.namespaceblacklist }}"]
+            command: ["runner.py", "--verbose", "--namespacesblacklist", {{ index .Values "klustair-runner" "namespaceblacklist" }}]
             env:
               - name: ANCHORE_CLI_USER
                 value: "admin"
