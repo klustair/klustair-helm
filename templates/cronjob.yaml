@@ -1,26 +1,19 @@
-{{- if .Values.cronjob.enabled -}}
+{{- if .Values.klustair-runner.enabled -}}
 apiVersion: batch/v1beta1
 kind: CronJob
 metadata:
   name: scanner
 spec:
-  schedule: {{ .Values.cronjob.schedule }}
+  schedule: {{ .Values.klustair-runner.schedule }}
   jobTemplate:
     spec:
       template:
         spec:
           containers:
-          - name: hello
-            image: busybox
-            args:
-            - /bin/sh
-            - -c
-            - date; echo Hello from the Kubernetes cluster
           - name: klustair-runner
             image: {{ .Values.klustair.image }}:{{ .Values.klustair.tag }}
             imagePullPolicy: {{ .Values.pullPolicy }}
-            #command: ["scanner.py", "-v"]
-            command: ["tail", "-f", "/dev/null"]
+            command: ["runner.py", "--verbose", "--namespacesblacklist", "{{ .Values.klustair-runner.namespaceblacklist }}"]
             env:
               - name: ANCHORE_CLI_USER
                 value: "admin"

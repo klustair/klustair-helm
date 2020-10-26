@@ -41,6 +41,8 @@ service:
     labels: {}
     loadBalancerIP:
 
-cronjob: 
-    enables: false
+# Runner will be deployed as kind CronJob
+klustair-runner:
+    enabled: true
     schedule : "15 9 * * *"
+    namespaceblacklist: "kube-system"
