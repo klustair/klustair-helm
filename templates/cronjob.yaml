@@ -10,17 +10,10 @@ spec:
       template:
         spec:
           containers:
-          - name: hello
-            image: busybox
-            args:
-            - /bin/sh
-            - -c
-            - date; echo Hello from the Kubernetes cluster
           - name: klustair-runner
             image: {{ .Values.klustair.image }}:{{ .Values.klustair.tag }}
             imagePullPolicy: {{ .Values.pullPolicy }}
-            #command: ["scanner.py", "-v"]
-            command: ["tail", "-f", "/dev/null"]
+            command: ["runner.py", "--verbose"]
             env:
               - name: ANCHORE_CLI_USER
                 value: "admin"

@@ -42,5 +42,5 @@ service:
     loadBalancerIP:
 
 cronjob: 
-    enables: false
+    enabled: true
     schedule : "15 9 * * *"
