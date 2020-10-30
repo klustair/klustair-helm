@@ -1,12 +1,12 @@
 pullPolicy: Always
 
 klustair:
-    image: gicara/klustair 
+    image: klustair/klustair 
     tag: latest
     AnchoreCliUrl: "http://klustair-dev-anchore-engine-api:8228"
 
 klustairfrontend:
-    image: gicara/klustair-frontend
+    image: klustair/klustair-frontend
     tag: latest
     apachedocumentroot: /var/www/public
     appkey: base64:pT9Zg64zbBgDDmH7WZXO+Kv4/NuA2zlVFAn/Jg7IV2A=
