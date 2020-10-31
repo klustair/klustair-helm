@@ -1,5 +1,4 @@
 dependencies:
-  - name: anchore-engine
-    version: 1.9.0
-    repository: "https://charts.anchore.io"
-    condition: anchore-engine.enabled
+  - name: postgresql
+    version: 9.8.9
+    repository: "https://charts.bitnami.com/bitnami"

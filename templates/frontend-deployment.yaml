@@ -42,13 +42,16 @@ spec:
             - name: DB_PORT
               value: "5432"
             - name: DB_DATABASE
-              value: {{ index .Values "anchore-engine" "postgresql" "postgresDatabase" }}
+              value: {{ .Values.postgres.postgresqlDatabase | quote}}
             - name: DB_USERNAME
-              value: {{ index .Values "anchore-engine" "postgresql" "postgresUser" }}
+              value: {{ .Values.postgres.postgresqlUsername | quote}}
             - name: DB_PASSWORD
-              value: {{ index .Values "anchore-engine" "postgresql" "postgresPassword" }}
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-postgresql
+                  key: postgresql-password
             - name: DB_AUTHENTICATION_DATABASE
-              value: {{ index .Values "anchore-engine" "postgresql" "postgresDatabase" }}
+              value: {{ .Values.postgres.postgresqlDatabase | quote}}
             - name: BROADCAST_DRIVER
               value: "log"
             - name: CACHE_DRIVER
@@ -60,8 +63,8 @@ spec:
             - name: SESSION_LIFETIME
               value: "120"
             - name: ANCHORE_API_URL
-              value: "http://{{ .Release.Name }}-anchore-engine-api:8228"
+              value: {{ .Values.anchore.cliURL | quote}}
             - name: ANCHORE_CLI_USER
-              value: "admin"
+              value: {{ .Values.anchore.cliUser | quote}}
             - name: ANCHORE_CLI_PASS
-              value: {{ index .Values "anchore-engine" "anchoreGlobal" "defaultAdminPassword" }}
+              value: {{ .Values.anchore.cliPass | quote}}

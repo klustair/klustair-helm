@@ -12,22 +12,24 @@ klustairfrontend:
     appkey: base64:pT9Zg64zbBgDDmH7WZXO+Kv4/NuA2zlVFAn/Jg7IV2A=
     url: klustair.shoks.ch
     dbport: 27017
+
+#anchore:
+# cliUser: admin
+# cliPass: foobar
+# cliURL: "http://anchore-engine-api:8228"
     
-anchore-engine:
-    enabled: true
-
-    postgresql:  
-        postgresUser: anchoreengine
-        postgresPassword: anchore-postgres,123
-        postgresDatabase: anchore
-
-        persistence:
-            size: 20Gi
-
-    anchoreGlobal:
-        defaultAdminPassword: adminpass
-        defaultAdminEmail: random@gmail.com
-
+postgres:
+    postgresqlUsername: postgres
+    # Default password if empty is a randomm 10 character alpha numeric string
+    #postgresqlPassword: 
+    postgresqlDatabase: klustair
+    persistence:
+        #storageClass: "-"
+        size: 1Gi
+    resources:
+        requests:
+            memory: 256Mi
+            cpu: 250m
 service:
     #type: ClusterIP
     #type: NodePort
