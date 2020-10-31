@@ -14,10 +14,15 @@ klustairfrontend:
     dbport: 27017
 
 #anchore:
+# cliURL: "http://anchore-engine-api:8228"
 # cliUser: admin
 # cliPass: foobar
-# cliURL: "http://anchore-engine-api:8228"
-    
+
+trivy: 
+    authUrl: "https://registry.hub.docker.com"
+    authUser:
+    authPass: 
+
 postgres:
     postgresqlUsername: postgres
     # Default password if empty is a randomm 10 character alpha numeric string

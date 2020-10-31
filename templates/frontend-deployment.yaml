@@ -68,3 +68,9 @@ spec:
               value: {{ .Values.anchore.cliUser | quote}}
             - name: ANCHORE_CLI_PASS
               value: {{ .Values.anchore.cliPass | quote}}
+            - name: TRIVY_AUTH_URL
+              value: {{ .Values.trivy.authUrl | quote}}
+            - name: TRIVY_USERNAME
+              value: {{ .Values.trivy.authUser | quote}}
+            - name: TRIVY_PASSWORD
+              value: {{ .Values.trivy.authPass | quote}}
