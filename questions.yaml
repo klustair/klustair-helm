@@ -16,6 +16,11 @@ questions:
   description: "base64:pT9Zg64zbBgDDmH7WZXO+Kv4/NuA2zlVFAn/Jg7IV2A="
   type: string
 
+- variable: portgres.persistence.storageClass
+  label: Postgres Data Directory Storageclass
+  required: true
+  type: storageclass
+
 - variable: service.type
   label: Service Type
   type: enum
