@@ -17,6 +17,37 @@ spec:
       labels:
         app: klustair-frontend
     spec:
+      initContainers:
+        - name: klustair-dbinit
+          image: {{ .Values.klustairfrontend.image }}:{{ .Values.klustairfrontend.tag }}
+          imagePullPolicy: {{ .Values.pullPolicy }}
+          command: ["php", "artisan", "migrate"]
+          env:
+            - name: APP_NAME
+              value: "klustair"
+            - name: APP_ENV
+              value: "local"
+            - name: DATABASE_ENDPOINT
+              value: {{ .Values.mongo.url }}
+            - name: DATA_URL
+              value: {{ .Values.dataUrl }}
+            - name: DB_CONNECTION
+              value: pgsql
+            - name: DB_HOST
+              value: {{ .Release.Name }}-postgresql
+            - name: DB_PORT
+              value: "5432"
+            - name: DB_DATABASE
+              value: {{ .Values.postgres.postgresqlDatabase | quote}}
+            - name: DB_USERNAME
+              value: {{ .Values.postgres.postgresqlUsername | quote}}
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-postgresql
+                  key: postgresql-password
+            - name: DB_AUTHENTICATION_DATABASE
+              value: {{ .Values.postgres.postgresqlDatabase | quote}}
       containers:
         - name: klustair-frontend
           image: {{ .Values.klustairfrontend.image }}:{{ .Values.klustairfrontend.tag }}
