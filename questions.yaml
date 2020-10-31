@@ -16,42 +16,6 @@ questions:
   label: Docker Password
   type: string
 
-- variable: mongodb.enabled
-  label: Use a local Mongo instance
-  type: boolean
-  default: true
-  required: true
-  show_subquestion_if: true
-  group: "Mongodb Settings"
-  subquestions:
-  - variable: mongodb.mongodbRootPassword
-    label: Root Password
-    type: password
-  - variable: mongodb.mongodbUsername
-    label: Application username
-    type: string
-  - variable: mongodb.mongodbPassword
-    label: Application password
-    type: password
-
-- variable: anchore-engine.enabled
-  label: Use a local Anchore Engine installation
-  type: boolean
-  default: true
-  required: true
-  show_subquestion_if: true
-  group: "Anchore Settings"
-  subquestions:
-  - variable: anchore-engine.postgresql.postgresPassword
-    label: Root Password
-    type: password
-  - variable: anchore-engine.anchoreGlobal.defaultAdminPassword
-    label: Anchore Admin password
-    type: string
-  - variable: anchore-engine.anchoreGlobal.defaultAdminEmail
-    label: Anchore Admin E-Mail
-    type: string
-
 - variable: service.type
   label: Service Type
   type: enum
