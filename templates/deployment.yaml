@@ -23,22 +23,25 @@ spec:
           imagePullPolicy: {{ .Values.pullPolicy }}
           command: ["tail", "-f", "/dev/null"]
           env:
-            - name: ANCHORE_CLI_USER
-              value: "admin"
-            - name: ANCHORE_CLI_PASS
-              value: {{ index .Values "anchore-engine" "anchoreGlobal" "defaultAdminPassword" }}
             - name: ANCHORE_CLI_URL
-              value: {{ .Values.klustair.AnchoreCliUrl }}
+              value: {{ .Values.anchore.cliURL }}
+            - name: ANCHORE_CLI_USER
+              value: {{ .Values.anchore.cliUser }}
+            - name: ANCHORE_CLI_PASS
+              value: {{ .Values.anchore.cliURL }}
             - name: KUBECONFIG
               value: /configs/kube.config
             - name: DB_HOST
               value: {{ .Release.Name }}-postgresql
             - name: DB_DATABASE
-              value: {{ index .Values "anchore-engine" "postgresql" "postgresDatabase" }}
+              value: {{ .Values.postgres.postgresqlDatabase | quote}}
             - name: DB_USERNAME
-              value: {{ index .Values "anchore-engine" "postgresql" "postgresUser" }}
+              value: {{ .Values.postgres.postgresqlUsername | quote}}
             - name: DB_PASSWORD
-              value: {{ index .Values "anchore-engine" "postgresql" "postgresPassword" }}
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-postgresql
+                  key: postgresql-password
           volumeMounts:
             - name: kubeconfig
               mountPath: "/configs"

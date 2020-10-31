@@ -1,19 +1,19 @@
 questions:
-- variable: klustair.dockerUser
-  label: Docker Username
-  type: string
-- variable: klustair.dockerPass
-  label: Docker Password
+- variable: klustair.tag
+  label: Klustair klustair.tag
+  default: latest
+  required: true
   type: string
 - variable: klustair.AnchoreCliUrl
   label: URL to Anchore API
   type: string
-  default: "http://klustair-dev-anchore-engine-api:8228"
+- variable: klustairfrontend.url
+  label: Frontend URL
+  required: true
+  type: string
 - variable: klustairfrontend.appkey
   label: Laravel Appkey
-  type: string
-- variable: klustairfrontend.url
-  label: Docker Password
+  description: "base64:pT9Zg64zbBgDDmH7WZXO+Kv4/NuA2zlVFAn/Jg7IV2A="
   type: string
 
 - variable: service.type
