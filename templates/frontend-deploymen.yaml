@@ -57,6 +57,8 @@ spec:
           image: "{{ .Values.image.repositoryFrontend }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
+            - name: LOG_CHANNEL
+              value: "stderr"
             - name: APACHE_DOCUMENT_ROOT
               value: {{ .Values.klustairfrontend.apachedocumentroot | quote}}
             - name: APP_NAME
