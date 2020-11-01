@@ -1,26 +1,34 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: klustair  
+  name: {{ include "klustair.fullname" . }}
   labels:
-    app: {{ template "name" . }}
-    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
-    release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
+{{ include "klustair.labels" . | indent 4 }}
 spec:
-  replicas: 1
+  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: klustair
+      app.kubernetes.io/name: {{ include "klustair.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
   template:
     metadata:
       labels:
-        app: klustair
+        app.kubernetes.io/name: {{ include "klustair.name" . }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
     spec:
+    {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+      serviceAccountName: {{ template "klustair.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
-        - name: klustair-runner
-          image: {{ .Values.klustair.image }}:{{ .Values.klustair.tag }}
-          imagePullPolicy: {{ .Values.pullPolicy }}
+        - name: {{ .Chart.Name }}-runner
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
           command: ["tail", "-f", "/dev/null"]
           env:
             - name: ANCHORE_CLI_URL
@@ -46,7 +54,21 @@ spec:
             - name: kubeconfig
               mountPath: "/configs"
               readOnly: true
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      {{- with .Values.nodeSelector }}
       volumes:
-      - name: kubeconfig
-        secret:
-            secretName: {{ .Release.Name }}-kubeconfig
+        - name: kubeconfig
+          secret:
+              secretName: {{ .Release.Name }}-kubeconfig
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}

@@ -1,36 +1,38 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ template "name" . }}-frontend
+  name: {{ include "klustair.fullname" . }}-frontend
   labels:
-    app: {{ template "name" . }}
-    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
-    release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
+{{ include "klustair.labels" . | indent 4 }}
 spec:
-  replicas: 1
+  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: klustair-frontend
+      app.kubernetes.io/name: {{ include "klustair.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
   template:
     metadata:
       labels:
-        app: klustair-frontend
+        app.kubernetes.io/name: {{ include "klustair.name" . }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
     spec:
+    {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+      serviceAccountName: {{ template "klustair.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
       initContainers:
-        - name: klustair-dbinit
-          image: {{ .Values.klustairfrontend.image }}:{{ .Values.klustairfrontend.tag }}
-          imagePullPolicy: {{ .Values.pullPolicy }}
+        - name: {{ .Chart.Name }}-dbinit
+          image: "{{ .Values.image.repositoryFrontend }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
           command: ["php", "artisan", "migrate"]
           env:
             - name: APP_NAME
               value: "klustair"
             - name: APP_ENV
               value: "local"
-            - name: DATABASE_ENDPOINT
-              value: {{ .Values.mongo.url }}
-            - name: DATA_URL
-              value: {{ .Values.dataUrl }}
             - name: DB_CONNECTION
               value: pgsql
             - name: DB_HOST
@@ -49,10 +51,11 @@ spec:
             - name: DB_AUTHENTICATION_DATABASE
               value: {{ .Values.postgres.postgresqlDatabase | quote}}
       containers:
-        - name: klustair-frontend
-          image: {{ .Values.klustairfrontend.image }}:{{ .Values.klustairfrontend.tag }}
-          imagePullPolicy: {{ .Values.pullPolicy }}
-          #command: ["tail", "-f", "/dev/null"]
+        - name: {{ .Chart.Name }}-frontend
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repositoryFrontend }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
             - name: APACHE_DOCUMENT_ROOT
               value: {{ .Values.klustairfrontend.apachedocumentroot | quote}}
@@ -105,3 +108,29 @@ spec:
               value: {{ .Values.trivy.authUser | quote}}
             - name: TRIVY_PASSWORD
               value: {{ .Values.trivy.authPass | quote}}
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}

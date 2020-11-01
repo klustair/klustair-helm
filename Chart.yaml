@@ -1,10 +1,11 @@
-  
 apiVersion: v1
+appVersion: "1.0"
+description: Kluster image security suite
 name: klustair
-version: 0.0.3
-description: Klusterstatus and scanner
+version: 0.1.0
 keywords:
   - security
-  - scanner
-home: https://github.com/mms-gianni/klustair
-icon: https://raw.githubusercontent.com/mms-gianni/klustair-helm/master/static/klustair.png
+  - vulnerability
+  - audit
+home: https://github.com/klustair/klustair
+icon: https://raw.githubusercontent.com/klustair/klustair-helm/master/static/klustair.png

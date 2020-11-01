@@ -1,19 +1,23 @@
-{{- if index .Values "klustair-runner" "enabled" -}}
+{{- if .Values.klustairJob.enabled -}}
 apiVersion: batch/v1beta1
 kind: CronJob
 metadata:
-  name: scanner
+  name: {{ include "klustair.fullname" . }}-job
+  labels:
+{{ include "klustair.labels" . | indent 4 }}
 spec:
-  schedule: {{ index .Values "klustair-runner" "schedule" }}
+  schedule: {{ .Values.klustairJob.schedule }}
   jobTemplate:
     spec:
       template:
         spec:
           containers:
-          - name: klustair-runner
-            image: {{ .Values.klustair.image }}:{{ .Values.klustair.tag }}
-            imagePullPolicy: {{ .Values.pullPolicy }}
-            command: ["runner.py", "--verbose", , "-t", "--namespacesblacklist", {{ index .Values "klustair-runner" "namespaceblacklist" }}]
+          - name: {{ .Chart.Name }}-runnerjob
+            securityContext:
+              {{- toYaml .Values.securityContext | nindent 12 }}
+            image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+            imagePullPolicy: {{ .Values.image.pullPolicy }}
+            command: ["runner.py", "--verbose", , "-t", "--namespacesblacklist", {{ .Values.klustairJob.namespaceblacklist }}]
             env:
               - name: ANCHORE_CLI_URL
                 value: {{ .Values.anchore.cliURL }}
@@ -38,9 +42,23 @@ spec:
               - name: kubeconfig
                 mountPath: "/configs"
                 readOnly: true
+            resources:
+              {{- toYaml .Values.resources | nindent 12 }}
+          {{- with .Values.nodeSelector }}
           restartPolicy: OnFailure
           volumes:
-          - name: kubeconfig
-            secret:
-                secretName: {{ .Release.Name }}-kubeconfig
+            - name: kubeconfig
+              secret:
+                  secretName: {{ .Release.Name }}-kubeconfig
+          nodeSelector:
+            {{- toYaml . | nindent 8 }}
+          {{- end }}
+        {{- with .Values.affinity }}
+          affinity:
+            {{- toYaml . | nindent 8 }}
+        {{- end }}
+        {{- with .Values.tolerations }}
+          tolerations:
+            {{- toYaml . | nindent 8 }}
+        {{- end }}
 {{- end }}
