@@ -29,6 +29,8 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           command: ["php", "artisan", "migrate"]
           env:
+            - name: LOG_CHANNEL
+              value: "stderr"
             - name: APP_NAME
               value: "klustair"
             - name: APP_ENV
