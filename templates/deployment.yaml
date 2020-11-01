@@ -60,7 +60,7 @@ spec:
       volumes:
         - name: kubeconfig
           secret:
-              secretName: {{ .Release.Name }}-kubeconfig
+              secretName: {{ include "klustair.fullname" . }}-kubeconfig
       nodeSelector:
         {{- toYaml . | nindent 8 }}
       {{- end }}
