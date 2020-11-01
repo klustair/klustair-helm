@@ -1,0 +1,89 @@
+questions:
+- variable: image.tag
+  label: Klustair klustair.tag
+  default: latest
+  required: true
+  type: string
+- variable: klustairfrontend.url
+  label: Frontend URL
+  group: "Klustair Frontend"
+  required: true
+  type: string
+- variable: klustairfrontend.appkey
+  label: Laravel Appkey
+  group: "Klustair Frontend"
+  required: true
+  description: "base64:pT9Zg64zbBgDDmH7WZXO+Kv4/NuA2zlVFAn/Jg7IV2A="
+  type: string
+
+- variable: klustairJob.enabled
+  label: Run klustair frequently
+  description: "base64:pT9Zg64zbBgDDmH7WZXO+Kv4/NuA2zlVFAn/Jg7IV2A="
+  type: boolean
+  default: true
+  required: true
+  show_subquestion_if: true
+  group: "Klustair Job"
+  subquestions:
+  - variable: klustairJob.schedule
+    label: Schedule
+    description: "Cronjob Style: 15 9 * * *"
+    default: "0 * * * *"
+    required: true
+    type: string
+  - variable: klustairJob.namespaceblacklist
+    label: Blacklisted Namespaces
+    type: string
+
+- variable: anchore.enabled
+  label: Run klustair frequently
+  description: "base64:pT9Zg64zbBgDDmH7WZXO+Kv4/NuA2zlVFAn/Jg7IV2A="
+  type: boolean
+  default: false
+  required: true
+  show_subquestion_if: true
+  group: "Anchore Backend"
+  subquestions:
+  - variable: anchore.cliURL
+    label: Cli URL
+    description: "http://CHANGEME:8228"
+    required: true
+    type: string
+  - variable: anchore.cliUser
+    label: Cli User
+    default: "admin"
+    required: true
+    type: string
+  - variable: anchore.cliPass
+    label: Cli Password
+    description: "Anchore default: foobar"
+    required: true
+    type: Password
+
+- variable: trivy.enabled
+  label: Run klustair frequently
+  description: "base64:pT9Zg64zbBgDDmH7WZXO+Kv4/NuA2zlVFAn/Jg7IV2A="
+  type: boolean
+  default: false
+  required: true
+  show_subquestion_if: true
+  group: "Trivy registry authentication"
+  subquestions:
+  - variable: trivy.authUrl
+    label: Registry URL
+    description: "https://registry.hub.docker.com"
+    required: true
+    type: string
+  - variable: trivy.authUser
+    label: Registry User
+    required: true
+    type: string
+  - variable: trivy.authPass
+    label: Registry Password
+    required: true
+    type: Password
+
+- variable: portgres.persistence.storageClass
+  label: Postgres Data Directory Storageclass
+  required: true
+  type: storageclass
