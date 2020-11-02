@@ -88,7 +88,7 @@ questions:
   required: true
   type: storageclass
 
-- variable: portgres.postgresqlPassword
+- variable: postgres.postgresqlPassword
   label: Postgresql Password
   required: true
-  type: Password
+  type: password
