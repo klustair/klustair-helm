@@ -130,8 +130,16 @@ spec:
 #              httpHeaders:
 #              - name: Host
 #                value: {{ .Values.klustairfrontend.url }}
+
+          volumeMounts:
+            - mountPath: /var/www/storage
+              name: storage
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+      volumes:
+        - name: storage
+          persistentVolumeClaim:
+            claimName: {{ template "klustair.fullname" . }}-storage
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
