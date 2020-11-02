@@ -42,9 +42,9 @@ spec:
             - name: DB_HOST
               value: {{ .Release.Name }}-postgresql
             - name: DB_DATABASE
-              value: {{ .Values.postgres.postgresqlDatabase | quote}}
+              value: {{ .Values.postgresql.postgresqlDatabase | quote}}
             - name: DB_USERNAME
-              value: {{ .Values.postgres.postgresqlUsername | quote}}
+              value: {{ .Values.postgresql.postgresqlUsername | quote}}
             - name: DB_PASSWORD
               valueFrom:
                 secretKeyRef:

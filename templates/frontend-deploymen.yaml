@@ -42,16 +42,16 @@ spec:
             - name: DB_PORT
               value: "5432"
             - name: DB_DATABASE
-              value: {{ .Values.postgres.postgresqlDatabase | quote}}
+              value: {{ .Values.postgresql.postgresqlDatabase | quote}}
             - name: DB_USERNAME
-              value: {{ .Values.postgres.postgresqlUsername | quote}}
+              value: {{ .Values.postgresql.postgresqlUsername | quote}}
             - name: DB_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: {{ .Release.Name }}-postgresql
                   key: postgresql-password
             - name: DB_AUTHENTICATION_DATABASE
-              value: {{ .Values.postgres.postgresqlDatabase | quote}}
+              value: {{ .Values.postgresql.postgresqlDatabase | quote}}
       containers:
         - name: {{ .Chart.Name }}-frontend
           securityContext:
@@ -80,16 +80,16 @@ spec:
             - name: DB_PORT
               value: "5432"
             - name: DB_DATABASE
-              value: {{ .Values.postgres.postgresqlDatabase | quote}}
+              value: {{ .Values.postgresql.postgresqlDatabase | quote}}
             - name: DB_USERNAME
-              value: {{ .Values.postgres.postgresqlUsername | quote}}
+              value: {{ .Values.postgresql.postgresqlUsername | quote}}
             - name: DB_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: {{ .Release.Name }}-postgresql
                   key: postgresql-password
             - name: DB_AUTHENTICATION_DATABASE
-              value: {{ .Values.postgres.postgresqlDatabase | quote}}
+              value: {{ .Values.postgresql.postgresqlDatabase | quote}}
             - name: BROADCAST_DRIVER
               value: "log"
             - name: CACHE_DRIVER
