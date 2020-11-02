@@ -83,7 +83,7 @@ questions:
     required: true
     type: Password
 
-- variable: portgres.persistence.storageClass
+- variable: postgres.persistence.storageClass
   label: Postgresql Data Directory Storageclass
   required: true
   type: storageclass
