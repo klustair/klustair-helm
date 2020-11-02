@@ -8,7 +8,7 @@ image:
   repository: klustair/klustair
   repositoryFrontend: klustair/klustair-frontend
   tag: latest
-  pullPolicy: Allways
+  pullPolicy: Always
 
 klustairfrontend:
     apachedocumentroot: /var/www/public
