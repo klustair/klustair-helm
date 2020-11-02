@@ -116,20 +116,20 @@ spec:
             - name: http
               containerPort: 80
               protocol: TCP
-          livenessProbe:
-            httpGet:
-              path: /
-              port: http
-              httpHeaders:
-              - name: Host
-                value: {{ .Values.klustairfrontend.url }}
-          readinessProbe:
-            httpGet:
-              path: /
-              port: http
-              httpHeaders:
-              - name: Host
-                value: {{ .Values.klustairfrontend.url }}
+#          livenessProbe:
+#            httpGet:
+#              path: /
+#              port: http
+#              httpHeaders:
+#              - name: Host
+#                value: {{ .Values.klustairfrontend.url }}
+#          readinessProbe:
+#            httpGet:
+#              path: /
+#              port: http
+#              httpHeaders:
+#              - name: Host
+#                value: {{ .Values.klustairfrontend.url }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
