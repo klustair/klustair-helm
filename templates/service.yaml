@@ -12,5 +12,5 @@ spec:
       protocol: TCP
       name: http
   selector:
-    app.kubernetes.io/name: {{ include "klustair.name" . }}-frontend
+    app.kubernetes.io/name: {{ include "klustair.fullname" . }}-frontend
     app.kubernetes.io/instance: {{ .Release.Name }}
