@@ -13,4 +13,3 @@ spec:
       name: http
   selector:
     app.kubernetes.io/name: {{ include "klustair.fullname" . }}-frontend
-    app.kubernetes.io/instance: {{ .Release.Name }}
