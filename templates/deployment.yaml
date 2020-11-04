@@ -1,19 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "klustair.fullname" . }}
+  name: {{ include "klustair.fullname" . }}-runner
   labels:
 {{ include "klustair.labels" . | indent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app.kubernetes.io/name: {{ include "klustair.name" . }}
-      app.kubernetes.io/instance: {{ .Release.Name }}
+      app.kubernetes.io/name: {{ include "klustair.name" . }}-runner
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: {{ include "klustair.name" . }}
+        app.kubernetes.io/name: {{ include "klustair.name" . }}-runner
         app.kubernetes.io/instance: {{ .Release.Name }}
     spec:
     {{- with .Values.imagePullSecrets }}
