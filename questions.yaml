@@ -62,7 +62,6 @@ questions:
 
 - variable: trivy.enabled
   label: Registry authentication for Trivy
-  description: "base64:pT9Zg64zbBgDDmH7WZXO+Kv4/NuA2zlVFAn/Jg7IV2A="
   type: boolean
   default: false
   required: true

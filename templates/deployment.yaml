@@ -49,6 +49,15 @@ spec:
                 secretKeyRef:
                   name: {{ .Release.Name }}-postgresql
                   key: postgresql-password
+            - name: TRIVY_AUTH_URL
+              value: {{ .Values.trivy.authUrl | quote}}
+            - name: TRIVY_USERNAME
+              value: {{ .Values.trivy.authUser | quote}}
+            - name: TRIVY_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "klustair.fullname" . }}-trivy
+                  key: trivy-repo-password
           volumeMounts:
             - name: kubeconfig
               mountPath: "/configs"

@@ -16,11 +16,13 @@ klustairfrontend:
     url: klustair.com
 
 anchore:
+  enabled: false
   cliURL: "http://CHANGEME:8228"
   cliUser: admin
   cliPass: foobar
 
 trivy: 
+    enabled: true
     authUrl: "https://registry.hub.docker.com"
     authUser: ""
     authPass: ""
