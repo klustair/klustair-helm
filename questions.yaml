@@ -70,6 +70,7 @@ questions:
   subquestions:
   - variable: trivy.repoCredentials
     label: Repo Credentails in JSON format
+    description: "IMPORTANT: Wrap ypur JSON with single quotes"
     required: false
     type: multiline
 
