@@ -26,7 +26,7 @@ spec:
               - name: ANCHORE_CLI_PASS
                 value: {{ .Values.anchore.cliURL }}
               - name: KUBECONFIG
-                value: /configs/kube.config
+                value: /etc/klustair/kube.config
               - name: DB_HOST
                 value: {{ .Release.Name }}-postgresql
               - name: DB_DATABASE
@@ -38,16 +38,18 @@ spec:
                   secretKeyRef:
                     name: {{ .Release.Name }}-postgresql
                     key: postgresql-password
+              - name: KLUSTAIR_TRIVYCREDENTIALSPATH
+                value: "/etc/klustair/repo-credentials.json"
             volumeMounts:
-              - name: kubeconfig
-                mountPath: "/configs"
+              - name: configs
+                mountPath: "/etc/klustair"
                 readOnly: true
             resources:
               {{- toYaml .Values.resources | nindent 12 }}
           volumes:
-            - name: kubeconfig
+            - name: configs
               secret:
-                  secretName: {{ include "klustair.fullname" . }}-kubeconfig
+                  secretName: {{ include "klustair.fullname" . }}-configs
           restartPolicy: OnFailure
           {{- with .Values.nodeSelector }}
           nodeSelector:

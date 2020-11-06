@@ -37,7 +37,7 @@ spec:
             - name: ANCHORE_CLI_PASS
               value: {{ .Values.anchore.cliURL }}
             - name: KUBECONFIG
-              value: /configs/kube.config
+              value: /etc/klustair/kube.config
             - name: DB_HOST
               value: {{ .Release.Name }}-postgresql
             - name: DB_DATABASE
@@ -49,25 +49,18 @@ spec:
                 secretKeyRef:
                   name: {{ .Release.Name }}-postgresql
                   key: postgresql-password
-            - name: TRIVY_AUTH_URL
-              value: {{ .Values.trivy.authUrl | quote}}
-            - name: TRIVY_USERNAME
-              value: {{ .Values.trivy.authUser | quote}}
-            - name: TRIVY_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: {{ include "klustair.fullname" . }}-trivy
-                  key: trivy-repo-password
+            - name: KLUSTAIR_TRIVY_CREDENTIALSPATH
+              value: "/etc/klustair/repo-credentials.json"
           volumeMounts:
-            - name: kubeconfig
-              mountPath: "/configs"
+            - name: configs
+              mountPath: "/etc/klustair"
               readOnly: true
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       volumes:
-        - name: kubeconfig
+        - name: configs
           secret:
-              secretName: {{ include "klustair.fullname" . }}-kubeconfig
+              secretName: {{ include "klustair.fullname" . }}-configs
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

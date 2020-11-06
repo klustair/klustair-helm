@@ -15,6 +15,13 @@ klustairfrontend:
     appkey: base64:pT9Zg64zbBgDDmH7WZXO+Kv4/NuA2zlVFAn/Jg7IV2A=
     url: klustair.com
 
+klustair:
+  kubeconfig: |
+  apiVersion: v1
+  kind: Config
+  clusters:
+    PUT THE REST OF YOUR KUBECONNFIG HERE
+
 anchore:
   enabled: false
   cliURL: "http://CHANGEME:8228"
@@ -26,6 +33,21 @@ trivy:
     authUrl: "https://registry.hub.docker.com"
     authUser: ""
     authPass: ""
+    repoCredentials: |
+  {
+      "myprivaterepo/privateimage:latest": {
+          "username": "foo",
+          "password": "bar",
+          "insecure": "false",
+          "nonSsl": "false"
+      },
+      "myprivaterepo": {
+          "registryToken": "asdfasdf-asdfasdf-asdfasdf-asdfasdf",
+          "insecure": "false",
+          "nonSsl": "false"
+      }
+  }
+
 
 postgresql:
     postgresqlUsername: klustair

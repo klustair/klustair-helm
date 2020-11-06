@@ -81,6 +81,10 @@ questions:
     label: Registry Password
     required: true
     type: password
+  - variable: trivy.repoCredentials
+    label: Repo Credentails in JSON format
+    required: false
+    type: multiline
 
 - variable: postgresql.persistence.storageClass
   label: Postgresql Data Directory Storageclass
