@@ -68,19 +68,6 @@ questions:
   show_subquestion_if: true
   group: "Trivy registry authentication"
   subquestions:
-  - variable: trivy.authUrl
-    label: Registry URL
-    description: "https://registry.hub.docker.com"
-    required: true
-    type: string
-  - variable: trivy.authUser
-    label: Registry User
-    required: true
-    type: string
-  - variable: trivy.authPass
-    label: Registry Password
-    required: true
-    type: password
   - variable: trivy.repoCredentials
     label: Repo Credentails in JSON format
     required: false
