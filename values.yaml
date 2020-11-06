@@ -17,10 +17,10 @@ klustairfrontend:
 
 klustair:
   kubeconfig: |
-  apiVersion: v1
-  kind: Config
-  clusters:
-    PUT THE REST OF YOUR KUBECONNFIG HERE
+    apiVersion: v1
+    kind: Config
+    clusters:
+      PUT THE REST OF YOUR KUBECONNFIG HERE
 
 anchore:
   enabled: false
@@ -34,19 +34,19 @@ trivy:
     authUser: ""
     authPass: ""
     repoCredentials: |
-  {
-      "myprivaterepo/privateimage:latest": {
-          "username": "foo",
-          "password": "bar",
-          "insecure": "false",
-          "nonSsl": "false"
-      },
-      "myprivaterepo": {
-          "registryToken": "asdfasdf-asdfasdf-asdfasdf-asdfasdf",
-          "insecure": "false",
-          "nonSsl": "false"
+      {
+          "myprivaterepo/privateimage:latest": {
+              "username": "foo",
+              "password": "bar",
+              "insecure": "false",
+              "nonSsl": "false"
+          },
+          "myprivaterepo": {
+              "registryToken": "asdfasdf-asdfasdf-asdfasdf-asdfasdf",
+              "insecure": "false",
+              "nonSsl": "false"
+          }
       }
-  }
 
 
 postgresql:
