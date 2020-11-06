@@ -32,7 +32,7 @@ spec:
               - name: DB_DATABASE
                 value: {{ .Values.postgresql.postgresqlDatabase | quote}}
               - name: DB_USERNAME
-                value: {{ .Values.postpostgresqlgres.postgresqlUsername | quote}}
+                value: {{ .Values.postgresql.postgresqlUsername | quote}}
               - name: DB_PASSWORD
                 valueFrom:
                   secretKeyRef:
