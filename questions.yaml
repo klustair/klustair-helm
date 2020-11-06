@@ -36,8 +36,8 @@ questions:
     type: string
 
 - variable: anchore.enabled
-  label: Run klustair frequently
-  description: "base64:pT9Zg64zbBgDDmH7WZXO+Kv4/NuA2zlVFAn/Jg7IV2A="
+  label: Enable Anchore Backend
+  description: "requires a running Anchore installation"
   type: boolean
   default: false
   required: true
@@ -80,7 +80,7 @@ questions:
   - variable: trivy.authPass
     label: Registry Password
     required: true
-    type: Password
+    type: password
 
 - variable: postgresql.persistence.storageClass
   label: Postgresql Data Directory Storageclass
