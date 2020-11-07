@@ -49,7 +49,7 @@ spec:
                 secretKeyRef:
                   name: {{ .Release.Name }}-postgresql
                   key: postgresql-password
-            - name: KLUSTAIR_TRIVY_CREDENTIALSPATH
+            - name: KLUSTAIR_TRIVYCREDENTIALSPATH
               value: "/etc/klustair/repo-credentials.json"
           volumeMounts:
             - name: configs
