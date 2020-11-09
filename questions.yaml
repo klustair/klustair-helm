@@ -77,7 +77,7 @@ questions:
     label: Docker pull timout
     default: 2m0s
     required: false
-    type: multiline
+    type: string
 
 - variable: postgresql.persistence.storageClass
   label: Postgresql Data Directory Storageclass
