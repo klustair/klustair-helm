@@ -73,6 +73,11 @@ questions:
     description: "IMPORTANT: Wrap ypur JSON with single quotes"
     required: false
     type: multiline
+  - variable: trivy.timeout
+    label: Docker pull timout
+    default: 2m0s
+    required: false
+    type: multiline
 
 - variable: postgresql.persistence.storageClass
   label: Postgresql Data Directory Storageclass

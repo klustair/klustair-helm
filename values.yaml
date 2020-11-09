@@ -33,6 +33,7 @@ trivy:
     authUrl: "https://registry.hub.docker.com"
     authUser: ""
     authPass: ""
+    timeout: "2m0s"
     repoCredentials: |
       {
           "myprivaterepo/privateimage:latest": {

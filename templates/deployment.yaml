@@ -51,6 +51,8 @@ spec:
                   key: postgresql-password
             - name: KLUSTAIR_TRIVYCREDENTIALSPATH
               value: "/etc/klustair/repo-credentials.json"
+            - name: TRIVY_TIMEOUT
+              value: {{ .Values.trivy.timeout | quote}}          
           volumeMounts:
             - name: configs
               mountPath: "/etc/klustair"
