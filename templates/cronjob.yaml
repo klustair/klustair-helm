@@ -45,7 +45,7 @@ spec:
                 mountPath: "/etc/klustair"
                 readOnly: true
             resources:
-              {{- toYaml .Values.resources | nindent 12 }}
+              {{- toYaml .Values.resources | nindent 14 }}
           volumes:
             - name: configs
               secret:
@@ -53,14 +53,14 @@ spec:
           restartPolicy: OnFailure
           {{- with .Values.nodeSelector }}
           nodeSelector:
-            {{- toYaml . | nindent 8 }}
+            {{- toYaml . | nindent 10 }}
           {{- end }}
         {{- with .Values.affinity }}
           affinity:
-            {{- toYaml . | nindent 8 }}
+            {{- toYaml . | nindent 10 }}
         {{- end }}
         {{- with .Values.tolerations }}
           tolerations:
-            {{- toYaml . | nindent 8 }}
+            {{- toYaml . | nindent 10 }}
         {{- end }}
 {{- end }}
