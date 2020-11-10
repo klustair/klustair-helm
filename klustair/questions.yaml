@@ -18,7 +18,6 @@ questions:
 
 - variable: klustairJob.enabled
   label: Run klustair frequently
-  description: "base64:pT9Zg64zbBgDDmH7WZXO+Kv4/NuA2zlVFAn/Jg7IV2A="
   type: boolean
   default: true
   required: true
@@ -33,6 +32,7 @@ questions:
     type: string
   - variable: klustairJob.namespaceblacklist
     label: Blacklisted Namespaces
+    description: "comaseparated list of blacklisted namespaces"
     type: string
 
 - variable: anchore.enabled
@@ -66,7 +66,7 @@ questions:
   default: false
   required: true
   show_subquestion_if: true
-  group: "Trivy registry authentication"
+  group: "Trivy scanner"
   subquestions:
   - variable: trivy.repoCredentials
     label: Repo Credentails in JSON format
@@ -82,9 +82,11 @@ questions:
 - variable: postgresql.persistence.storageClass
   label: Postgresql Data Directory Storageclass
   required: true
+  group: "Database"
   type: storageclass
 
 - variable: postgresql.postgresqlPassword
   label: Postgresql Password
   required: true
+  group: "Database"
   type: password
