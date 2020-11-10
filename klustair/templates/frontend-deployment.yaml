@@ -8,12 +8,12 @@ spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app.kubernetes.io/name: {{ include "klustair.fullname" . }}-frontend
+      app.kubernetes.io/name: {{ include "klustair.name" . }}-frontend
       app.kubernetes.io/instance: {{ .Release.Name }}
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: {{ include "klustair.fullname" . }}-frontend
+        app.kubernetes.io/name: {{ include "klustair.name" . }}-frontend
         app.kubernetes.io/instance: {{ .Release.Name }}
     spec:
     {{- with .Values.imagePullSecrets }}
