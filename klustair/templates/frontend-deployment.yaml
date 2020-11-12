@@ -100,6 +100,8 @@ spec:
               value: "file"
             - name: SESSION_LIFETIME
               value: "120"
+            - name: ANCHORE_ENABLED
+              value: {{ .Values.anchore.enabled | quote}}
             - name: ANCHORE_API_URL
               value: {{ .Values.anchore.cliURL | quote}}
             - name: ANCHORE_CLI_USER
