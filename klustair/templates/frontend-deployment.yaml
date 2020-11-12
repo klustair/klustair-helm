@@ -70,7 +70,7 @@ spec:
             - name: APP_KEY
               value: {{ .Values.klustairfrontend.appkey | quote}}
             - name: APP_DEBUG
-              value: "true"
+              value: {{ .Values.klustairfrontend.debug | quote}}
             - name: APP_URL
               value: "http://{{ .Values.klustairfrontend.url }}"
             - name: DB_CONNECTION
