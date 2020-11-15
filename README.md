@@ -14,7 +14,7 @@ The Klustair scanner scanns your Kubernetes namespaces for the used images and s
 
 ## Installation
 
-### add repostiry
+### add repository
 ```
 $ helm repo add klustair https://klustair.github.io/klustair-helm
 $ helm search repo klustair
@@ -27,6 +27,19 @@ $ git clone git@github.com:klustair/klustair-helm.git
 $ cd klustair-helm
 $ helm install -f values.yaml my-klustair klustair
 ```
+
+## Generate laravel key
+Chose one of the following commands
+```
+$ dd if=/dev/urandom bs=1 count=32 2>/dev/null | base64
+```
+```
+$ date +%s | md5 | base64 | head -c 64 ; echo
+```
+```
+$ openssl rand -base64 32
+```
+
 ## Chart Configuration
 
 | Key                                    | Type             | Default             | Description  |
