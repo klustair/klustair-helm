@@ -7,5 +7,9 @@ keywords:
   - security
   - vulnerability
   - audit
-home: https://github.com/klustair/klustair-helm
+home: https://www.klustair.com
+sources:
+  - https://github.com/klustair/klustair-frontend
+  - https://github.com/klustair/klustair
+  - https://github.com/klustair/klustair-helm
 icon: https://raw.githubusercontent.com/klustair/klustair-helm/main/klustair/static/klustair.png
