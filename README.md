@@ -1,8 +1,6 @@
 <p align="center"><img src="https://raw.githubusercontent.com/klustair/klustair-frontend/master/docs/img/klustair.png" width="200"></p>
 
 # <a href='https://github.com/klustair/klustair'>KlustAIR Helm chart</a>
-[![Artifact HUB](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/klustair)](https://artifacthub.io/packages/search?repo=klustair)
-
 The Klustair scanner scanns your Kubernetes namespaces for the used images and submits them to Anchore. This is the helm part. 
 
 ### Related Klustair projects: 
@@ -19,7 +17,8 @@ The Klustair scanner scanns your Kubernetes namespaces for the used images and s
 ### add repository
 ```
 $ helm repo add klustair https://klustair.github.io/klustair-helm
-$ helm install my-klustair klustair/klustair
+$ helm search repo klustair
+$ helm install my-klustair klustair
 ```
 
 ### git installation
