@@ -14,3 +14,16 @@ sources:
   - https://github.com/klustair/klustair
   - https://github.com/klustair/klustair-helm
 icon: https://raw.githubusercontent.com/klustair/klustair-helm/main/klustair/static/klustair.png
+annotations:
+  artifacthub.io/changes: |
+    - Frontend: Added footer
+    - Frontend: Fixed overview summary
+    - Frontend: Removed link from unscanned images
+    - HELM Chart: Removed default values from kubeconfig and trivy repo credentials
+  artifacthub.io/images: |
+    - name: klustair
+      image: klustair/klustair:latest
+    - name: klustair-frontend
+      image: klustair/klustair-frontend:latest
+    - name: postgresql
+      image: postgres:12-alpine
