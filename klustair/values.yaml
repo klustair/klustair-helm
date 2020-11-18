@@ -7,7 +7,7 @@ replicaCount: 1
 image:
   repository: klustair/klustair
   repositoryFrontend: klustair/klustair-frontend
-  tag: v0.2.5
+  tag: latest
   pullPolicy: Always
 
 klustairfrontend:
@@ -17,11 +17,12 @@ klustairfrontend:
     debug: false
 
 klustair:
-  kubeconfig: |
-    apiVersion: v1
-    kind: Config
-    clusters:
-      PUT THE REST OF YOUR KUBECONNFIG HERE
+  kubeconfig: ""
+#  kubeconfig: |
+#    apiVersion: v1
+#    kind: Config
+#    clusters:
+#      PUT THE REST OF YOUR KUBECONNFIG HERE
 
 anchore:
   enabled: false
@@ -32,20 +33,21 @@ anchore:
 trivy: 
     enabled: true
     timeout: "2m0s"
-    repoCredentials: |
-      {
-          "myprivaterepo/privateimage:latest": {
-              "username": "foo",
-              "password": "bar",
-              "insecure": "false",
-              "nonSsl": "false"
-          },
-          "myprivaterepo": {
-              "registryToken": "asdfasdf-asdfasdf-asdfasdf-asdfasdf",
-              "insecure": "false",
-              "nonSsl": "false"
-          }
-      }
+    repoCredentials: ""
+#    repoCredentials: |
+#      {
+#          "myprivaterepo/privateimage:latest": {
+#              "username": "foo",
+#              "password": "bar",
+#              "insecure": "false",
+#              "nonSsl": "false"
+#          },
+#          "myprivaterepo": {
+#              "registryToken": "asdfasdf-asdfasdf-asdfasdf-asdfasdf",
+#              "insecure": "false",
+#              "nonSsl": "false"
+#          }
+#      }
 
 
 postgresql:
