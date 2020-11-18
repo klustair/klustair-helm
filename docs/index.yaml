@@ -1,11 +1,24 @@
 apiVersion: v1
 entries:
   klustair:
-  - apiVersion: v1
+  - annotations:
+      artifacthub.io/changes: |
+        - Frontend: Added footer
+        - Frontend: Fixed overview summary
+        - Frontend: Removed link from unscanned images
+        - HELM Chart: Removed default values from kubeconfig and trivy repo credentials
+      artifacthub.io/images: |-
+        - name: klustair
+          image: klustair/klustair:latest
+        - name: klustair-frontend
+          image: klustair/klustair-frontend:latest
+        - name: postgresql
+          image: postgres:12-alpine
+    apiVersion: v1
     appVersion: ^0.2.4
-    created: "2020-11-18T13:58:41.831616+01:00"
+    created: "2020-11-18T14:52:47.38551+01:00"
     description: Kluster image security suite
-    digest: 20bee667ddfc281a4449140a285f6a2203ee3729e8faf0d3d461b2cc25aff2ea
+    digest: 026ad905435fe59eb2a649868dd44768bc93b9427b9379ac5fa332ff83f8c742
     home: https://www.klustair.com
     icon: https://raw.githubusercontent.com/klustair/klustair-helm/main/klustair/static/klustair.png
     keywords:
@@ -23,7 +36,7 @@ entries:
     version: 0.2.5
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2020-11-18T13:58:41.828649+01:00"
+    created: "2020-11-18T14:52:47.382277+01:00"
     description: Kluster image security suite
     digest: b4d0824fa95cdab8885b7a4c5177b1ed6ddefec33edc2376cda0ffc55ad46ddc
     home: https://www.klustair.com
@@ -42,7 +55,7 @@ entries:
     version: 0.2.4
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2020-11-18T13:58:41.82411+01:00"
+    created: "2020-11-18T14:52:47.378093+01:00"
     description: Kluster image security suite
     digest: bd4f5a145fa4571211cb8ec9de2a43f1a19b4447cda51284fce1b3be29a9ae51
     home: https://github.com/klustair/klustair
@@ -57,7 +70,7 @@ entries:
     version: 0.2.3
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2020-11-18T13:58:41.82042+01:00"
+    created: "2020-11-18T14:52:47.374365+01:00"
     description: Kluster image security suite
     digest: 6b5e6b257e8e1c685fa947f42fd43c02e598dfe57b60b77df49d373b628c86f6
     home: https://github.com/klustair/klustair
@@ -70,4 +83,4 @@ entries:
     urls:
     - https://klustair.github.io/klustair-helm/klustair-0.2.2.tgz
     version: 0.2.2
-generated: "2020-11-18T13:58:41.812156+01:00"
+generated: "2020-11-18T14:52:47.370909+01:00"
