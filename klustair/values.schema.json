@@ -1,0 +1,188 @@
+{
+    "$schema": "http://json-schema.org/schema#",
+    "title": "Artifact Hub Chart JSON Schema",
+    "type": "object",
+    "properties": {
+        "replicaCount": {
+            "type": "integer",
+            "default": 1
+        },
+        "image": {
+            "title": "Docker image informations",
+            "type": "object",
+            "properties": {
+                "repository": {
+                    "title": "KlustAIR runner repository",
+                    "default": "klustair/klustair",
+                    "type": "string"
+                },
+                "repositoryFrontend": {
+                    "title": "KlustAIR frontend repository",
+                    "default": "klustair/klustair-frontend",
+                    "type": "string"
+                },
+                "tag": {
+                    "title": "Docker image tag",
+                    "default": "latest",
+                    "type": "string"
+                },
+                "pullPolicy": {
+                    "title": "Pod pull policy",
+                    "default": "Always",
+                    "type": "string"
+                }
+            },
+            "required": ["repository", "repositoryFrontend", "tag", "pullPolicy"]
+        },
+        "klustairfrontend": {
+            "title": "KlustAIR frontend application",
+            "type": "object",
+            "properties": {
+                "apachedocumentroot": {
+                    "title": "apache document root",
+                    "default": "/var/www/public",
+                    "type": "string"
+                },
+                "appkey": {
+                    "title": "Laravel app key",
+                    "description": "Random string of 32 chars. See in README for way's to generate one.",
+                    "default": "",
+                    "type": "string"
+                },
+                "url": {
+                    "title": "URL the application is listening on",
+                    "description": "Example: preview.klustair.com",
+                    "default": "",
+                    "type": "string"
+                },
+                "debug": {
+                    "title": "Laravel debug toggle",
+                    "default": false,
+                    "type": "boolean"
+                }
+            },
+            "required": ["apachedocumentroot", "appkey", "url", "debug"]
+        },
+        "klustair": {
+            "title": "KlustAIR runner",
+            "type": "object",
+            "properties": {
+                "kubeconfig": {
+                    "title": "kubectly configuration",
+                    "description": "See in values.yaml for multiline example",
+                    "default": "",
+                    "type": "string"
+                }
+            },
+            "required": ["kubeconfig"]
+        },
+        "anchore": {
+            "title": "Anchore configuration",
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "title": "Enables Anchore features",
+                    "default": false,
+                    "type": "boolean"
+                },
+                "cliURL": {
+                    "title": "Anchore API RUL",
+                    "default": "http://CHANGEME:8228",
+                    "type": "string"
+                },
+                "cliUser": {
+                    "title": "Anchore User",
+                    "default": "admin",
+                    "type": "string"
+                },
+                "cliPass": {
+                    "title": "Anchore API password",
+                    "default": "foobar",
+                    "type": "string"
+                }
+            },
+            "required": ["enabled", "cliURL", "cliUser", "cliPass"]
+        },
+        "trivy": {
+            "title": "Anchore configuration",
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "title": "Enables Trivy features",
+                    "default": false,
+                    "type": "boolean"
+                },
+                "timeout": {
+                    "title": "Timout for trivy scans",
+                    "default": "2m0s",
+                    "type": "string"
+                },
+                "repoCredentials": {
+                    "title": "Repo crednetials in JSON format",
+                    "description": "See in values.yaml for multiline example",
+                    "default": "",
+                    "type": "string"
+                }
+            },
+            "required": ["enabled", "timeout"]
+        },
+        "klustairJob": {
+            "title": "KlustAIR runner",
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "title": "Enable runner",
+                    "description": "Run scans in a scheduled job container",
+                    "default": true,
+                    "type": "boolean"
+                },
+                "schedule": {
+                    "title": "Job schedule in cron format",
+                    "default": "15 9 * * *",
+                    "type": "string"
+                },
+                "namespaceblacklist": {
+                    "title": "Coma separated list of namespaces to ignore",
+                    "default": "kube-system",
+                    "type": "string"
+                }
+            },
+            "required": ["enabled", "schedule"]
+        },
+        "imagePullSecrets": {
+            "type": "array",
+            "default": []
+        },
+        "nameOverride": {
+            "type": "string",
+            "default": ""
+        },
+        "fullnameOverride": {
+            "type": "string",
+            "default": ""
+        },
+        "serviceAccount": {
+            "title": "Specifies whether a service account should be created",
+            "type": "object",
+            "properties": {
+                "create": {
+                    "default": true,
+                    "type": "boolean"
+                },
+                "name": {
+                    "default": "",
+                    "type": "string"
+                }
+            }
+        },
+        "podSecurityContext": {
+            "type": "object",
+            "default": {}
+        },
+        "securityContext": {
+            "type": "object",
+            "default": {}
+        }
+    },
+    "required": ["replicaCount", "image", "klustairfrontend"]
+}
