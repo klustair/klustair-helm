@@ -2,10 +2,10 @@ apiVersion: v1
 entries:
   klustair:
   - apiVersion: v1
-    appVersion: "1.0"
-    created: "2020-11-18T08:06:36.847524+01:00"
+    appVersion: ^0.2.4
+    created: "2020-11-18T08:57:56.374832+01:00"
     description: Kluster image security suite
-    digest: 17b824b214fab512921adb021c5511c0900161f975bc5e3b64aef20c062a2397
+    digest: 2ab33be4ebc70249d87575d893d613b4a45d940228aa9600de5046890f8c0522
     home: https://www.klustair.com
     icon: https://raw.githubusercontent.com/klustair/klustair-helm/main/klustair/static/klustair.png
     keywords:
@@ -22,7 +22,7 @@ entries:
     version: 0.2.5
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2020-11-18T08:06:36.844559+01:00"
+    created: "2020-11-18T08:57:56.37178+01:00"
     description: Kluster image security suite
     digest: b4d0824fa95cdab8885b7a4c5177b1ed6ddefec33edc2376cda0ffc55ad46ddc
     home: https://www.klustair.com
@@ -41,7 +41,7 @@ entries:
     version: 0.2.4
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2020-11-18T08:06:36.841742+01:00"
+    created: "2020-11-18T08:57:56.368584+01:00"
     description: Kluster image security suite
     digest: bd4f5a145fa4571211cb8ec9de2a43f1a19b4447cda51284fce1b3be29a9ae51
     home: https://github.com/klustair/klustair
@@ -56,7 +56,7 @@ entries:
     version: 0.2.3
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2020-11-18T08:06:36.839155+01:00"
+    created: "2020-11-18T08:57:56.365593+01:00"
     description: Kluster image security suite
     digest: 6b5e6b257e8e1c685fa947f42fd43c02e598dfe57b60b77df49d373b628c86f6
     home: https://github.com/klustair/klustair
@@ -69,4 +69,4 @@ entries:
     urls:
     - https://klustair.github.io/klustair-helm/klustair-0.2.2.tgz
     version: 0.2.2
-generated: "2020-11-18T08:06:36.835789+01:00"
+generated: "2020-11-18T08:57:56.362043+01:00"
