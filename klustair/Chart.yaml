@@ -20,6 +20,8 @@ annotations:
     - Frontend: php upgrade to version 7.4
     - Frontend : Node upgrade
     - Frontend : Fix order in reports view
+    - Frontend : Add debugbar in dev mode
+    - Frontend : Fix TLS support
     - Helm: Fix TLS support
   artifacthub.io/images: |
     - name: klustair
