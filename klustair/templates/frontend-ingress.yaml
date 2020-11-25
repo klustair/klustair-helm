@@ -15,6 +15,12 @@ metadata:
     {{- toYaml . | nindent 4 }}
   {{- end }}
 spec:
+{{- if .Values.ingress.tls }}
+  tls:
+  - hosts:
+    - {{ .Values.klustairfrontend.url }}
+    secretName: {{ .Values.klustairfrontend.url }}-secret
+{{- end }}
   rules:
   - host: {{ .Values.klustairfrontend.url }}
     http:

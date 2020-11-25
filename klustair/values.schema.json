@@ -182,6 +182,80 @@
         "securityContext": {
             "type": "object",
             "default": {}
+        },
+        "service": {
+            "title": "Service definition",
+            "type": "object",
+            "properties": {
+                "type": {
+                    "default": "ClusterIP",
+                    "type": "string"
+                },
+                "port": {
+                    "default": 80,
+                    "type": "integer"
+                }
+            }
+        }, 
+        "ingress": {
+            "title": "Ingress definition",
+            "type": "object",
+            "properties": {
+                "tls": {
+                    "title": "Enables TLS",
+                    "description": "Enabling TLS my require some annotations",
+                    "default": false,
+                    "type": "boolean"
+                },
+                "annotations": {
+                    "default": {},
+                    "type": "object"
+                }
+            }
+        },
+        "resources": {
+            "title": "Cluster resources definition",
+            "type": "object",
+            "properties": {
+                "limits": {
+                    "type": "object",
+                    "properties": {
+                        "cpu": {
+                            "default": "100m",
+                            "type": "string"
+                        },
+                        "memory": {
+                            "default": "128Mi",
+                            "type": "string"
+                        }
+                    }
+                },
+                "requests": {
+                    "type": "object",
+                    "properties": {
+                        "cpu": {
+                            "default": "100m",
+                            "type": "string"
+                        },
+                        "memory": {
+                            "default": "128Mi",
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "nodeSelector": {
+            "type": "object",
+            "default": {}
+        },
+        "tolerations": {
+            "type": "array",
+            "default": []
+        },
+        "affinity": {
+            "type": "object",
+            "default": {}
         }
     },
     "required": ["replicaCount", "image", "klustairfrontend"]
