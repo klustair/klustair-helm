@@ -3,6 +3,40 @@ entries:
   klustair:
   - annotations:
       artifacthub.io/changes: |
+        - Runner: Remove old images by limit or max day's
+        - Frontend: php upgrade to version 7.4
+        - Frontend : Node upgrade
+        - Frontend : Fix order in reports view
+        - Frontend : Add debugbar in dev mode
+        - Frontend : Fix TLS support
+        - Helm: Fix TLS support
+      artifacthub.io/images: |-
+        - name: klustair
+          image: klustair/klustair:v0.2.6
+        - name: klustair-frontend
+          image: klustair/klustair-frontend:v0.2.6
+        - name: postgresql
+          image: postgres:12-alpine
+    apiVersion: v1
+    created: "2020-11-25T17:33:39.785506+01:00"
+    description: Cluster image security suite
+    digest: 8cc5c51e17eeb7b7f360379433e1d3567e40449c24b357f41d7c002af41bee9b
+    home: https://www.klustair.com
+    icon: https://raw.githubusercontent.com/klustair/klustair-helm/main/klustair/static/klustair.png
+    keywords:
+    - security
+    - vulnerability
+    - audit
+    name: klustair
+    sources:
+    - https://github.com/klustair/klustair-frontend
+    - https://github.com/klustair/klustair
+    - https://github.com/klustair/klustair-helm
+    urls:
+    - https://klustair.github.io/klustair-helm/klustair-0.2.6.tgz
+    version: 0.2.6
+  - annotations:
+      artifacthub.io/changes: |
         - Frontend, Added footer
         - Frontend, Fixed overview summary
         - Frontend, Removed link from unscanned images
@@ -15,7 +49,7 @@ entries:
         - name: postgresql
           image: postgres:12-alpine
     apiVersion: v1
-    created: "2020-11-24T00:26:11.200272+01:00"
+    created: "2020-11-25T17:33:39.782286+01:00"
     description: Cluster image security suite
     digest: 8b7bdcefe4abb4663e308b85776ef8f4c98bfb0db1123de5c1ad35a6475c18c6
     home: https://www.klustair.com
@@ -34,7 +68,7 @@ entries:
     version: 0.2.5
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2020-11-24T00:26:11.196407+01:00"
+    created: "2020-11-25T17:33:39.777936+01:00"
     description: Kluster image security suite
     digest: b4d0824fa95cdab8885b7a4c5177b1ed6ddefec33edc2376cda0ffc55ad46ddc
     home: https://www.klustair.com
@@ -53,7 +87,7 @@ entries:
     version: 0.2.4
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2020-11-24T00:26:11.193208+01:00"
+    created: "2020-11-25T17:33:39.772999+01:00"
     description: Kluster image security suite
     digest: bd4f5a145fa4571211cb8ec9de2a43f1a19b4447cda51284fce1b3be29a9ae51
     home: https://github.com/klustair/klustair
@@ -68,7 +102,7 @@ entries:
     version: 0.2.3
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2020-11-24T00:26:11.18924+01:00"
+    created: "2020-11-25T17:33:39.769063+01:00"
     description: Kluster image security suite
     digest: 6b5e6b257e8e1c685fa947f42fd43c02e598dfe57b60b77df49d373b628c86f6
     home: https://github.com/klustair/klustair
@@ -81,4 +115,4 @@ entries:
     urls:
     - https://klustair.github.io/klustair-helm/klustair-0.2.2.tgz
     version: 0.2.2
-generated: "2020-11-24T00:26:11.184731+01:00"
+generated: "2020-11-25T17:33:39.762665+01:00"
