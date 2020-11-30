@@ -53,6 +53,104 @@ spec:
             - name: DB_AUTHENTICATION_DATABASE
               value: {{ .Values.postgresql.postgresqlDatabase | quote}}
       containers:
+        {{ if .Values.klustairfrontend.phpfpm -}}
+        - name: {{ .Chart.Name }}-nginx
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repositoryFrontend }}:{{ .Values.image.tag }}-nginx"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+            - name: https
+              containerPort: 443
+              protocol: TCP
+#          livenessProbe:
+#            httpGet:
+#              path: /
+#              port: http
+#          readinessProbe:
+#            httpGet:
+#              path: /
+#              port: http
+          volumeMounts:
+            - mountPath: /var/www/storage
+              name: storage
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+
+
+        - name: {{ .Chart.Name }}-php-fpm
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repositoryFrontend }}:{{ .Values.image.tag }}-php-fpm"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: LOG_CHANNEL
+              value: "stderr"
+            - name: APP_NAME
+              value: "klustair"
+            - name: APP_ENV
+              value: "local"
+            - name: APP_KEY
+              value: {{ .Values.klustairfrontend.appkey | quote}}
+            - name: APP_DEBUG
+              value: {{ .Values.klustairfrontend.debug | quote}}
+            - name: APP_URL
+              value: "http://{{ .Values.klustairfrontend.url }}"
+            - name: DB_CONNECTION
+              value: pgsql
+            - name: DB_HOST
+              value: {{ .Release.Name }}-postgresql
+            - name: DB_PORT
+              value: "5432"
+            - name: DB_DATABASE
+              value: {{ .Values.postgresql.postgresqlDatabase | quote}}
+            - name: DB_USERNAME
+              value: {{ .Values.postgresql.postgresqlUsername | quote}}
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-postgresql
+                  key: postgresql-password
+            - name: DB_AUTHENTICATION_DATABASE
+              value: {{ .Values.postgresql.postgresqlDatabase | quote}}
+            - name: BROADCAST_DRIVER
+              value: "log"
+            - name: CACHE_DRIVER
+              value: "file"
+            - name: QUEUE_CONNECTION
+              value: "sync"
+            - name: SESSION_DRIVER
+              value: "file"
+            - name: SESSION_LIFETIME
+              value: "120"
+            - name: ANCHORE_ENABLED
+              value: {{ .Values.anchore.enabled | quote}}
+            - name: ANCHORE_API_URL
+              value: {{ .Values.anchore.cliURL | quote}}
+            - name: ANCHORE_CLI_USER
+              value: {{ .Values.anchore.cliUser | quote}}
+            - name: ANCHORE_CLI_PASS
+              value: {{ .Values.anchore.cliPass | quote}}
+          ports:
+            - name: fpm
+              containerPort: 9000
+              protocol: TCP
+#          livenessProbe:
+#            tcpSocket:
+#              port: fpm
+#          readinessProbe:
+#            tcpSocket:
+#              port: fpm
+          volumeMounts:
+            - mountPath: /var/www/storage
+              name: storage
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+
+      {{- else -}}
         - name: {{ .Chart.Name }}-frontend
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
@@ -118,6 +216,9 @@ spec:
             - name: http
               containerPort: 80
               protocol: TCP
+            - name: https
+              containerPort: 443
+              protocol: TCP
 #          livenessProbe:
 #            httpGet:
 #              path: /
@@ -138,6 +239,7 @@ spec:
               name: storage
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+      {{- end }}
       volumes:
         - name: storage
           persistentVolumeClaim:
