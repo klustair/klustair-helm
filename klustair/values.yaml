@@ -15,6 +15,7 @@ klustairfrontend:
     appkey: base64:pT9Zg64zbBgDDmH7WZXO+Kv4/NuA2zlVFAn/Jg7IV2A=
     url: klustair.com
     debug: false
+    phpfpm: false
 
 klustair:
   kubeconfig: ""
