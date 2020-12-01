@@ -25,7 +25,7 @@ spec:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       initContainers:
         - name: {{ .Chart.Name }}-dbinit
-          image: "{{ .Values.image.repositoryFrontend }}:{{ .Values.image.tag }}"
+          image: "{{ .Values.image.repositoryFrontend }}:{{ .Values.image.tag }}"-apache
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           command: ["php", "artisan", "migrate"]
           env:
