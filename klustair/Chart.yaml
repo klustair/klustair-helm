@@ -18,6 +18,8 @@ annotations:
   artifacthub.io/changes: |
     - Helm: use alpine images to reduce vulnerabilities
   artifacthub.io/images: |
+    - name: klustair
+      image: klustair/klustair:v0.2.7
     - name: klustair-apache
       image: klustair/klustair-frontend:v0.2.7-apache
       whitelisted: true
