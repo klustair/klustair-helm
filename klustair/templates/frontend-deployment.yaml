@@ -59,6 +59,9 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repositoryFrontend }}:{{ .Values.image.tag }}-nginx"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          securityContext:
+            capabilities:
+              add: ["CHOWN", "CAP_SETGID", "CAP_SETUID"]
           env:
             - name: PHP_FPM_HOST
               value: "localhost"
