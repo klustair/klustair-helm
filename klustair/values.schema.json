@@ -59,9 +59,14 @@
                     "title": "Laravel debug toggle",
                     "default": false,
                     "type": "boolean"
+                },
+                "phpfpm": {
+                    "title": "php-fpm toggle",
+                    "default": false,
+                    "type": "boolean"
                 }
             },
-            "required": ["apachedocumentroot", "appkey", "url", "debug"]
+            "required": ["apachedocumentroot", "appkey", "url", "debug", "phpfpm"]
         },
         "klustair": {
             "title": "KlustAIR runner",
