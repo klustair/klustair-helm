@@ -27,7 +27,7 @@ spec:
         - name: {{ .Chart.Name }}-storageinit
           image: "{{ .Values.image.repositoryFrontend }}:{{ .Values.image.tag }}-php-fpm"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          command: ["storage_init.sh"]
+          command: ["sh", "storage_init.sh"]
           volumeMounts:
             - mountPath: /var/www/storage
               name: storage
