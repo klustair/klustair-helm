@@ -78,7 +78,7 @@ spec:
 #              path: /
 #              port: http
           volumeMounts:
-            - mountPath: /var/www/storage
+            - mountPath: /var/cache/nginx
               name: storage
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
