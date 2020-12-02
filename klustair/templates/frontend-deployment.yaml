@@ -93,6 +93,10 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repositoryFrontend }}:{{ .Values.image.tag }}-php-fpm"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          securityContext:
+            capabilities:
+              add: ["SETGID", "SETUID", "NET_BIND_SERVICE"]
+              drop: ["ALL"]
           env:
             - name: LOG_CHANNEL
               value: "stderr"
