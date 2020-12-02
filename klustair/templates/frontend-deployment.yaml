@@ -24,8 +24,15 @@ spec:
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       initContainers:
+        - name: {{ .Chart.Name }}-storageinit
+          image: "{{ .Values.image.repositoryFrontend }}:{{ .Values.image.tag }}-php-fpm"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          command: ["storage_init.sh"]
+          volumeMounts:
+            - mountPath: /var/www/storage
+              name: storage
         - name: {{ .Chart.Name }}-dbinit
-          image: "{{ .Values.image.repositoryFrontend }}:{{ .Values.image.tag }}-apache"
+          image: "{{ .Values.image.repositoryFrontend }}:{{ .Values.image.tag }}-php-fpm"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           command: ["php", "artisan", "migrate"]
           env:
