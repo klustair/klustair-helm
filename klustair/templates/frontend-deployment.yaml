@@ -61,7 +61,8 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           securityContext:
             capabilities:
-              add: ["CHOWN", "CAP_SETGID", "CAP_SETUID"]
+              add: ["CHOWN", "SETGID", "SETUID", "NET_BIND_SERVICE"]
+              drop: ["ALL"]
           env:
             - name: PHP_FPM_HOST
               value: "localhost"
