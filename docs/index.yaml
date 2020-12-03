@@ -52,9 +52,9 @@ entries:
         - name: postgresql
           image: postgres:12-alpine
     apiVersion: v1
-    created: "2020-12-03T08:56:36.549454+01:00"
+    created: "2020-12-02T23:59:36.549454+01:00"
     description: Cluster image security suite
-    digest: 8cc5c51e17eeb7b7f360379433e1d3567e40449c24b357f41d7c002af41bee9b
+    digest: b23f0fec76e09117f54cd58f03d5591d035dc00c2624051e5e216cac0067424d
     home: https://www.klustair.com
     icon: https://raw.githubusercontent.com/klustair/klustair-helm/main/klustair/static/klustair.png
     keywords:
