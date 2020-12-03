@@ -109,12 +109,12 @@
             "required": ["enabled", "cliURL", "cliUser", "cliPass"]
         },
         "trivy": {
-            "title": "Anchore configuration",
+            "title": "Trivy configuration",
             "type": "object",
             "properties": {
                 "enabled": {
                     "title": "Enables Trivy features",
-                    "default": false,
+                    "default": true,
                     "type": "boolean"
                 },
                 "timeout": {
