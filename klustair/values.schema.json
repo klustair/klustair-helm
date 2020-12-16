@@ -150,9 +150,14 @@
                     "title": "Coma separated list of namespaces to ignore",
                     "default": "kube-system",
                     "type": "string"
+                },
+                "keeparunner": {
+                    "title": "Keep a runner up",
+                    "default": true,
+                    "type": "boolean"
                 }
             },
-            "required": ["enabled", "schedule"]
+            "required": ["enabled", "schedule", "keeparunner"]
         },
         "imagePullSecrets": {
             "type": "array",
@@ -178,7 +183,8 @@
                     "default": "",
                     "type": "string"
                 }
-            }
+            },
+            "required": ["create"]
         },
         "podSecurityContext": {
             "type": "object",
@@ -263,5 +269,5 @@
             "default": {}
         }
     },
-    "required": ["replicaCount", "image", "klustairfrontend"]
+    "required": ["replicaCount", "image", "klustairfrontend", "klustairJob", "trivy", "anchore", "klustair"]
 }

@@ -18,6 +18,7 @@ annotations:
   artifacthub.io/changes: |
     - Runner, collect report data
     - Frontend, more detaile overview
+    - Helm, make permanent runner optional
   artifacthub.io/images: |
     - name: klustair
       image: klustair/klustair:v0.3.0
