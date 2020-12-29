@@ -4,12 +4,12 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - Runner, collect report data
-        - Frontend, more detais on overview
-        - Frontend, add vlunerabilties overview
+        - Frontend, more details on overview
+        - Frontend, add vulnerabilities overview
         - Frontend, add detailed vulnerability view
         - Frontend, add CWE importer
         - Frontend, display CWE Information in vulnerability view
-        - Frontend, listvilnerabilities by Trivy target
+        - Frontend, list vulnerabilities by Trivy target
         - Helm, make permanent runner optional
       artifacthub.io/images: |-
         - name: klustair
@@ -25,9 +25,9 @@ entries:
           image: postgres:12-alpine
           whitelisted: true
     apiVersion: v1
-    created: "2020-12-29T14:57:02.701399+01:00"
+    created: "2020-12-29T16:26:33.475737+01:00"
     description: Cluster image security suite
-    digest: 331ac34688de64af7bebe6a1fca03e2ecd256f1b1a541a53133810699fd0e61e
+    digest: f53387d556493aa740a1b1c2504c616574354ae8e24d80162c8821ed477767db
     home: https://www.klustair.com
     icon: https://raw.githubusercontent.com/klustair/klustair-helm/main/klustair/static/klustair.png
     keywords:
@@ -59,7 +59,7 @@ entries:
           image: postgres:12-alpine
           whitelisted: true
     apiVersion: v1
-    created: "2020-12-29T14:57:02.698019+01:00"
+    created: "2020-12-29T16:26:33.473134+01:00"
     description: Cluster image security suite
     digest: 14fbb0f65dcb4ff78123068f7f85e50cd42338d388a9a3129dd61ff181bf174c
     home: https://www.klustair.com
@@ -93,7 +93,7 @@ entries:
         - name: postgresql
           image: postgres:12-alpine
     apiVersion: v1
-    created: "2020-12-29T14:57:02.693737+01:00"
+    created: "2020-12-29T16:26:33.469587+01:00"
     description: Cluster image security suite
     digest: b23f0fec76e09117f54cd58f03d5591d035dc00c2624051e5e216cac0067424d
     home: https://www.klustair.com
@@ -124,7 +124,7 @@ entries:
         - name: postgresql
           image: postgres:12-alpine
     apiVersion: v1
-    created: "2020-12-29T14:57:02.690175+01:00"
+    created: "2020-12-29T16:26:33.466069+01:00"
     description: Cluster image security suite
     digest: 8b7bdcefe4abb4663e308b85776ef8f4c98bfb0db1123de5c1ad35a6475c18c6
     home: https://www.klustair.com
@@ -143,7 +143,7 @@ entries:
     version: 0.2.5
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2020-12-29T14:57:02.686945+01:00"
+    created: "2020-12-29T16:26:33.462744+01:00"
     description: Kluster image security suite
     digest: b4d0824fa95cdab8885b7a4c5177b1ed6ddefec33edc2376cda0ffc55ad46ddc
     home: https://www.klustair.com
@@ -162,7 +162,7 @@ entries:
     version: 0.2.4
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2020-12-29T14:57:02.682627+01:00"
+    created: "2020-12-29T16:26:33.458438+01:00"
     description: Kluster image security suite
     digest: bd4f5a145fa4571211cb8ec9de2a43f1a19b4447cda51284fce1b3be29a9ae51
     home: https://github.com/klustair/klustair
@@ -177,7 +177,7 @@ entries:
     version: 0.2.3
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2020-12-29T14:57:02.678465+01:00"
+    created: "2020-12-29T16:26:33.454487+01:00"
     description: Kluster image security suite
     digest: 6b5e6b257e8e1c685fa947f42fd43c02e598dfe57b60b77df49d373b628c86f6
     home: https://github.com/klustair/klustair
@@ -190,4 +190,4 @@ entries:
     urls:
     - https://klustair.github.io/klustair-helm/klustair-0.2.2.tgz
     version: 0.2.2
-generated: "2020-12-29T14:57:02.672625+01:00"
+generated: "2020-12-29T16:26:33.448252+01:00"

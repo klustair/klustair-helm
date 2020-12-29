@@ -17,12 +17,12 @@ icon: https://raw.githubusercontent.com/klustair/klustair-helm/main/klustair/sta
 annotations:
   artifacthub.io/changes: |
     - Runner, collect report data
-    - Frontend, more detais on overview
-    - Frontend, add vlunerabilties overview
+    - Frontend, more details on overview
+    - Frontend, add vulnerabilities overview
     - Frontend, add detailed vulnerability view
     - Frontend, add CWE importer
     - Frontend, display CWE Information in vulnerability view
-    - Frontend, listvilnerabilities by Trivy target
+    - Frontend, list vulnerabilities by Trivy target
     - Helm, make permanent runner optional
   artifacthub.io/images: |
     - name: klustair
