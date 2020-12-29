@@ -24,17 +24,10 @@ spec:
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       initContainers:
-        - name: {{ .Chart.Name }}-storageinit
+        - name: {{ .Chart.Name }}-init
           image: "{{ .Values.image.repositoryFrontend }}:{{ .Values.image.tag }}-php-fpm"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          command: ["sh", "storage_init.sh"]
-          volumeMounts:
-            - mountPath: /var/www/storage
-              name: storage
-        - name: {{ .Chart.Name }}-dbinit
-          image: "{{ .Values.image.repositoryFrontend }}:{{ .Values.image.tag }}-php-fpm"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
-          command: ["php", "artisan", "migrate"]
+          command: ["sh", "init.sh"]
           env:
             - name: LOG_CHANNEL
               value: "stderr"
@@ -59,6 +52,9 @@ spec:
                   key: postgresql-password
             - name: DB_AUTHENTICATION_DATABASE
               value: {{ .Values.postgresql.postgresqlDatabase | quote}}
+          volumeMounts:
+            - mountPath: /var/www/storage
+              name: storage
       containers:
         {{ if .Values.klustairfrontend.phpfpm -}}
         - name: {{ .Chart.Name }}-nginx
