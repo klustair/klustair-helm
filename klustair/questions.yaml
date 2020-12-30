@@ -39,6 +39,10 @@ questions:
     label: Blacklisted Namespaces
     description: "comaseparated list of blacklisted namespaces"
     type: string
+  - variable: klustairJob.keeparunner
+    label: Keep a runner up
+    default: true
+    type: boolean
 
 - variable: anchore.enabled
   label: Enable Anchore Backend
