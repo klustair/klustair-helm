@@ -25,9 +25,13 @@ entries:
           image: postgres:12-alpine
           whitelisted: true
     apiVersion: v1
-    created: "2020-12-29T17:34:12.947274+01:00"
+    created: "2021-01-05T23:46:16.20002+01:00"
+    dependencies:
+    - name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 9.8.12
     description: Cluster image security suite
-    digest: 9ca1c457e152987fa0499fe3c40b9551ea592dad45e2181563e4145a7f30f70b
+    digest: e7303cd10328463f735b949e57c286a713a1bf38ff68251187d212d298feb320
     home: https://www.klustair.com
     icon: https://raw.githubusercontent.com/klustair/klustair-helm/main/klustair/static/klustair.png
     keywords:
@@ -59,7 +63,11 @@ entries:
           image: postgres:12-alpine
           whitelisted: true
     apiVersion: v1
-    created: "2020-12-29T17:34:12.94325+01:00"
+    created: "2021-01-05T23:46:16.195871+01:00"
+    dependencies:
+    - name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 9.8.12
     description: Cluster image security suite
     digest: 14fbb0f65dcb4ff78123068f7f85e50cd42338d388a9a3129dd61ff181bf174c
     home: https://www.klustair.com
@@ -93,7 +101,11 @@ entries:
         - name: postgresql
           image: postgres:12-alpine
     apiVersion: v1
-    created: "2020-12-29T17:34:12.939527+01:00"
+    created: "2021-01-05T23:46:16.190844+01:00"
+    dependencies:
+    - name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 9.8.11
     description: Cluster image security suite
     digest: b23f0fec76e09117f54cd58f03d5591d035dc00c2624051e5e216cac0067424d
     home: https://www.klustair.com
@@ -124,7 +136,11 @@ entries:
         - name: postgresql
           image: postgres:12-alpine
     apiVersion: v1
-    created: "2020-12-29T17:34:12.935038+01:00"
+    created: "2021-01-05T23:46:16.186171+01:00"
+    dependencies:
+    - name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 9.8.11
     description: Cluster image security suite
     digest: 8b7bdcefe4abb4663e308b85776ef8f4c98bfb0db1123de5c1ad35a6475c18c6
     home: https://www.klustair.com
@@ -143,7 +159,11 @@ entries:
     version: 0.2.5
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2020-12-29T17:34:12.931513+01:00"
+    created: "2021-01-05T23:46:16.180522+01:00"
+    dependencies:
+    - name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 9.8.11
     description: Kluster image security suite
     digest: b4d0824fa95cdab8885b7a4c5177b1ed6ddefec33edc2376cda0ffc55ad46ddc
     home: https://www.klustair.com
@@ -162,7 +182,11 @@ entries:
     version: 0.2.4
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2020-12-29T17:34:12.927625+01:00"
+    created: "2021-01-05T23:46:16.174503+01:00"
+    dependencies:
+    - name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 9.8.11
     description: Kluster image security suite
     digest: bd4f5a145fa4571211cb8ec9de2a43f1a19b4447cda51284fce1b3be29a9ae51
     home: https://github.com/klustair/klustair
@@ -177,7 +201,11 @@ entries:
     version: 0.2.3
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2020-12-29T17:34:12.923237+01:00"
+    created: "2021-01-05T23:46:16.168665+01:00"
+    dependencies:
+    - name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 9.8.9
     description: Kluster image security suite
     digest: 6b5e6b257e8e1c685fa947f42fd43c02e598dfe57b60b77df49d373b628c86f6
     home: https://github.com/klustair/klustair
@@ -190,4 +218,4 @@ entries:
     urls:
     - https://klustair.github.io/klustair-helm/klustair-0.2.2.tgz
     version: 0.2.2
-generated: "2020-12-29T17:34:12.917034+01:00"
+generated: "2021-01-05T23:46:16.161681+01:00"
