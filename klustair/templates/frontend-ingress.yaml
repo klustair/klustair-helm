@@ -28,4 +28,4 @@ spec:
       - backend:
           serviceName: {{ include "klustair.fullname" . }}-frontend
           servicePort: {{ $svcPort }}
-        path: /
+        path: /*
