@@ -16,6 +16,11 @@ klustairfrontend:
     url: klustair.com
     debug: false
     phpfpm: false
+    auth: 
+      enabled: false
+      register: false
+      reset: false
+      verify: false
 
 klustair:
   kubeconfig: ""

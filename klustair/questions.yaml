@@ -20,6 +20,28 @@ questions:
   group: "Klustair Frontend"
   required: true
   type: boolean
+- variable: klustairfrontend.auth.enabled
+  label: Enable Authentication
+  default: false
+  required: false
+  type: boolean
+  group: "Klustair authentication"
+  subquestions:
+  - variable: klustairfrontend.auth.register
+    label: Enable Registration
+    default: false
+    required: true
+    type: boolean
+  - variable: klustairfrontend.auth.reset
+    label: Enable password reset
+    default: false
+    required: true
+    type: boolean
+  - variable: klustairfrontend.auth.verify
+    label: Enable Email verification
+    default: false
+    required: true
+    type: boolean
 
 - variable: klustairJob.enabled
   label: Run klustair frequently
