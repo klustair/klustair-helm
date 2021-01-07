@@ -24,6 +24,7 @@ klustairfrontend:
 
 klustair:
   kubeconfig: ""
+  gcloudCredentials: ""
 #  kubeconfig: |
 #    apiVersion: v1
 #    kind: Config

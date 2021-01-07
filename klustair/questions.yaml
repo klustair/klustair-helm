@@ -42,6 +42,16 @@ questions:
     default: false
     required: true
     type: boolean
+- variable: klustair.kubeconfig
+  label: kubectl configuration
+  description: "IMPORTANT: Wrap ypur conffig with single quotes"
+  required: false
+  type: multiline
+- variable: klustair.gcloudCredentials
+  label: gcloud (GKE) Credentails in JSON format
+  description: "IMPORTANT: Wrap ypur JSON with single quotes"
+  required: false
+  type: multiline
 
 - variable: klustairJob.enabled
   label: Run klustair frequently

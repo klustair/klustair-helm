@@ -60,6 +60,8 @@ spec:
               value: {{ .Values.klustairfrontend.auth.reset| quote}}
             - name: AUTH_VERIFY
               value: {{ .Values.klustairfrontend.auth.verify | quote}}
+            - name: GOOGLE_APPLICATION_CREDENTIALS
+              value: "/etc/klustair/gcloud-credentials.json"
             - name: TRIVY_TIMEOUT
               value: {{ .Values.trivy.timeout | quote}}          
           volumeMounts:
