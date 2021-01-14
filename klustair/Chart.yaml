@@ -17,9 +17,14 @@ icon: https://raw.githubusercontent.com/klustair/klustair-helm/main/klustair/sta
 annotations:
   artifacthub.io/changes: |
     - Frontend, added user management
-    - Frontend, secured api routes
     - Frontend, added token management
-    - Frontend, upgrade to laravel 8
+    - Frontend, added runner config management (not active now)
+    - Frontend, secured api routes
+    - Frontend, added user authentication
+    - Frontend, upgrade to Laravel from 7 to 8
+    - Frontend, fixed redhat logo
+    - frontend, fixed vulnerability button in vulnerabilitiy view
+    - Helm, fixed wait for DB init
   artifacthub.io/images: |
     - name: klustair
       image: klustair/klustair:v0.3.1

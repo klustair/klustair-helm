@@ -55,7 +55,7 @@ spec:
             - name: AUTH
               value: {{ .Values.klustairfrontend.auth.enabled | quote}}
             - name: AUTH_REGISTER
-              value: {{ .Values.klustairfrontend.auth.registration | quote}}
+              value: {{ .Values.klustairfrontend.auth.register | quote}}
             - name: AUTH_RESET
               value: {{ .Values.klustairfrontend.auth.reset| quote}}
             - name: AUTH_VERIFY
