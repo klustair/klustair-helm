@@ -26,13 +26,13 @@ entries:
           image: postgres:12-alpine
           whitelisted: true
     apiVersion: v1
-    created: "2021-01-14T16:41:20.846133+01:00"
+    created: "2021-01-16T14:51:28.178793+01:00"
     dependencies:
     - name: postgresql
       repository: https://charts.bitnami.com/bitnami
       version: 9.8.12
     description: Cluster image security suite
-    digest: b099116c1987d5f0a9d186e78cc2e66eaec072893ac81f656930049968fa2066
+    digest: a47fe366f31e74f093e8b73bf4f7bdb381568af7becc2f878a846070c038c032
     home: https://www.klustair.com
     icon: https://raw.githubusercontent.com/klustair/klustair-helm/main/klustair/static/klustair.png
     keywords:
@@ -71,7 +71,7 @@ entries:
           image: postgres:12-alpine
           whitelisted: true
     apiVersion: v1
-    created: "2021-01-14T16:41:20.841164+01:00"
+    created: "2021-01-16T14:51:28.173864+01:00"
     dependencies:
     - name: postgresql
       repository: https://charts.bitnami.com/bitnami
@@ -109,7 +109,7 @@ entries:
           image: postgres:12-alpine
           whitelisted: true
     apiVersion: v1
-    created: "2021-01-14T16:41:20.83573+01:00"
+    created: "2021-01-16T14:51:28.168578+01:00"
     dependencies:
     - name: postgresql
       repository: https://charts.bitnami.com/bitnami
@@ -147,7 +147,7 @@ entries:
         - name: postgresql
           image: postgres:12-alpine
     apiVersion: v1
-    created: "2021-01-14T16:41:20.83011+01:00"
+    created: "2021-01-16T14:51:28.163364+01:00"
     dependencies:
     - name: postgresql
       repository: https://charts.bitnami.com/bitnami
@@ -182,7 +182,7 @@ entries:
         - name: postgresql
           image: postgres:12-alpine
     apiVersion: v1
-    created: "2021-01-14T16:41:20.825077+01:00"
+    created: "2021-01-16T14:51:28.158088+01:00"
     dependencies:
     - name: postgresql
       repository: https://charts.bitnami.com/bitnami
@@ -205,7 +205,7 @@ entries:
     version: 0.2.5
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2021-01-14T16:41:20.820203+01:00"
+    created: "2021-01-16T14:51:28.151942+01:00"
     dependencies:
     - name: postgresql
       repository: https://charts.bitnami.com/bitnami
@@ -228,7 +228,7 @@ entries:
     version: 0.2.4
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2021-01-14T16:41:20.814624+01:00"
+    created: "2021-01-16T14:51:28.146733+01:00"
     dependencies:
     - name: postgresql
       repository: https://charts.bitnami.com/bitnami
@@ -247,7 +247,7 @@ entries:
     version: 0.2.3
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2021-01-14T16:41:20.80908+01:00"
+    created: "2021-01-16T14:51:28.141316+01:00"
     dependencies:
     - name: postgresql
       repository: https://charts.bitnami.com/bitnami
@@ -264,4 +264,4 @@ entries:
     urls:
     - https://klustair.github.io/klustair-helm/klustair-0.2.2.tgz
     version: 0.2.2
-generated: "2021-01-14T16:41:20.803051+01:00"
+generated: "2021-01-16T14:51:28.131531+01:00"

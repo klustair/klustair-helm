@@ -26,6 +26,7 @@ questions:
   required: false
   type: boolean
   group: "Klustair authentication"
+  show_subquestion_if: true
   subquestions:
   - variable: klustairfrontend.auth.register
     label: Enable Registration
