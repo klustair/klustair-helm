@@ -148,6 +148,14 @@ spec:
               value: {{ .Values.anchore.cliUser | quote}}
             - name: ANCHORE_CLI_PASS
               value: {{ .Values.anchore.cliPass | quote}}
+            - name: AUTH
+              value: {{ .Values.klustairfrontend.auth.enabled | quote}}
+            - name: AUTH_REGISTER
+              value: {{ .Values.klustairfrontend.auth.register | quote}}
+            - name: AUTH_RESET
+              value: {{ .Values.klustairfrontend.auth.reset | quote}}
+            - name: AUTH_VERIFY
+              value: {{ .Values.klustairfrontend.auth.verify | quote}}
           ports:
             - name: fpm
               containerPort: 9000
@@ -220,12 +228,14 @@ spec:
               value: {{ .Values.anchore.cliUser | quote}}
             - name: ANCHORE_CLI_PASS
               value: {{ .Values.anchore.cliPass | quote}}
-            - name: TRIVY_AUTH_URL
-              value: {{ .Values.trivy.authUrl | quote}}
-            - name: TRIVY_USERNAME
-              value: {{ .Values.trivy.authUser | quote}}
-            - name: TRIVY_PASSWORD
-              value: {{ .Values.trivy.authPass | quote}}
+            - name: AUTH
+              value: {{ .Values.klustairfrontend.auth.enabled | quote}}
+            - name: AUTH_REGISTER
+              value: {{ .Values.klustairfrontend.auth.register | quote}}
+            - name: AUTH_RESET
+              value: {{ .Values.klustairfrontend.auth.reset | quote}}
+            - name: AUTH_VERIFY
+              value: {{ .Values.klustairfrontend.auth.verify | quote}}
           ports:
             - name: http
               containerPort: 80
