@@ -156,6 +156,22 @@ spec:
               value: {{ .Values.klustairfrontend.auth.reset | quote}}
             - name: AUTH_VERIFY
               value: {{ .Values.klustairfrontend.auth.verify | quote}}
+            - name: MAIL_MAILER
+              value: {{ .Values.klustairfrontend.mail.mailer | quote}}
+            - name: MAIL_HOST
+              value: {{ .Values.klustairfrontend.mail.host | quote}}
+            - name: MAIL_PORT
+              value: {{ .Values.klustairfrontend.mail.port | quote}}
+            - name: MAIL_ENCRYPTION
+              value: {{ .Values.klustairfrontend.mail.encryption | quote}}
+            - name: MAIL_USERNAME
+              value: {{ .Values.klustairfrontend.mail.username | quote}}
+            - name: MAIL_PASSWORD
+              value: {{ .Values.klustairfrontend.mail.password | quote}}
+            - name: MAIL_FROM_ADDRESS
+              value: {{ .Values.klustairfrontend.mail.fromAdress | quote}}
+            - name: MAIL_FROM_NAME
+              value: {{ .Values.klustairfrontend.mail.fromName | quote}}
           ports:
             - name: fpm
               containerPort: 9000
@@ -236,6 +252,22 @@ spec:
               value: {{ .Values.klustairfrontend.auth.reset | quote}}
             - name: AUTH_VERIFY
               value: {{ .Values.klustairfrontend.auth.verify | quote}}
+            - name: MAIL_MAILER
+              value: {{ .Values.klustairfrontend.mail.mailer | quote}}
+            - name: MAIL_HOST
+              value: {{ .Values.klustairfrontend.mail.host | quote}}
+            - name: MAIL_PORT
+              value: {{ .Values.klustairfrontend.mail.port | quote}}
+            - name: MAIL_ENCRYPTION
+              value: {{ .Values.klustairfrontend.mail.encryption | quote}}
+            - name: MAIL_USERNAME
+              value: {{ .Values.klustairfrontend.mail.username | quote}}
+            - name: MAIL_PASSWORD
+              value: {{ .Values.klustairfrontend.mail.password | quote}}
+            - name: MAIL_FROM_ADDRESS
+              value: {{ .Values.klustairfrontend.mail.fromAdress | quote}}
+            - name: MAIL_FROM_NAME
+              value: {{ .Values.klustairfrontend.mail.fromName | quote}}
           ports:
             - name: http
               containerPort: 80

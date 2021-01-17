@@ -21,6 +21,15 @@ klustairfrontend:
       register: false
       reset: false
       verify: false
+    mail:
+      mailer: 'smtp'
+      host: 'localhost'
+      port: 587
+      encryption: 'tls'
+      username: 'changme'
+      password: 'changeme'
+      fromAdress: 'klustair@localhost.com'
+      fromName: 'KlustAIR system'
 
 klustair:
   kubeconfig: ""
