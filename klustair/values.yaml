@@ -73,7 +73,7 @@ postgresql:
     postgresqlDatabase: klustair
     persistence:
         #storageClass: "-"
-        size: 1Gi
+        size: 10Gi
     resources:
         requests:
             memory: 256Mi
