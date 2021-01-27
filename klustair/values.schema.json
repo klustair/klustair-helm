@@ -64,6 +64,33 @@
                     "title": "php-fpm toggle",
                     "default": false,
                     "type": "boolean"
+                },
+                "auth": {
+                    "title": "Application level authentication",
+                    "type": "object",
+                    "properties": {
+                        "enabled": {
+                            "title": "enables authentication on all routes",
+                            "default": false,
+                            "type": "boolean"
+                        },
+                        "register": {
+                            "title": "enables user registration",
+                            "default": false,
+                            "type": "boolean"
+                        },
+                        "reset": {
+                            "title": "enables password reset possibility",
+                            "default": false,
+                            "type": "boolean"
+                        },
+                        "verify": {
+                            "title": "enables email verification",
+                            "default": false,
+                            "type": "boolean"
+                        }
+                    },
+                    "required": ["enabled", "register", "reset", "verify"]
                 }
             },
             "required": ["apachedocumentroot", "appkey", "url", "debug", "phpfpm"]

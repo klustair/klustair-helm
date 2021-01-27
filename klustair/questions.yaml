@@ -20,6 +20,69 @@ questions:
   group: "Klustair Frontend"
   required: true
   type: boolean
+- variable: klustairfrontend.mail.host
+  label: Mail Host
+  group: "Klustair Frontend"
+  required: false
+  type: string
+- variable: klustairfrontend.mail.port
+  label: Mail Port
+  group: "Klustair Frontend"
+  required: false
+  type: string
+- variable: klustairfrontend.mail.username
+  label: Mail Host Username
+  group: "Klustair Frontend"
+  required: false
+  type: string
+- variable: klustairfrontend.mail.password
+  label: Mail Host Password
+  group: "Klustair Frontend"
+  required: false
+  type: string
+- variable: klustairfrontend.mail.fromAdress
+  label: Mail From Adress
+  group: "Klustair Frontend"
+  required: false
+  type: string
+- variable: klustairfrontend.mail.fromName
+  label: Mail From Name
+  group: "Klustair Frontend"
+  required: false
+  type: string
+- variable: klustairfrontend.auth.enabled
+  label: Enable Authentication
+  default: false
+  required: false
+  type: boolean
+  group: "Klustair authentication"
+  show_subquestion_if: true
+  subquestions:
+  - variable: klustairfrontend.auth.register
+    label: Enable Registration
+    default: false
+    required: true
+    type: boolean
+  - variable: klustairfrontend.auth.reset
+    label: Enable password reset
+    default: false
+    required: true
+    type: boolean
+  - variable: klustairfrontend.auth.verify
+    label: Enable Email verification
+    default: false
+    required: true
+    type: boolean
+- variable: klustair.kubeconfig
+  label: kubectl configuration
+  description: "IMPORTANT: Wrap ypur conffig with single quotes"
+  required: false
+  type: multiline
+- variable: klustair.gcloudCredentials
+  label: gcloud (GKE) Credentails in JSON format
+  description: "IMPORTANT: Wrap ypur JSON with single quotes"
+  required: false
+  type: multiline
 
 - variable: klustairJob.enabled
   label: Run klustair frequently

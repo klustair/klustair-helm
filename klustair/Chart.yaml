@@ -1,9 +1,9 @@
 apiVersion: v1
-#appVersion: "^0.2.4"
+#appVersion: "^0.3.1"
 #kubeVersion: "^v1.16"
 description: Cluster image security suite
 name: klustair
-version: 0.3.0
+version: 0.3.1
 keywords:
   - security
   - vulnerability
@@ -16,24 +16,25 @@ sources:
 icon: https://raw.githubusercontent.com/klustair/klustair-helm/main/klustair/static/klustair.png
 annotations:
   artifacthub.io/changes: |
-    - Runner, collect report data
-    - Frontend, more details on overview
-    - Frontend, add vulnerabilities overview
-    - Frontend, add detailed vulnerability view
-    - Frontend, add CWE importer
-    - Frontend, display CWE Information in vulnerability view
-    - Frontend, list vulnerabilities by Trivy target
-    - Helm, make permanent runner optional
+    - Frontend, added user management
+    - Frontend, added token management
+    - Frontend, added runner config management (not active now)
+    - Frontend, secured api routes
+    - Frontend, added user authentication
+    - Frontend, upgrade to Laravel from 7 to 8
+    - Frontend, fixed redhat logo
+    - frontend, fixed vulnerability button in vulnerabilitiy view
+    - Helm, fixed wait for DB init
   artifacthub.io/images: |
     - name: klustair
-      image: klustair/klustair:v0.3.0
+      image: klustair/klustair:v0.3.1
     - name: klustair-apache
-      image: klustair/klustair-frontend:v0.3.0-apache
+      image: klustair/klustair-frontend:v0.3.1-apache
       whitelisted: true
     - name: klustair-nginx
-      image: klustair/klustair-frontend:v0.3.0-nginx
+      image: klustair/klustair-frontend:v0.3.1-nginx
     - name: klustair-php-fpm
-      image: klustair/klustair-frontend:v0.3.0-php-fpm
+      image: klustair/klustair-frontend:v0.3.1-php-fpm
     - name: postgresql
       image: postgres:12-alpine
       whitelisted: true
