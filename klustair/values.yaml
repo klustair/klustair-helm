@@ -30,6 +30,20 @@ klustairfrontend:
       password: 'changeme'
       fromAdress: 'klustair@localhost.com'
       fromName: 'KlustAIR system'
+    ldap:
+      enabled: false
+      type: false
+      queryfield: uid
+      logging: true
+      connection: 'default'
+      host: 'changeme'
+      username: 'cn=admin,dc=example,dc=org'
+      password: 'changeme'
+      port: 389
+      baseDN: 'ou=users,dc=example,dc=org'
+      timeout: 5
+      ssl: false
+      tls: false
 
 klustair:
   kubeconfig: ""

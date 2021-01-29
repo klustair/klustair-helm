@@ -172,6 +172,32 @@ spec:
               value: {{ .Values.klustairfrontend.mail.fromAdress | quote}}
             - name: MAIL_FROM_NAME
               value: {{ .Values.klustairfrontend.mail.fromName | quote}}
+            - name: LDAP
+              value: {{ .Values.klustairfrontend.ldap.enabled | quote}}
+            - name: LDAP_TYPE
+              value: {{ .Values.klustairfrontend.ldap.type | quote}}
+            - name: LDAP_QUERYFIELD
+              value: {{ .Values.klustairfrontend.ldap.queryfield | quote}}
+            - name: LDAP_LOGGING
+              value: {{ .Values.klustairfrontend.ldap.logging | quote}}
+            - name: LDAP_CONNECTION
+              value: {{ .Values.klustairfrontend.ldap.connection | quote}}
+            - name: LDAP_HOST
+              value: {{ .Values.klustairfrontend.ldap.host | quote}}
+            - name: LDAP_USERNAME
+              value: {{ .Values.klustairfrontend.ldap.username | quote}}
+            - name: LDAP_PASSWORD
+              value: {{ .Values.klustairfrontend.ldap.password | quote}}
+            - name: LDAP_PORT
+              value: {{ .Values.klustairfrontend.ldap.port | quote}}
+            - name: LDAP_BASE_DN
+              value: {{ .Values.klustairfrontend.ldap.baseDN | quote}}
+            - name: LDAP_TIMEOUT
+              value: {{ .Values.klustairfrontend.ldap.timeout | quote}}
+            - name: LDAP_SSL
+              value: {{ .Values.klustairfrontend.ldap.ssl | quote}}
+            - name: LDAP_TLS
+              value: {{ .Values.klustairfrontend.ldap.tls | quote}}
           ports:
             - name: fpm
               containerPort: 9000
@@ -268,6 +294,33 @@ spec:
               value: {{ .Values.klustairfrontend.mail.fromAdress | quote}}
             - name: MAIL_FROM_NAME
               value: {{ .Values.klustairfrontend.mail.fromName | quote}}
+            - name: LDAP
+              value: {{ .Values.klustairfrontend.ldap.enabled | quote}}
+            - name: LDAP_TYPE
+              value: {{ .Values.klustairfrontend.ldap.type | quote}}
+            - name: LDAP_QUERYFIELD
+              value: {{ .Values.klustairfrontend.ldap.queryfield | quote}}
+            - name: LDAP_LOGGING
+              value: {{ .Values.klustairfrontend.ldap.logging | quote}}
+            - name: LDAP_CONNECTION
+              value: {{ .Values.klustairfrontend.ldap.connection | quote}}
+            - name: LDAP_HOST
+              value: {{ .Values.klustairfrontend.ldap.host | quote}}
+            - name: LDAP_USERNAME
+              value: {{ .Values.klustairfrontend.ldap.username | quote}}
+            - name: LDAP_PASSWORD
+              value: {{ .Values.klustairfrontend.ldap.password | quote}}
+            - name: LDAP_PORT
+              value: {{ .Values.klustairfrontend.ldap.port | quote}}
+            - name: LDAP_BASE_DN
+              value: {{ .Values.klustairfrontend.ldap.baseDN | quote}}
+            - name: LDAP_TIMEOUT
+              value: {{ .Values.klustairfrontend.ldap.timeout | quote}}
+            - name: LDAP_SSL
+              value: {{ .Values.klustairfrontend.ldap.ssl | quote}}
+            - name: LDAP_TLS
+              value: {{ .Values.klustairfrontend.ldap.tls | quote}}
+
           ports:
             - name: http
               containerPort: 80
