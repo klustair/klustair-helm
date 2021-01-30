@@ -82,7 +82,7 @@ trivy:
 
 postgresql:
     image: 
-        tag: 12
+        tag: 11
     postgresqlUsername: klustair
     # Default password if empty is a randomm 10 character alpha numeric string
     #postgresqlPassword: 
