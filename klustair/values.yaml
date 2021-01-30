@@ -36,11 +36,11 @@ klustairfrontend:
       queryfield: uid
       logging: true
       connection: 'default'
-      host: 'changeme'
-      username: 'cn=admin,dc=example,dc=org'
+      host: 'changeme.myldap.com'
+      username: '"cn=admin,dc=example,dc=org"'
       password: 'changeme'
       port: 389
-      baseDN: 'ou=users,dc=example,dc=org'
+      baseDN: '"ou=users,dc=example,dc=org"'
       timeout: 5
       ssl: false
       tls: false
