@@ -84,10 +84,13 @@ questions:
   show_subquestion_if: true
   subquestions:
   - variable: klustairfrontend.ldap.type
-    label: Enable Registration
-    default: false
+    label: LDAP Type
     required: true
-    type: boolean
+    type: enum
+    default: 'OpenLDAP'
+    options:
+    - 'OpenLDAP'
+    - 'ActiveDirectory'
   - variable: klustairfrontend.ldap.queryfield
     label: LDAP queryfield
     default: 'uid'
