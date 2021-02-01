@@ -20,6 +20,11 @@ questions:
   group: "Klustair Frontend"
   required: true
   type: boolean
+- variable: klustairfrontend.phpfpm
+  label: Use Lightwight/High Secure Alpine Images
+  group: "Klustair Frontend"
+  required: true
+  type: boolean
 - variable: klustairfrontend.mail.host
   label: Mail Host
   group: "Klustair Frontend"
@@ -106,7 +111,7 @@ questions:
     required: true
     type: string
   - variable: klustairfrontend.ldap.username
-    label: LDAP host
+    label: LDAP username
     required: true
     type: string
   - variable: klustairfrontend.ldap.password
