@@ -7,7 +7,7 @@ replicaCount: 1
 image:
   repository: klustair/klustair
   repositoryFrontend: klustair/klustair-frontend
-  tag: v0.3.1
+  tag: v0.3.2
   pullPolicy: Always
 
 klustairfrontend:
@@ -30,6 +30,20 @@ klustairfrontend:
       password: 'changeme'
       fromAdress: 'klustair@localhost.com'
       fromName: 'KlustAIR system'
+    ldap:
+      enabled: false
+      type: false
+      queryfield: uid
+      logging: true
+      connection: 'default'
+      host: 'changeme.myldap.com'
+      username: '"cn=admin,dc=example,dc=org"'
+      password: 'changeme'
+      port: 389
+      baseDN: '"ou=users,dc=example,dc=org"'
+      timeout: 5
+      ssl: false
+      tls: false
 
 klustair:
   kubeconfig: ""
@@ -67,13 +81,15 @@ trivy:
 
 
 postgresql:
+    image: 
+        tag: 11
     postgresqlUsername: klustair
     # Default password if empty is a randomm 10 character alpha numeric string
     #postgresqlPassword: 
     postgresqlDatabase: klustair
     persistence:
         #storageClass: "-"
-        size: 1Gi
+        size: 10Gi
     resources:
         requests:
             memory: 256Mi

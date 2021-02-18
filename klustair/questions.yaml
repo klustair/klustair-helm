@@ -20,6 +20,11 @@ questions:
   group: "Klustair Frontend"
   required: true
   type: boolean
+- variable: klustairfrontend.phpfpm
+  label: Use Lightwight/High Secure Alpine Images
+  group: "Klustair Frontend"
+  required: true
+  type: boolean
 - variable: klustairfrontend.mail.host
   label: Mail Host
   group: "Klustair Frontend"
@@ -73,6 +78,72 @@ questions:
     default: false
     required: true
     type: boolean
+
+
+- variable: klustairfrontend.ldap.enabled
+  label: Enable LDAP
+  default: false
+  required: false
+  type: boolean
+  group: "Klustair LDAP"
+  show_subquestion_if: true
+  subquestions:
+  - variable: klustairfrontend.ldap.type
+    label: LDAP Type
+    required: true
+    type: enum
+    default: 'OpenLDAP'
+    options:
+    - 'OpenLDAP'
+    - 'ActiveDirectory'
+  - variable: klustairfrontend.ldap.queryfield
+    label: LDAP queryfield
+    default: 'uid'
+    required: true
+    type: string
+  - variable: klustairfrontend.ldap.logging
+    label: Enable logging
+    default: true
+    required: true
+    type: boolean
+  - variable: klustairfrontend.ldap.host
+    label: LDAP Host
+    required: true
+    type: string
+  - variable: klustairfrontend.ldap.username
+    label: LDAP username
+    required: true
+    type: string
+  - variable: klustairfrontend.ldap.password
+    label: LDAP password
+    required: true
+    type: password
+  - variable: klustairfrontend.ldap.port
+    label: LDAP port
+    default: '389'
+    required: true
+    type: string
+  - variable: klustairfrontend.ldap.baseDN
+    label: LDAP Base DN
+    default: '"ou=users,dc=example,dc=org"'
+    required: true
+    type: string
+  - variable: klustairfrontend.ldap.timeout
+    label: LDAP timeout
+    default: '5'
+    required: true
+    type: string
+  - variable: klustairfrontend.ldap.ssl
+    label: Enable SSL
+    default: false
+    required: true
+    type: boolean
+  - variable: klustairfrontend.ldap.tls
+    label: Enable TLS
+    default: false
+    required: true
+    type: boolean
+
 - variable: klustair.kubeconfig
   label: kubectl configuration
   description: "IMPORTANT: Wrap ypur conffig with single quotes"
@@ -156,6 +227,11 @@ questions:
   required: true
   group: "Database"
   type: storageclass
+- variable: postgresql.persistence.size
+  label: Postgresql Data Directory size
+  required: true
+  group: "10Gi"
+  type: string
 
 - variable: postgresql.postgresqlPassword
   label: Postgresql Password
