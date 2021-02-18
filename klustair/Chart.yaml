@@ -18,6 +18,8 @@ annotations:
   artifacthub.io/changes: |
     - Frontend, added LDAP user authentication
     - Helm, upgrade PostgreSQL version 
+    - Frontend, Laravel upgrade
+    - Runner, Kubeaudit upgraded
   artifacthub.io/images: |
     - name: klustair
       image: klustair/klustair:v0.3.2
