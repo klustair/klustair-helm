@@ -2,6 +2,7 @@
 
 # <a href='https://github.com/klustair/klustair'>KlustAIR Helm chart</a>
 [![Artifact HUB](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/klustair)](https://artifacthub.io/packages/search?repo=klustair)
+[![Helm validate](https://github.com/klustair/klustair-helm/actions/workflows/helm.yml/badge.svg?branch=main)](https://github.com/klustair/klustair-helm/actions/workflows/helm.yml)
 
 Klustair collects all the used images your Kubernetes namespaces and runs a trivy scan on them. 
 
