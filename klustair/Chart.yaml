@@ -22,14 +22,14 @@ annotations:
     - Runner, Kubeaudit upgraded
   artifacthub.io/images: |
     - name: klustair
-      image: klustair/klustair:v0.3.2
+      image: klustair/klustair:v0.3.3
     - name: klustair-apache
-      image: klustair/klustair-frontend:v0.3.2-apache
+      image: klustair/klustair-frontend:v0.3.3-apache
       whitelisted: true
     - name: klustair-nginx
-      image: klustair/klustair-frontend:v0.3.2-nginx
+      image: klustair/klustair-frontend:v0.3.3-nginx
     - name: klustair-php-fpm
-      image: klustair/klustair-frontend:v0.3.2-php-fpm
+      image: klustair/klustair-frontend:v0.3.3-php-fpm
     - name: postgresql
       image: postgres:12-alpine
       whitelisted: true
