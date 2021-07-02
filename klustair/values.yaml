@@ -100,6 +100,11 @@ klustairJob:
     schedule : "15 9 * * *"
     namespaceblacklist: "kube-system"
     keeparunner: true
+    serviceAccount:
+      create: false
+      annotations: {}
+    rbac:
+      create: false
 
 imagePullSecrets: []
 nameOverride: ""
