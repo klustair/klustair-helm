@@ -1,4 +1,4 @@
-{{- if .Values.klustairJob.rbac.create -}}
+{{- if and .Values.klustairJob.enabled .Values.klustairJob.rbac.create -}}
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:

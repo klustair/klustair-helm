@@ -65,7 +65,7 @@ spec:
           tolerations:
             {{- toYaml . | nindent 10 }}
         {{- end }}
-        {{- if .Values.klustairJob.serviceAccount.create -}}
+        {{- if .Values.klustairJob.serviceAccount.create }}
           serviceAccountName: {{ template "klustair.jobServiceAccountName" . }}
         {{- end }}
 {{- end }}
