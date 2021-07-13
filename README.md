@@ -57,7 +57,7 @@ $RELEASENAME klustair/klustair
 export RELEASENAME=my-klustair
 git clone git@github.com:klustair/klustair-helm.git
 cd klustair-helm
-helm install -f values.yaml $RELEASENAME ./klustair
+helm install -f ./klustair/values.yaml $RELEASENAME ./klustair
 ```
 ### Update/Configure secrets
 Follow this instruction to generate Google Serviceaccount and credentials
