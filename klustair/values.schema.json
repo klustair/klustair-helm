@@ -118,7 +118,7 @@
                     "type": "boolean"
                 },
                 "cliURL": {
-                    "title": "Anchore API RUL",
+                    "title": "Anchore API URL",
                     "default": "http://CHANGEME:8228",
                     "type": "string"
                 },
