@@ -31,12 +31,6 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           command: ["tail", "-f", "/dev/null"]
           env:
-            - name: ANCHORE_CLI_URL
-              value: {{ .Values.anchore.cliURL }}
-            - name: ANCHORE_CLI_USER
-              value: {{ .Values.anchore.cliUser }}
-            - name: ANCHORE_CLI_PASS
-              value: {{ .Values.anchore.cliURL }}
             - name: KUBECONFIG
               value: /etc/klustair/kube.config
             - name: KLUSTAIR_TRIVYCREDENTIALSPATH
@@ -46,15 +40,17 @@ spec:
             - name: TRIVY_TIMEOUT
               value: {{ .Values.trivy.timeout | quote}}
             - name: KLUSTAIR_APIHOST
-              value: {{ .Values.klustair.apiHost | quote}}
+              value: {{ .Values.klustairJob.apiHost | default "not_set" | quote}}
             - name: KLUSTAIR_APITOKEN
-              value: {{ .Values.klustair.apiToken | quote}}
+              value: {{ .Values.klustairJob.apiToken | default "not_set" | quote}}
+            {{ if .Values.klustair.configKey }}
             - name: KLUSTAIR_CONFIGKEY
-              value: {{ .Values.klustair.configKey | quote}}
+              value: {{ .Values.klustairJob.configKey | quote}}
+            {{ end -}}
             - name: KLUSTAIR_LIMITDATE
-              value: {{ .Values.klustair.limitDate | quote}}
+              value: {{ .Values.klustairJob.limitDate | default "false" | quote}}
             - name: KLUSTAIR_LIMITDATE
-              value: {{ .Values.klustair.limitNR | quote}}
+              value: {{ .Values.klustairJob.limitNR | default "false" | quote}}
           volumeMounts:
             - name: configs
               mountPath: "/etc/klustair"

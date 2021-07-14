@@ -47,17 +47,13 @@ klustairfrontend:
 
 klustair:
   kubeconfig: ""
-  gcloudCredentials: ""
-  apiHost: ""
-  apiToken: ""
-  configKey: ""
-  limitDate: ""
-  limitNR: ""
+#  Multiline kubeconfig example
 #  kubeconfig: |
 #    apiVersion: v1
 #    kind: Config
 #    clusters:
 #      PUT THE REST OF YOUR KUBECONNFIG HERE
+  gcloudCredentials: ""
 
 anchore:
   enabled: false
@@ -105,6 +101,20 @@ klustairJob:
     schedule : "15 9 * * *"
     namespaceblacklist: "kube-system"
     keeparunner: true
+    apiHost: ""
+    apiToken: ""
+    configKey: ""
+    limitDate: ""
+    limitNR: ""
+
+    kubeconfig: ""
+#    Multiline kubeconfig example
+#    kubeconfig: |
+#       apiVersion: v1
+#       kind: Config
+#       clusters:
+#           PUT THE REST OF YOUR KUBECONNFIG HERE
+    gcloudCredentials: ""
 
 imagePullSecrets: []
 nameOverride: ""
