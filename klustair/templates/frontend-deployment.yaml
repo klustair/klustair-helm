@@ -136,6 +136,8 @@ spec:
               value: "file"
             - name: QUEUE_CONNECTION
               value: "sync"
+            - name: SANCTUM_STATEFUL_DOMAINS
+              value: {{ .Values.klustairfrontend.url | quote}}
             - name: SESSION_DRIVER
               value: "file"
             - name: SESSION_LIFETIME
