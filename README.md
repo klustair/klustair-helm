@@ -24,13 +24,15 @@ Klustair collects all the used images your Kubernetes namespaces and runs a triv
 ## Installation
 
 ## Generate Laravel key
-Chose one of the following commands
+The key consists of 32 random characters
+
+Chose one of the following commands to generate one or copy the Laravel key from https://wwww.keygen.io
 ```
 dd if=/dev/urandom bs=1 count=32 2>/dev/null | base64
 ```
 or
 ```
-date +%s | md5 | base64 | head -c 64 ; echo
+date +%s | md5 | base64 | head -c 32 ; echo
 ```
 of
 ```
@@ -57,7 +59,7 @@ $RELEASENAME klustair/klustair
 export RELEASENAME=my-klustair
 git clone git@github.com:klustair/klustair-helm.git
 cd klustair-helm
-helm install -f values.yaml $RELEASENAME ./klustair
+helm install -f ./klustair/values.yaml $RELEASENAME ./klustair
 ```
 ### Update/Configure secrets
 Follow this instruction to generate Google Serviceaccount and credentials
