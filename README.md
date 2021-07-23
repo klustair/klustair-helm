@@ -23,6 +23,14 @@ Klustair collects all the used images your Kubernetes namespaces and runs a triv
 
 ## Installation
 
+## Run a local Kubernetes Cluster with kind
+
+```
+export RELEASENAME=my-klustair
+kind create cluster --config kind.yaml
+helm install -f ./klustair/values.yaml $RELEASENAME ./klustair --create-namespace
+```
+
 ## Generate Laravel key
 The key consists of 32 random characters
 
