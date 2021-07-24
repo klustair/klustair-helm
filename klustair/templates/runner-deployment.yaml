@@ -39,10 +39,15 @@ spec:
               value: "/etc/klustair/gcloud-credentials.json"
             - name: TRIVY_TIMEOUT
               value: {{ .Values.trivy.timeout | quote}}
+            {{ if .Values.klustairJob.apiHost }}
             - name: KLUSTAIR_APIHOST
-              value: {{ .Values.klustairJob.apiHost | default "not_set" | quote}}
+              value: {{ .Values.klustairJob.apiHost | quote}}
+            {{ else }}
+            - name: KLUSTAIR_APIHOST
+              value: {{ include "klustair.fullname" . }}-frontend
+            {{ end -}}
             - name: KLUSTAIR_APITOKEN
-              value: {{ .Values.klustairJob.apiToken | default "not_set" | quote}}
+              value: {{ .Values.klustairfrontend.apiToken | default "not_set" | quote}}
             {{ if .Values.klustair.configKey }}
             - name: KLUSTAIR_CONFIGKEY
               value: {{ .Values.klustairJob.configKey | quote}}

@@ -105,8 +105,7 @@ klustairJob:
     schedule : "15 9 * * *"
     namespaceblacklist: "kube-system"
     keeparunner: true
-    apiHost: ""
-    apiToken: ""
+    #apiHost: "" # uses local serverice adresse if not set
     configKey: ""
     limitDate: ""
     limitNR: ""
