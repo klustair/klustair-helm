@@ -121,6 +121,14 @@ spec:
               value: {{ .Values.klustairfrontend.debug | quote}}
             - name: APP_URL
               value: "http://{{ .Values.klustairfrontend.url }}"
+            - name: KLUSTAIR_ADMIN_USER
+              value: {{ .Values.klustairfrontend.adminUser | quote }}
+            - name: KLUSTAIR_ADMIN_EMAIL
+              value: {{ .Values.klustairfrontend.adminEmail | quote }}
+            - name: KLUSTAIR_ADMIN_PASS
+              value: {{ .Values.klustairfrontend.adminPassword | quote }}
+            - name: KLUSTAIR_APITOKEN
+              value: {{ .Values.klustairfrontend.apiToken | quote }}
             - name: DB_CONNECTION
               value: pgsql
             - name: DB_HOST
@@ -245,6 +253,14 @@ spec:
               value: {{ .Values.klustairfrontend.debug | quote}}
             - name: APP_URL
               value: "http://{{ .Values.klustairfrontend.url }}"
+            - name: KLUSTAIR_ADMIN_USER
+              value: {{ .Values.klustairfrontend.adminUser | quote }}
+            - name: KLUSTAIR_ADMIN_EMAIL
+              value: {{ .Values.klustairfrontend.adminEmail | quote }}
+            - name: KLUSTAIR_ADMIN_PASS
+              value: {{ .Values.klustairfrontend.adminPassword | quote }}
+            - name: KLUSTAIR_APITOKEN
+              value: {{ .Values.klustairfrontend.apiToken | quote }}
             - name: DB_CONNECTION
               value: pgsql
             - name: DB_HOST
