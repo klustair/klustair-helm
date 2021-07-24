@@ -33,8 +33,10 @@ spec:
               value: {{ .Values.klustairfrontend.adminUser | quote }}
             - name: KLUSTAIR_ADMIN_EMAIL
               value: {{ .Values.klustairfrontend.adminEmail | quote }}
+            {{ if .Values.klustairfrontend.adminPassword  }}
             - name: KLUSTAIR_ADMIN_PASS
               value: {{ .Values.klustairfrontend.adminPassword | quote }}
+            {{ end -}}
             - name: KLUSTAIR_APITOKEN
               value: {{ .Values.klustairfrontend.apiToken | quote }}
             - name: LOG_CHANNEL
@@ -125,8 +127,10 @@ spec:
               value: {{ .Values.klustairfrontend.adminUser | quote }}
             - name: KLUSTAIR_ADMIN_EMAIL
               value: {{ .Values.klustairfrontend.adminEmail | quote }}
+            {{ if .Values.klustairfrontend.adminPassword  }}
             - name: KLUSTAIR_ADMIN_PASS
               value: {{ .Values.klustairfrontend.adminPassword | quote }}
+            {{ end -}}
             - name: KLUSTAIR_APITOKEN
               value: {{ .Values.klustairfrontend.apiToken | quote }}
             - name: DB_CONNECTION
@@ -257,8 +261,10 @@ spec:
               value: {{ .Values.klustairfrontend.adminUser | quote }}
             - name: KLUSTAIR_ADMIN_EMAIL
               value: {{ .Values.klustairfrontend.adminEmail | quote }}
+            {{ if .Values.klustairfrontend.adminPassword  }}
             - name: KLUSTAIR_ADMIN_PASS
               value: {{ .Values.klustairfrontend.adminPassword | quote }}
+            {{ end -}}
             - name: KLUSTAIR_APITOKEN
               value: {{ .Values.klustairfrontend.apiToken | quote }}
             - name: DB_CONNECTION
