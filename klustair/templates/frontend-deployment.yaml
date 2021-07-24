@@ -30,13 +30,13 @@ spec:
           command: ["sh", "init.sh"]
           env:
             - name: KLUSTAIR_ADMIN_USER
-              value: "http://{{ .Values.klustairfrontend.adminUser }}"
+              value: {{ .Values.klustairfrontend.adminUser | quote }}
             - name: KLUSTAIR_ADMIN_EMAIL
-              value: "http://{{ .Values.klustairfrontend.adminEmail }}"
+              value: {{ .Values.klustairfrontend.adminEmail | quote }}
             - name: KLUSTAIR_ADMIN_PASS
-              value: "http://{{ .Values.klustairfrontend.adminPassword }}"
+              value: {{ .Values.klustairfrontend.adminPassword | quote }}
             - name: KLUSTAIR_APITOKEN
-              value: "http://{{ .Values.klustairfrontend.apiToken }}"
+              value: {{ .Values.klustairfrontend.apiToken | quote }}
             - name: LOG_CHANNEL
               value: "stderr"
             - name: APP_NAME
