@@ -25,10 +25,19 @@ Klustair collects all the used images your Kubernetes namespaces and runs a triv
 
 ## Run a local Kubernetes Cluster with kind
 
+### Installation with helm
 ```
 export RELEASENAME=my-klustair
 kind create cluster --config kind.yaml
-helm install -f ./klustair/values.yaml $RELEASENAME ./klustair --create-namespace
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/kind/deploy.yaml
+helm install $RELEASENAME ./klustair -f ./klustair/values.yaml -n $RELEASENAME --create-namespace
+```
+
+### Uninstall
+```
+helm list 
+helm uninstall $RELEASENAME
+kind delete cluster klustair
 ```
 
 ## Generate Laravel key

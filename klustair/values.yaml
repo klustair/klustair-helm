@@ -14,6 +14,10 @@ klustairfrontend:
     apachedocumentroot: /var/www/public
     appkey: base64:pT9Zg64zbBgDDmH7WZXO+Kv4/NuA2zlVFAn/Jg7IV2A=
     url: local.klustair.com
+    adminUser: "admin"
+    adminEmail: "admin@changeme.com"
+    adminPassword: ""
+    apiToken: "d1b587807dfa59d6c933f5b4b76c625c9483a3466c8401ce3fd241749c68ded2"
     debug: false
     phpfpm: false
     auth: 
