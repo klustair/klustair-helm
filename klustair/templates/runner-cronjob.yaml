@@ -17,7 +17,14 @@ spec:
               {{- toYaml .Values.securityContext | nindent 14 }}
             image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
             imagePullPolicy: {{ .Values.image.pullPolicy }}
-            command: ["./app/runner.py", "--verbose", "-t", "--namespacesblacklist", {{ .Values.klustairJob.namespaceblacklist | quote }}]
+            command:
+              - ./app/runner.py
+              - --verbose
+              {{- if .Values.trivy.enabled }}
+              - -t
+              {{- end }}
+              - --namespacesblacklist
+              - {{ .Values.klustairJob.namespaceblacklist | quote }}
             env:
               - name: ANCHORE_CLI_URL
                 value: {{ .Values.anchore.cliURL }}
