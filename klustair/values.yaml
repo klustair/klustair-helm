@@ -110,15 +110,6 @@ klustairJob:
     limitDate: ""
     limitNR: ""
 
-    kubeconfig: ""
-#    Multiline kubeconfig example
-#    kubeconfig: |
-#       apiVersion: v1
-#       kind: Config
-#       clusters:
-#           PUT THE REST OF YOUR KUBECONNFIG HERE
-    gcloudCredentials: ""
-
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
