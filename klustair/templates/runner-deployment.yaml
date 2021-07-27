@@ -44,7 +44,7 @@ spec:
               value: {{ .Values.klustairJob.apiHost | quote}}
             {{ else }}
             - name: KLUSTAIR_APIHOST
-              value: {{ include "klustair.fullname" . }}-frontend
+              value: "http://{{ include "klustair.fullname" . }}-frontend"
             {{ end -}}
             - name: KLUSTAIR_APITOKEN
               value: {{ .Values.klustairfrontend.apiToken | default "not_set" | quote}}
