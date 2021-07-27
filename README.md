@@ -46,11 +46,12 @@ openssl rand -base64 32
 export RELEASENAME=my-klustair
 kind create cluster --config kind.yaml
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/kind/deploy.yaml
-helm install $RELEASENAME ./klustair -f ./klustair/values.yaml -n $RELEASENAME --create-namespace
+kind export kubeconfig --name klustair --kubeconfig ./kubeconfig
+helm install $RELEASENAME ./klustair -f ./klustair/values.yaml -n $RELEASENAME --create-namespace --set-file klustair.kubeconfig=./kubeconfig
 ```
 
-You should be able now to access your installation via http://local.klustair.com or the defined URL in values.yaml. 
-Credentials a visible in first Database init run. If you lost your Admin Account or need more Accounts use the "php artisan klustair:user" command on apache or php-fpm pod.  
+You should be able now to access your installation via http://local.klustair.com (pointing to 127.0.0.1) or the defined URL in values.yaml. 
+the Klustair Admin credentials a visible in first Database init run. If you lost your Admin Account or need more Accounts use the "php artisan klustair:user" command on apache or php-fpm pod.  
 
 ### Uninstall
 ```
