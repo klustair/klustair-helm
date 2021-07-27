@@ -24,6 +24,19 @@ If release name contains chart name it will be used as a full name.
 {{- end -}}
 {{- end -}}
 
+{{- define "klustair.jobFullname" -}}
+{{- if .Values.fullnameOverride -}}
+{{- .Values.fullnameOverride | trunc 59 | trimSuffix "-" -}}-job
+{{- else -}}
+{{- $name := default .Chart.Name .Values.nameOverride -}}
+{{- if contains $name .Release.Name -}}
+{{- .Release.Name | trunc 59 | trimSuffix "-" -}}-job
+{{- else -}}
+{{- printf "%s-%s" .Release.Name $name | trunc 59 | trimSuffix "-" -}}-job
+{{- end -}}
+{{- end -}}
+{{- end -}}
+
 {{/*
 Create chart name and version as used by the chart label.
 */}}
@@ -53,4 +66,8 @@ Create the name of the service account to use
 {{- else -}}
     {{ default "default" .Values.serviceAccount.name }}
 {{- end -}}
+{{- end -}}
+
+{{- define "klustair.jobServiceAccountName" -}}
+{{ default (include "klustair.jobFullname" .) .Values.klustairJob.serviceAccount.name }}
 {{- end -}}
