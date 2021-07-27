@@ -1,0 +1,59 @@
+{{- if and .Values.klustairJob.enabled .Values.klustairJob.rbac.create -}}
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: {{ include "klustair.jobFullname" . }}-clusterrole
+rules:
+- apiGroups: [""]
+  resources:
+  - namespaces
+  - pods
+  - configmaps
+  - deployments
+  - podtemplates
+  - replicationcontrollers
+  - serviceaccounts
+  verbs:
+  - get
+  - list
+- apiGroups:
+  - apps
+  resources:
+  - deployments
+  - replicasets
+  - statefulsets
+  - daemonsets
+  verbs:
+  - get
+  - list
+- apiGroups:
+  - batch
+  resources:
+  - cronjobs
+  verbs:
+  - get
+  - list
+- apiGroups:
+  - networking.k8s.io
+  resources:
+  - networkpolicies
+  verbs:
+  - get
+  - list
+---
+{{-   if .Values.klustairJob.serviceAccount.create -}}
+apiVersion: "rbac.authorization.k8s.io/v1"
+kind: ClusterRoleBinding
+metadata:
+  name: {{ include "klustair.jobFullname" . }}-rolebinding
+  namespace: {{ .Release.Namespace }}
+subjects:
+- kind: ServiceAccount
+  name: {{ template "klustair.jobServiceAccountName" . }}
+  namespace: {{ .Release.Namespace }}
+roleRef:
+  kind: ClusterRole
+  name: {{ include "klustair.jobFullname" . }}-clusterrole
+  apiGroup: rbac.authorization.k8s.io
+{{-   end -}}
+{{- end -}}
