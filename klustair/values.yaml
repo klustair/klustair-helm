@@ -103,7 +103,9 @@ postgresql:
 klustairJob:
     enabled: true
     schedule : "15 9 * * *"
+    namespace: "klustair"
     namespaceblacklist: "kube-system"
+    kubeaudit: "all"
     keeparunner: true
     serviceAccount:
       create: false
@@ -111,7 +113,6 @@ klustairJob:
     rbac:
       create: false
     #apiHost: "" # uses a local serverice adress if not set
-    apiToken: ""
     configKey: ""
     limitDate: ""
     limitNR: ""

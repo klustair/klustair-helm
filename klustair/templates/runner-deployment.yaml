@@ -50,10 +50,20 @@ spec:
             {{ end -}}
             - name: KLUSTAIR_APITOKEN
               value: {{ .Values.klustairfrontend.apiToken | default "not_set" | quote}}
-            {{ if .Values.klustair.configKey }}
+            {{ if .Values.klustairJob.configKey }}
             - name: KLUSTAIR_CONFIGKEY
               value: {{ .Values.klustairJob.configKey | quote}}
             {{ end -}}
+            {{ if .Values.klustairJob.namespaces }}
+            - name: KLUSTAIR_NAMESPACES
+              value: {{ .Values.klustairJob.namespaces | quote}}
+            {{ end -}}
+            {{ if .Values.klustairJob.namespaceblacklist }}
+            - name: KLUSTAIR_NAMESPACEBLACKLIST
+              value: {{ .Values.klustairJob.namespaceblacklist | quote}}
+            {{ end -}}
+            - name: KLUSTAIR_KUBEAUDIT
+              value: {{ .Values.klustairJob.kubeaudit | default "all" | quote}}^
             - name: KLUSTAIR_LIMITDATE
               value: {{ .Values.klustairJob.limitDate | default "false" | quote}}
             - name: KLUSTAIR_LIMITDATE
