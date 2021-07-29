@@ -21,40 +21,40 @@ spec:
               - ./app/runner.py
               - --verbose
               {{- if .Values.trivy.enabled }}
-              - -t
+              - -t  
               {{- end }}
             env:
               - name: KUBECONFIG
-                value: /etc/klustair/kube.config
+                value: "/etc/klustair/kube.config"
               - name: KLUSTAIR_TRIVYCREDENTIALSPATH
                 value: "/etc/klustair/repo-credentials.json"
               - name: GOOGLE_APPLICATION_CREDENTIALS
                 value: "/etc/klustair/gcloud-credentials.json"
               - name: TRIVY_TIMEOUT
                 value: {{ .Values.trivy.timeout | quote}}
-              {{ if .Values.klustairJob.apiHost }}
+              - name: KLUSTAIR_APITOKEN
+                value: {{ .Values.klustairfrontend.apiToken | default "not_set" | quote}}
+              {{- if .Values.klustairJob.apiHost }}
               - name: KLUSTAIR_APIHOST
                 value: {{ .Values.klustairJob.apiHost | quote}}
               {{ else }}
               - name: KLUSTAIR_APIHOST
                 value: "http://{{ include "klustair.fullname" . }}-frontend"
-              {{ end -}}
-              - name: KLUSTAIR_APITOKEN
-                value: {{ .Values.klustairfrontend.apiToken | default "not_set" | quote}}
-              {{ if .Values.klustairJob.configKey }}
+              {{- end }}
+              {{- if .Values.klustairJob.configKey }}
               - name: KLUSTAIR_CONFIGKEY
                 value: {{ .Values.klustairJob.configKey | quote}}
-              {{ end -}}
-              {{ if .Values.klustairJob.namespaces }}
+              {{- end }}
+              {{- if .Values.klustairJob.namespaces }}
               - name: KLUSTAIR_NAMESPACES
                 value: {{ .Values.klustairJob.namespaces | quote}}
-              {{ end -}}
-              {{ if .Values.klustairJob.namespaceblacklist }}
+              {{- end }}
+              {{- if .Values.klustairJob.namespaceblacklist }}
               - name: KLUSTAIR_NAMESPACEBLACKLIST
                 value: {{ .Values.klustairJob.namespaceblacklist | quote}}
-              {{ end -}}^
+              {{- end }}
               - name: KLUSTAIR_KUBEAUDIT
-                value: {{ .Values.klustairJob.kubeaudit | default "all" | quote}}^
+                value: {{ .Values.klustairJob.kubeaudit | default "all" | quote}}
               - name: KLUSTAIR_LIMITDATE
                 value: {{ .Values.klustairJob.limitDate | default "false" | quote}}
               - name: KLUSTAIR_LIMITDATE

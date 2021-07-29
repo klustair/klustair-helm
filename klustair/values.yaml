@@ -113,9 +113,9 @@ klustairJob:
     rbac:
       create: false
     #apiHost: "" # uses a local serverice adress if not set
-    configKey: ""
-    limitDate: ""
-    limitNR: ""
+    #configKey: ""
+    #limitDate: ""
+    #limitNR: ""
 
 imagePullSecrets: []
 nameOverride: ""

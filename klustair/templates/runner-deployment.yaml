@@ -41,6 +41,8 @@ spec:
               value: "/etc/klustair/gcloud-credentials.json"
             - name: TRIVY_TIMEOUT
               value: {{ .Values.trivy.timeout | quote}}
+            - name: KLUSTAIR_APITOKEN
+              value: {{ .Values.klustairfrontend.apiToken | default "not_set" | quote}}
             {{ if .Values.klustairJob.apiHost }}
             - name: KLUSTAIR_APIHOST
               value: {{ .Values.klustairJob.apiHost | quote}}
@@ -48,8 +50,6 @@ spec:
             - name: KLUSTAIR_APIHOST
               value: "http://{{ include "klustair.fullname" . }}-frontend"
             {{ end -}}
-            - name: KLUSTAIR_APITOKEN
-              value: {{ .Values.klustairfrontend.apiToken | default "not_set" | quote}}
             {{ if .Values.klustairJob.configKey }}
             - name: KLUSTAIR_CONFIGKEY
               value: {{ .Values.klustairJob.configKey | quote}}
@@ -63,7 +63,7 @@ spec:
               value: {{ .Values.klustairJob.namespaceblacklist | quote}}
             {{ end -}}
             - name: KLUSTAIR_KUBEAUDIT
-              value: {{ .Values.klustairJob.kubeaudit | default "all" | quote}}^
+              value: {{ .Values.klustairJob.kubeaudit | default "all" | quote}}
             - name: KLUSTAIR_LIMITDATE
               value: {{ .Values.klustairJob.limitDate | default "false" | quote}}
             - name: KLUSTAIR_LIMITDATE
