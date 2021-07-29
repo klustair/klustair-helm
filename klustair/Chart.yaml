@@ -1,7 +1,7 @@
 apiVersion: v1
 #appVersion: "^0.4.0"
 #kubeVersion: "^v1.16"
-description: Cluster image security suite
+description: Klustair is a security toolkit that provides a set of tools to detect and report on security vulnerabilities in Kubernetes clusters.
 name: klustair
 version: 0.4.0
 keywords:
@@ -16,12 +16,13 @@ sources:
 icon: https://raw.githubusercontent.com/klustair/klustair-helm/main/klustair/static/klustair.png
 annotations:
   artifacthub.io/changes: |
-    - Frontend, composer and npm upgrade and npm security fixes
-    - Frontend, Fix div by 0 bug
-    - Frontend, Specify Postgres username
-    - Frontend, Added centos Logo
-    - Runner, Kubeaudit upgraded to version to 0.14.1
-    - Runner, Trivy upgraded to version 0.18.3
+    - The Klustair runner communicates now with the Klustair API server instead of direct database access.
+    - Added support for collecting images over RBAC Serviceaccount instead of a kubectl config (thx @enver for the PR)
+    - npm and Laravel upgrades
+    - Added support for a heroku deploiment 
+    - Improved installations routines (Admin account and token creation) 
+    - Klustair Runner updated to Python 3.9
+    - Added documentation for a local KiND Kubernetes Cluster installation
 
   artifacthub.io/images: |
     - name: klustair
