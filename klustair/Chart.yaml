@@ -1,7 +1,7 @@
-apiVersion: v2
-appVersion: "0.4.0"
-kubeVersion: "^v1.16"
-description: Klustair is a security toolkit that provides a set of tools to detect and report on security vulnerabilities in Kubernetes clusters.
+apiVersion: v1
+#appVersion: "^0.4.0"
+#kubeVersion: "^v1.16"
+description: Cluster image security suite
 name: klustair
 version: 0.4.0
 keywords:
@@ -14,22 +14,14 @@ sources:
   - https://github.com/klustair/klustair
   - https://github.com/klustair/klustair-helm
 icon: https://raw.githubusercontent.com/klustair/klustair-helm/main/klustair/static/klustair.png
-dependencies:
-  - name: postgresql
-    version: 10.8
-    repository: "https://charts.bitnami.com/bitnami"
 annotations:
-  category: Security
   artifacthub.io/changes: |
-    - The Klustair runner communicates now with the Klustair API server instead of direct database access. (Read upgrade notes!)
-    - Added support for collecting images over RBAC Serviceaccount instead of a kubectl config (thx @enver for the PR)
-    - npm and Laravel upgrades
-    - Added support for a heroku deploiment 
-    - Improved installations routines (Admin account and token creation) 
-    - Klustair Runner updated to Python 3.9
-    - Added documentation for a local KiND Kubernetes Cluster installation
-    - Upgraded Bitnami postgresql chart to version 10.8 (Read upgrade notes!)
-    - Upgraded Helm chart to version 2.11.0 (HELM 3.0 is now required!)
+    - Frontend, composer and npm upgrade and npm security fixes
+    - Frontend, Fix div by 0 bug
+    - Frontend, Specify Postgres username
+    - Frontend, Added centos Logo
+    - Runner, Kubeaudit upgraded to version to 0.14.1
+    - Runner, Trivy upgraded to version 0.18.3
 
   artifacthub.io/images: |
     - name: klustair
