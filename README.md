@@ -23,8 +23,6 @@ Klustair collects all the used images your Kubernetes namespaces and runs a triv
 
 ## Installation
 
-Read the upgrade instructions [here](../UPGRADE.md)
-
 ## Generate Laravel key
 The key consists of 32 random characters
 
@@ -41,29 +39,7 @@ of
 openssl rand -base64 32
 ```
 
-## Run a local Kubernetes Cluster with kind
-
-### Installation with helm
-```
-export RELEASENAME=my-klustair
-kind create cluster --config kind.yaml
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/kind/deploy.yaml
-kind export kubeconfig --name klustair --kubeconfig ./kubeconfig
-helm install $RELEASENAME ./klustair -f ./klustair/values.yaml -n $RELEASENAME --create-namespace --set-file klustair.kubeconfig=./kubeconfig
-```
-
-You should be able now to access your installation via http://local.klustair.com (pointing to 127.0.0.1) or the defined URL in values.yaml. 
-the Klustair Admin credentials a visible in first Database init run. If you lost your Admin Account or need more Accounts use the "php artisan klustair:user" command on apache or php-fpm pod.  
-
-### Uninstall
-```
-helm list 
-helm uninstall $RELEASENAME
-kind delete cluster klustair
-```
-
-
-## Helm chart repo installation
+### Helm chart repo installation
 `trivy.repoCredentials` and `klustair.gcloudCredentials` are optional
 
 ```
@@ -78,6 +54,13 @@ helm install \
 $RELEASENAME klustair/klustair 
 ```
 
+### Git installation
+```
+export RELEASENAME=my-klustair
+git clone git@github.com:klustair/klustair-helm.git
+cd klustair-helm
+helm install -f ./klustair/values.yaml $RELEASENAME ./klustair
+```
 ### Update/Configure secrets
 Follow this instruction to generate Google Serviceaccount and credentials
 

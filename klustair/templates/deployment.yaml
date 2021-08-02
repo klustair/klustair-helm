@@ -20,9 +20,7 @@ spec:
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
     {{- end }}
-      {{- if .Values.klustairJob.serviceAccount.create }}
-      serviceAccountName: {{ template "klustair.jobServiceAccountName" . }}
-      {{- end }}
+      serviceAccountName: {{ template "klustair.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
@@ -41,29 +39,14 @@ spec:
               value: "/etc/klustair/gcloud-credentials.json"
             - name: TRIVY_TIMEOUT
               value: {{ .Values.trivy.timeout | quote}}
+            - name: KLUSTAIR_APIHOST
+              value: {{ .Values.klustairJob.apiHost | default "not_set" | quote}}
             - name: KLUSTAIR_APITOKEN
-              value: {{ .Values.klustairfrontend.apiToken | default "not_set" | quote}}
-            {{ if .Values.klustairJob.apiHost }}
-            - name: KLUSTAIR_APIHOST
-              value: {{ .Values.klustairJob.apiHost | quote}}
-            {{ else }}
-            - name: KLUSTAIR_APIHOST
-              value: "http://{{ include "klustair.fullname" . }}-frontend"
-            {{ end -}}
-            {{ if .Values.klustairJob.configKey }}
+              value: {{ .Values.klustairJob.apiToken | default "not_set" | quote}}
+            {{ if .Values.klustair.configKey }}
             - name: KLUSTAIR_CONFIGKEY
               value: {{ .Values.klustairJob.configKey | quote}}
             {{ end -}}
-            {{ if .Values.klustairJob.namespaces }}
-            - name: KLUSTAIR_NAMESPACES
-              value: {{ .Values.klustairJob.namespaces | quote}}
-            {{ end -}}
-            {{ if .Values.klustairJob.namespaceblacklist }}
-            - name: KLUSTAIR_NAMESPACEBLACKLIST
-              value: {{ .Values.klustairJob.namespaceblacklist | quote}}
-            {{ end -}}
-            - name: KLUSTAIR_KUBEAUDIT
-              value: {{ .Values.klustairJob.kubeaudit | default "all" | quote}}
             - name: KLUSTAIR_LIMITDATE
               value: {{ .Values.klustairJob.limitDate | default "false" | quote}}
             - name: KLUSTAIR_LIMITDATE

@@ -19,8 +19,6 @@ Klustair collects all the used images your Kubernetes namespaces and runs a triv
 
 ## Installation
 
-Read the upgrade instructions [here](../UPGRADE.md)
-
 ## Generate Laravel key
 Chose one of the following commands
 ```
