@@ -29,6 +29,16 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           command: ["sh", "init.sh"]
           env:
+            - name: KLUSTAIR_ADMIN_USER
+              value: {{ .Values.klustairfrontend.adminUser | quote }}
+            - name: KLUSTAIR_ADMIN_EMAIL
+              value: {{ .Values.klustairfrontend.adminEmail | quote }}
+            {{ if .Values.klustairfrontend.adminPassword  }}
+            - name: KLUSTAIR_ADMIN_PASS
+              value: {{ .Values.klustairfrontend.adminPassword | quote }}
+            {{ end -}}
+            - name: KLUSTAIR_APITOKEN
+              value: {{ .Values.klustairfrontend.apiToken | quote }}
             - name: LOG_CHANNEL
               value: "stderr"
             - name: APP_NAME
@@ -113,6 +123,16 @@ spec:
               value: {{ .Values.klustairfrontend.debug | quote}}
             - name: APP_URL
               value: "http://{{ .Values.klustairfrontend.url }}"
+            - name: KLUSTAIR_ADMIN_USER
+              value: {{ .Values.klustairfrontend.adminUser | quote }}
+            - name: KLUSTAIR_ADMIN_EMAIL
+              value: {{ .Values.klustairfrontend.adminEmail | quote }}
+            {{ if .Values.klustairfrontend.adminPassword  }}
+            - name: KLUSTAIR_ADMIN_PASS
+              value: {{ .Values.klustairfrontend.adminPassword | quote }}
+            {{ end -}}
+            - name: KLUSTAIR_APITOKEN
+              value: {{ .Values.klustairfrontend.apiToken | quote }}
             - name: DB_CONNECTION
               value: pgsql
             - name: DB_HOST
@@ -237,6 +257,16 @@ spec:
               value: {{ .Values.klustairfrontend.debug | quote}}
             - name: APP_URL
               value: "http://{{ .Values.klustairfrontend.url }}"
+            - name: KLUSTAIR_ADMIN_USER
+              value: {{ .Values.klustairfrontend.adminUser | quote }}
+            - name: KLUSTAIR_ADMIN_EMAIL
+              value: {{ .Values.klustairfrontend.adminEmail | quote }}
+            {{ if .Values.klustairfrontend.adminPassword  }}
+            - name: KLUSTAIR_ADMIN_PASS
+              value: {{ .Values.klustairfrontend.adminPassword | quote }}
+            {{ end -}}
+            - name: KLUSTAIR_APITOKEN
+              value: {{ .Values.klustairfrontend.apiToken | quote }}
             - name: DB_CONNECTION
               value: pgsql
             - name: DB_HOST
@@ -260,6 +290,8 @@ spec:
               value: "file"
             - name: QUEUE_CONNECTION
               value: "sync"
+            - name: SANCTUM_STATEFUL_DOMAINS
+              value: {{ .Values.klustairfrontend.url | quote}}
             - name: SESSION_DRIVER
               value: "file"
             - name: SESSION_LIFETIME
