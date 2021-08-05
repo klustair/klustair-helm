@@ -59,7 +59,7 @@ the Klustair Admin credentials a visible in first Database init run. If you lost
 ```
 helm list 
 helm uninstall $RELEASENAME
-kind delete cluster klustair
+kind delete cluster $RELEASENAME
 ```
 
 
