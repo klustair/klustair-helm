@@ -6,6 +6,8 @@
 
 Klustair collects all the used images your Kubernetes namespaces and runs a trivy scan on them. 
 
+Demo : https://klustair.herokuapp.com/ 
+
 ### Related Klustair projects: 
 - <a href="https://github.com/klustair/klustair-frontend">Klustair Frontend</a> to view the scanner results
 - <a href="https://github.com/klustair/klustair">Klustair Runner</a> to collect and scan all your used images with trivy
