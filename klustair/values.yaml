@@ -49,7 +49,7 @@ klustairfrontend:
       ssl: false
       tls: false
     pvc:
-      storageClassName: "my-storage-class"
+      storageClassName: ""
       size: 1Gi
 
 klustair:
