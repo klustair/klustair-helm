@@ -48,6 +48,9 @@ klustairfrontend:
       timeout: 5
       ssl: false
       tls: false
+    pvc:
+      storageClassName: "my-storage-class"
+      size: 1Gi
 
 klustair:
   kubeconfig: ""
