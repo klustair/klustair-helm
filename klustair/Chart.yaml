@@ -22,8 +22,8 @@ annotations:
   category: Security
   artifacthub.io/changes: |
     - npm and composer package upgrades
-    - helm, added configurable storageClassName by claudio-walser
-    - klustair, fixed bug in klustair runners kubeaudit 
+    - helm added configurable storageClassName by claudio-walser
+    - klustair fixed bug in klustair runners kubeaudit 
 
   artifacthub.io/images: |
     - name: klustair
