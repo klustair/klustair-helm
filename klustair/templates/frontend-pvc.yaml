@@ -5,8 +5,9 @@ metadata:
   labels:
 {{ include "klustair.labels" . | indent 4 }}
 spec:
+  storageClassName: {{ .Values.klustairfrontend.pvc.storageClassName }}
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 1Gi
+      storage: {{ .Values.klustairfrontend.pvc.size }}
