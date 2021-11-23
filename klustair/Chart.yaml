@@ -27,14 +27,14 @@ annotations:
 
   artifacthub.io/images: |
     - name: klustair
-      image: klustair/klustair:v0.3.3
+      image: klustair/klustair:v0.4.1
     - name: klustair-apache
-      image: klustair/klustair-frontend:v0.3.3-apache
+      image: klustair/klustair-frontend:v0.4.1-apache
       whitelisted: true
     - name: klustair-nginx
-      image: klustair/klustair-frontend:v0.3.3-nginx
+      image: klustair/klustair-frontend:v0.4.1-nginx
     - name: klustair-php-fpm
-      image: klustair/klustair-frontend:v0.3.3-php-fpm
+      image: klustair/klustair-frontend:v0.4.1-php-fpm
     - name: postgresql
       image: postgres:12-alpine
       whitelisted: true
