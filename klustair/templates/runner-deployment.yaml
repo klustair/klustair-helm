@@ -15,6 +15,9 @@ spec:
       labels:
         app.kubernetes.io/name: {{ include "klustair.name" . }}-runner
         app.kubernetes.io/instance: {{ .Release.Name }}
+        {{- if .Values.klustairJob.podLabels }}
+        {{- toYaml .Values.klustairJob.podLabels | nindent 8 }}
+        {{- end }}        
     spec:
     {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
@@ -23,12 +26,9 @@ spec:
       {{- if .Values.klustairJob.serviceAccount.create }}
       serviceAccountName: {{ template "klustair.jobServiceAccountName" . }}
       {{- end }}
-      securityContext:
-        {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
         - name: {{ .Chart.Name }}-runner
-          securityContext:
-            {{- toYaml .Values.securityContext | nindent 12 }}
+          securityContext: {}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           command: ["tail", "-f", "/dev/null"]
@@ -43,6 +43,8 @@ spec:
               value: {{ .Values.trivy.timeout | quote}}
             - name: KLUSTAIR_APITOKEN
               value: {{ .Values.klustairfrontend.apiToken | default "not_set" | quote}}
+            - name: KLUSTAIR_KUBEAUDIT
+              value: {{ .Values.klustairJob.limitDate | default "all" | quote}}
             {{ if .Values.klustairJob.apiHost }}
             - name: KLUSTAIR_APIHOST
               value: {{ .Values.klustairJob.apiHost | quote}}
@@ -62,18 +64,20 @@ spec:
             - name: KLUSTAIR_NAMESPACEBLACKLIST
               value: {{ .Values.klustairJob.namespaceblacklist | quote}}
             {{ end -}}
-            - name: KLUSTAIR_KUBEAUDIT
-              value: {{ .Values.klustairJob.kubeaudit | default "all" | quote}}
+            {{ if .Values.klustairJob.limitDate }}
             - name: KLUSTAIR_LIMITDATE
-              value: {{ .Values.klustairJob.limitDate | default "false" | quote}}
+              value: {{ .Values.klustairJob.limitDate | quote}}
+            {{ end -}}
+            {{ if .Values.klustairJob.limitNR }}
             - name: KLUSTAIR_LIMITDATE
-              value: {{ .Values.klustairJob.limitNR | default "false" | quote}}
+              value: {{ .Values.klustairJob.limitNR | quote}}
+            {{ end }}
           volumeMounts:
             - name: configs
               mountPath: "/etc/klustair"
               readOnly: true
           resources:
-            {{- toYaml .Values.resources | nindent 12 }}
+            {{- toYaml .Values.klustairJob.resources | nindent 12 }}
       volumes:
         - name: configs
           secret:
