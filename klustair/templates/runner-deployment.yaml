@@ -43,6 +43,8 @@ spec:
               value: {{ .Values.trivy.timeout | quote}}
             - name: KLUSTAIR_APITOKEN
               value: {{ .Values.klustairfrontend.apiToken | default "not_set" | quote}}
+            - name: KLUSTAIR_KUBEAUDIT
+              value: {{ .Values.klustairJob.limitDate | default "all" | quote}}
             {{ if .Values.klustairJob.apiHost }}
             - name: KLUSTAIR_APIHOST
               value: {{ .Values.klustairJob.apiHost | quote}}
@@ -62,12 +64,14 @@ spec:
             - name: KLUSTAIR_NAMESPACEBLACKLIST
               value: {{ .Values.klustairJob.namespaceblacklist | quote}}
             {{ end -}}
-            - name: KLUSTAIR_KUBEAUDIT
-              value: {{ .Values.klustairJob.kubeaudit | default "all" | quote}}
+            {{ if .Values.klustairJob.limitDate }}
             - name: KLUSTAIR_LIMITDATE
-              value: {{ .Values.klustairJob.limitDate | default "false" | quote}}
+              value: {{ .Values.klustairJob.limitDate | quote}}
+            {{ end -}}
+            {{ if .Values.klustairJob.limitNR }}
             - name: KLUSTAIR_LIMITDATE
-              value: {{ .Values.klustairJob.limitNR | default "false" | quote}}
+              value: {{ .Values.klustairJob.limitNR | quote}}
+            {{ end }}
           volumeMounts:
             - name: configs
               mountPath: "/etc/klustair"

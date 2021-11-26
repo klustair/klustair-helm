@@ -133,8 +133,8 @@ klustairJob:
     create: false
   # apiHost: "" # uses a local serverice adress if not set
   # configKey: ""
-  # limitDate: ""
-  # limitNR: ""
+  # limitDate: "50"
+  # limitNR: "50"
   resources: {}
     # limits:
     #   cpu: 100m
