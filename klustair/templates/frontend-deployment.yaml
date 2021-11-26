@@ -15,14 +15,15 @@ spec:
       labels:
         app.kubernetes.io/name: {{ include "klustair.fullname" . }}-frontend
         app.kubernetes.io/instance: {{ .Release.Name }}
+        {{- if .Values.klustairfrontend.podLabels }}
+        {{- toYaml .Values.klustairfrontend.podLabels | nindent 8 }}
+        {{- end }}
     spec:
     {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
     {{- end }}
       serviceAccountName: {{ template "klustair.serviceAccountName" . }}
-      securityContext:
-        {{- toYaml .Values.podSecurityContext | nindent 8 }}
       initContainers:
         - name: {{ .Chart.Name }}-init
           image: "{{ .Values.image.repositoryFrontend }}:{{ .Values.image.tag }}-php-fpm"
@@ -66,10 +67,7 @@ spec:
             - mountPath: /var/www/storage
               name: storage
       containers:
-        {{ if .Values.klustairfrontend.phpfpm -}}
         - name: {{ .Chart.Name }}-nginx
-          securityContext:
-            {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repositoryFrontend }}:{{ .Values.image.tag }}-nginx"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           securityContext:
@@ -98,12 +96,8 @@ spec:
             - mountPath: /var/cache/nginx
               name: storage
           resources:
-            {{- toYaml .Values.resources | nindent 12 }}
-
-
+            {{- toYaml .Values.klustairfrontend.nginx.resources | nindent 12 }}
         - name: {{ .Chart.Name }}-php-fpm
-          securityContext:
-            {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repositoryFrontend }}:{{ .Values.image.tag }}-php-fpm"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           securityContext:
@@ -234,155 +228,7 @@ spec:
             - mountPath: /var/www/storage
               name: storage
           resources:
-            {{- toYaml .Values.resources | nindent 12 }}
-
-      {{- else -}}
-        - name: {{ .Chart.Name }}-frontend
-          securityContext:
-            {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{ .Values.image.repositoryFrontend }}:{{ .Values.image.tag }}-apache"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
-          env:
-            - name: LOG_CHANNEL
-              value: "stderr"
-            - name: APACHE_DOCUMENT_ROOT
-              value: {{ .Values.klustairfrontend.apachedocumentroot | quote}}
-            - name: APP_NAME
-              value: "klustair"
-            - name: APP_ENV
-              value: "local"
-            - name: APP_KEY
-              value: {{ .Values.klustairfrontend.appkey | quote}}
-            - name: APP_DEBUG
-              value: {{ .Values.klustairfrontend.debug | quote}}
-            - name: APP_URL
-              value: "http://{{ .Values.klustairfrontend.url }}"
-            - name: KLUSTAIR_ADMIN_USER
-              value: {{ .Values.klustairfrontend.adminUser | quote }}
-            - name: KLUSTAIR_ADMIN_EMAIL
-              value: {{ .Values.klustairfrontend.adminEmail | quote }}
-            {{ if .Values.klustairfrontend.adminPassword  }}
-            - name: KLUSTAIR_ADMIN_PASS
-              value: {{ .Values.klustairfrontend.adminPassword | quote }}
-            {{ end -}}
-            - name: KLUSTAIR_APITOKEN
-              value: {{ .Values.klustairfrontend.apiToken | quote }}
-            - name: DB_CONNECTION
-              value: pgsql
-            - name: DB_HOST
-              value: {{ .Release.Name }}-postgresql
-            - name: DB_PORT
-              value: "5432"
-            - name: DB_DATABASE
-              value: {{ .Values.postgresql.postgresqlDatabase | quote}}
-            - name: DB_USERNAME
-              value: {{ .Values.postgresql.postgresqlUsername | quote}}
-            - name: DB_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: {{ .Release.Name }}-postgresql
-                  key: postgresql-password
-            - name: DB_AUTHENTICATION_DATABASE
-              value: {{ .Values.postgresql.postgresqlDatabase | quote}}
-            - name: BROADCAST_DRIVER
-              value: "log"
-            - name: CACHE_DRIVER
-              value: "file"
-            - name: QUEUE_CONNECTION
-              value: "sync"
-            - name: SANCTUM_STATEFUL_DOMAINS
-              value: {{ .Values.klustairfrontend.url | quote}}
-            - name: SESSION_DRIVER
-              value: "file"
-            - name: SESSION_LIFETIME
-              value: "120"
-            - name: ANCHORE_ENABLED
-              value: {{ .Values.anchore.enabled | quote}}
-            - name: ANCHORE_API_URL
-              value: {{ .Values.anchore.cliURL | quote}}
-            - name: ANCHORE_CLI_USER
-              value: {{ .Values.anchore.cliUser | quote}}
-            - name: ANCHORE_CLI_PASS
-              value: {{ .Values.anchore.cliPass | quote}}
-            - name: AUTH
-              value: {{ .Values.klustairfrontend.auth.enabled | quote}}
-            - name: AUTH_REGISTER
-              value: {{ .Values.klustairfrontend.auth.register | quote}}
-            - name: AUTH_RESET
-              value: {{ .Values.klustairfrontend.auth.reset | quote}}
-            - name: AUTH_VERIFY
-              value: {{ .Values.klustairfrontend.auth.verify | quote}}
-            - name: MAIL_MAILER
-              value: {{ .Values.klustairfrontend.mail.mailer | quote}}
-            - name: MAIL_HOST
-              value: {{ .Values.klustairfrontend.mail.host | quote}}
-            - name: MAIL_PORT
-              value: {{ .Values.klustairfrontend.mail.port | quote}}
-            - name: MAIL_ENCRYPTION
-              value: {{ .Values.klustairfrontend.mail.encryption | quote}}
-            - name: MAIL_USERNAME
-              value: {{ .Values.klustairfrontend.mail.username | quote}}
-            - name: MAIL_PASSWORD
-              value: {{ .Values.klustairfrontend.mail.password | quote}}
-            - name: MAIL_FROM_ADDRESS
-              value: {{ .Values.klustairfrontend.mail.fromAdress | quote}}
-            - name: MAIL_FROM_NAME
-              value: {{ .Values.klustairfrontend.mail.fromName | quote}}
-            - name: LDAP
-              value: {{ .Values.klustairfrontend.ldap.enabled | quote}}
-            - name: LDAP_TYPE
-              value: {{ .Values.klustairfrontend.ldap.type | quote}}
-            - name: LDAP_QUERYFIELD
-              value: {{ .Values.klustairfrontend.ldap.queryfield | quote}}
-            - name: LDAP_LOGGING
-              value: {{ .Values.klustairfrontend.ldap.logging | quote}}
-            - name: LDAP_CONNECTION
-              value: {{ .Values.klustairfrontend.ldap.connection | quote}}
-            - name: LDAP_HOST
-              value: {{ .Values.klustairfrontend.ldap.host | quote}}
-            - name: LDAP_USERNAME
-              value: {{ .Values.klustairfrontend.ldap.username | quote}}
-            - name: LDAP_PASSWORD
-              value: {{ .Values.klustairfrontend.ldap.password | quote}}
-            - name: LDAP_PORT
-              value: {{ .Values.klustairfrontend.ldap.port | quote}}
-            - name: LDAP_BASE_DN
-              value: {{ .Values.klustairfrontend.ldap.baseDN | quote}}
-            - name: LDAP_TIMEOUT
-              value: {{ .Values.klustairfrontend.ldap.timeout | quote}}
-            - name: LDAP_SSL
-              value: {{ .Values.klustairfrontend.ldap.ssl | quote}}
-            - name: LDAP_TLS
-              value: {{ .Values.klustairfrontend.ldap.tls | quote}}
-
-          ports:
-            - name: http
-              containerPort: 80
-              protocol: TCP
-            - name: https
-              containerPort: 443
-              protocol: TCP
-#          livenessProbe:
-#            httpGet:
-#              path: /
-#              port: http
-#              httpHeaders:
-#              - name: Host
-#                value: {{ .Values.klustairfrontend.url }}
-#          readinessProbe:
-#            httpGet:
-#              path: /
-#              port: http
-#              httpHeaders:
-#              - name: Host
-#                value: {{ .Values.klustairfrontend.url }}
-
-          volumeMounts:
-            - mountPath: /var/www/storage
-              name: storage
-          resources:
-            {{- toYaml .Values.resources | nindent 12 }}
-      {{- end }}
+            {{- toYaml .Values.klustairfrontend.fpm.resources | nindent 12 }}
       volumes:
         - name: storage
           persistentVolumeClaim:

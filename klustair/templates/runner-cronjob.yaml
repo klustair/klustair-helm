@@ -14,7 +14,7 @@ spec:
           containers:
           - name: {{ .Chart.Name }}-runnerjob
             securityContext:
-              {{- toYaml .Values.securityContext | nindent 14 }}
+              {{- toYaml .Values.klustairJob.securityContext | nindent 14 }}
             image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
             imagePullPolicy: {{ .Values.image.pullPolicy }}
             command:
@@ -64,7 +64,7 @@ spec:
                 mountPath: "/etc/klustair"
                 readOnly: true
             resources:
-              {{- toYaml .Values.resources | nindent 14 }}
+              {{- toYaml .Values.klustairJob.resources | nindent 14 }}
           volumes:
             - name: configs
               secret:
