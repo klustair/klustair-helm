@@ -60,11 +60,6 @@
                     "default": false,
                     "type": "boolean"
                 },
-                "phpfpm": {
-                    "title": "php-fpm toggle",
-                    "default": false,
-                    "type": "boolean"
-                },
                 "auth": {
                     "title": "Application level authentication",
                     "type": "object",
@@ -93,7 +88,7 @@
                     "required": ["enabled", "register", "reset", "verify"]
                 }
             },
-            "required": ["apachedocumentroot", "appkey", "url", "debug", "phpfpm"]
+            "required": ["apachedocumentroot", "appkey", "url", "debug"]
         },
         "klustair": {
             "title": "KlustAIR runner",
@@ -213,14 +208,6 @@
             },
             "required": ["create"]
         },
-        "podSecurityContext": {
-            "type": "object",
-            "default": {}
-        },
-        "securityContext": {
-            "type": "object",
-            "default": {}
-        },
         "service": {
             "title": "Service definition",
             "type": "object",
@@ -248,38 +235,6 @@
                 "annotations": {
                     "default": {},
                     "type": "object"
-                }
-            }
-        },
-        "resources": {
-            "title": "Cluster resources definition",
-            "type": "object",
-            "properties": {
-                "limits": {
-                    "type": "object",
-                    "properties": {
-                        "cpu": {
-                            "default": "100m",
-                            "type": "string"
-                        },
-                        "memory": {
-                            "default": "128Mi",
-                            "type": "string"
-                        }
-                    }
-                },
-                "requests": {
-                    "type": "object",
-                    "properties": {
-                        "cpu": {
-                            "default": "100m",
-                            "type": "string"
-                        },
-                        "memory": {
-                            "default": "128Mi",
-                            "type": "string"
-                        }
-                    }
                 }
             }
         },
