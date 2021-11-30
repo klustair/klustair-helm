@@ -108,6 +108,7 @@ spec:
             capabilities:
               add: ["SETGID", "SETUID", "NET_BIND_SERVICE"]
               drop: ["ALL"]
+            allowPrivilegeEscalation: false
             privileged: false
             readOnlyRootFilesystem: true
             runAsNonRoot: false            
