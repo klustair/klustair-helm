@@ -14,7 +14,13 @@ spec:
           containers:
           - name: {{ .Chart.Name }}-runnerjob
             securityContext:
-              {{- toYaml .Values.klustairJob.securityContext | nindent 14 }}
+              allowPrivilegeEscalation: false
+              capabilities:
+                drop:
+                  - ALL
+              privileged: false
+              readOnlyRootFilesystem: true
+              runAsNonRoot: false
             image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
             imagePullPolicy: {{ .Values.image.pullPolicy }}
             command:

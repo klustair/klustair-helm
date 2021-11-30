@@ -28,7 +28,14 @@ spec:
       {{- end }}
       containers:
         - name: {{ .Chart.Name }}-runner
-          securityContext: {}
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
+            privileged: false
+            readOnlyRootFilesystem: true
+            runAsNonRoot: false
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           command: ["tail", "-f", "/dev/null"]
