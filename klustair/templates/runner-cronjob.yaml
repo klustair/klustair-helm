@@ -10,6 +10,11 @@ spec:
   jobTemplate:
     spec:
       template:
+        metadata:
+          labels:
+            {{- if .Values.klustairJob.podLabels }}
+            {{- toYaml .Values.klustairJob.podLabels | nindent 12 }}
+            {{- end }}        
         spec:
           containers:
           - name: {{ .Chart.Name }}-runnerjob
@@ -19,7 +24,7 @@ spec:
                 drop:
                   - ALL
               privileged: false
-              readOnlyRootFilesystem: true
+              readOnlyRootFilesystem: false
               runAsNonRoot: false
             image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
             imagePullPolicy: {{ .Values.image.pullPolicy }}
