@@ -97,6 +97,8 @@ spec:
 #              path: /
 #              port: http
           volumeMounts:
+            - name: tmp
+              mountPath: /tmp
             - mountPath: /var/cache/nginx
               name: storage
           resources:
@@ -233,11 +235,15 @@ spec:
 #            tcpSocket:
 #              port: fpm
           volumeMounts:
+            - name: tmp
+              mountPath: /tmp
             - mountPath: /var/www/storage
               name: storage
           resources:
             {{- toYaml .Values.klustairfrontend.fpm.resources | nindent 12 }}
       volumes:
+        - name: tmp
+          emptyDir: {}
         - name: storage
           persistentVolumeClaim:
             claimName: {{ template "klustair.fullname" . }}-storage
