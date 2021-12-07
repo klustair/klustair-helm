@@ -65,7 +65,7 @@ spec:
               value: {{ .Values.postgresql.postgresqlDatabase | quote}}
           volumeMounts:
             - mountPath: /var/www/storage
-              name: storage
+              name: laravel-storage
       containers:
         - name: {{ .Chart.Name }}-nginx
           image: "{{ .Values.image.repositoryFrontend }}:{{ .Values.image.tag }}-nginx"
@@ -100,7 +100,7 @@ spec:
             - name: tmp
               mountPath: /tmp
             - mountPath: /var/cache/nginx
-              name: storage
+              name: nginx-cache
           resources:
             {{- toYaml .Values.klustairfrontend.nginx.resources | nindent 12 }}
         - name: {{ .Chart.Name }}-php-fpm
@@ -238,15 +238,16 @@ spec:
             - name: tmp
               mountPath: /tmp
             - mountPath: /var/www/storage
-              name: storage
+              name: laravel-storage
           resources:
             {{- toYaml .Values.klustairfrontend.fpm.resources | nindent 12 }}
       volumes:
         - name: tmp
           emptyDir: {}
-        - name: storage
-          persistentVolumeClaim:
-            claimName: {{ template "klustair.fullname" . }}-storage
+        - name: nginx-cache
+          emptyDir: {}
+        - name: laravel-storage
+          emptyDir: {}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
