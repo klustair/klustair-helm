@@ -69,5 +69,9 @@ Create the name of the service account to use
 {{- end -}}
 
 {{- define "klustair.jobServiceAccountName" -}}
-{{ default (include "klustair.jobFullname" .) .Values.klustairJob.serviceAccount.name }}
+{{- if .Values.klustairJob.serviceAccount.create -}}
+    {{ default (include "klustair.jobFullname" .) .Values.klustairJob.serviceAccount.name }}
+{{- else -}}
+    {{ default "default" .Values.klustairJob.serviceAccount.name}}
+{{- end -}}
 {{- end -}}
