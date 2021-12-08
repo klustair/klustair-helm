@@ -21,14 +21,10 @@ dependencies:
 annotations:
   category: Security
   artifacthub.io/changes: |
-    - Runner, Updated to Python 3.10
-    - Runner, fixed cleanup feature (CLI parameter -ln [LIMITNR] deletes all reports #26)
-    - Runner, upgraded kubeaudit to version v0.16
-    - Runner, upgraded trivy to version 0.21
-    - Frontend, PHP upgrade from 7.4 to 8.0
-    - Frontend, NPM upgrade
-    - Frontend, fix srting in reports dropdown
-    - Helm, resources and security context for each container and pod
+    - Frontend, Changed sorting on overview
+    - Frontend, Show pod age
+    - Frontend, Show image age
+    - Helm, Removed PVC for frontend
 
   artifacthub.io/images: |
     - name: klustair
