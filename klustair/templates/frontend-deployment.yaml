@@ -28,6 +28,14 @@ spec:
         - name: {{ .Chart.Name }}-init
           image: "{{ .Values.image.repositoryFrontend }}:{{ .Values.image.tag }}-php-fpm"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          securityContext:
+            capabilities:
+              add: ["SETGID", "SETUID", "NET_BIND_SERVICE"]
+              drop: ["ALL"]
+            allowPrivilegeEscalation: false
+            privileged: false
+            readOnlyRootFilesystem: true
+            runAsNonRoot: false
           command: ["sh", "init.sh"]
           env:
             - name: KLUSTAIR_ADMIN_USER
@@ -66,6 +74,8 @@ spec:
           volumeMounts:
             - mountPath: /var/www/storage
               name: laravel-storage
+          resources:
+            {{- toYaml .Values.klustairfrontend.fpm.resources | nindent 12 }}
       containers:
         - name: {{ .Chart.Name }}-nginx
           image: "{{ .Values.image.repositoryFrontend }}:{{ .Values.image.tag }}-nginx"
@@ -113,7 +123,7 @@ spec:
             allowPrivilegeEscalation: false
             privileged: false
             readOnlyRootFilesystem: true
-            runAsNonRoot: false            
+            runAsNonRoot: false
           env:
             - name: LOG_CHANNEL
               value: "stderr"
