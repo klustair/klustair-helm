@@ -51,7 +51,7 @@ spec:
             - name: KLUSTAIR_APITOKEN
               value: {{ .Values.klustairfrontend.apiToken | default "not_set" | quote}}
             - name: KLUSTAIR_KUBEAUDIT
-              value: {{ .Values.klustairJob.limitDate | default "all" | quote}}
+              value: {{ .Values.klustairJob.kubeaudit | default "all" | quote}}
             {{ if .Values.klustairJob.apiHost }}
             - name: KLUSTAIR_APIHOST
               value: {{ .Values.klustairJob.apiHost | quote}}
