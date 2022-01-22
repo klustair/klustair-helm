@@ -42,42 +42,46 @@ spec:
           env:
             - name: KUBECONFIG
               value: /etc/klustair/kube.config
-            - name: KLUSTAIR_TRIVYCREDENTIALSPATH
-              value: "/etc/klustair/repo-credentials.json"
-            - name: GOOGLE_APPLICATION_CREDENTIALS
-              value: "/etc/klustair/gcloud-credentials.json"
-            - name: TRIVY_TIMEOUT
-              value: {{ .Values.trivy.timeout | quote}}
             - name: KLUSTAIR_APITOKEN
               value: {{ .Values.klustairfrontend.apiToken | default "not_set" | quote}}
+            {{ if .Values.klustairJob.label -}}
+            - name: KLUSTAIR_LABEL
+              value: {{ .Values.klustairJob.label | quote}}
+            {{ end -}}
+            {{ if .Values.klustairJob.kubeaudit -}}
             - name: KLUSTAIR_KUBEAUDIT
-              value: {{ .Values.klustairJob.kubeaudit | default "all" | quote}}
-            {{ if .Values.klustairJob.apiHost }}
+              value: {{ .Values.klustairJob.kubeaudit | quote}}
+            {{ end -}}
+            {{ if .Values.klustairJob.apiHost -}}
             - name: KLUSTAIR_APIHOST
               value: {{ .Values.klustairJob.apiHost | quote}}
             {{ else }}
             - name: KLUSTAIR_APIHOST
               value: "http://{{ include "klustair.fullname" . }}-frontend"
             {{ end -}}
-            {{ if .Values.klustairJob.configKey }}
+            {{ if .Values.klustairJob.configKey -}}
             - name: KLUSTAIR_CONFIGKEY
               value: {{ .Values.klustairJob.configKey | quote}}
             {{ end -}}
-            {{ if .Values.klustairJob.namespaces }}
+            {{ if .Values.klustairJob.namespaces -}}
             - name: KLUSTAIR_NAMESPACES
               value: {{ .Values.klustairJob.namespaces | quote}}
             {{ end -}}
-            {{ if .Values.klustairJob.namespaceblacklist }}
+            {{ if .Values.klustairJob.namespaceblacklist -}}
             - name: KLUSTAIR_NAMESPACEBLACKLIST
               value: {{ .Values.klustairJob.namespaceblacklist | quote}}
             {{ end -}}
-            {{ if .Values.klustairJob.limitDate }}
+            {{ if .Values.klustairJob.limitDate -}}
             - name: KLUSTAIR_LIMITDATE
               value: {{ .Values.klustairJob.limitDate | quote}}
             {{ end -}}
-            {{ if .Values.klustairJob.limitNR }}
+            {{ if .Values.klustairJob.limitNR -}}
             - name: KLUSTAIR_LIMITDATE
               value: {{ .Values.klustairJob.limitNR | quote}}
+            {{ end -}}
+            {{ if .Values.trivy.registryToken -}}
+            - name: TRIVY_REDGISTRY_TOKEN
+              value: {{ .Values.trivy.registryToken | quote}}
             {{ end }}
           volumeMounts:
             - name: configs

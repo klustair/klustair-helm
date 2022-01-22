@@ -103,33 +103,6 @@
             },
             "required": ["kubeconfig"]
         },
-        "anchore": {
-            "title": "Anchore configuration",
-            "type": "object",
-            "properties": {
-                "enabled": {
-                    "title": "Enables Anchore features",
-                    "default": false,
-                    "type": "boolean"
-                },
-                "cliURL": {
-                    "title": "Anchore API URL",
-                    "default": "http://CHANGEME:8228",
-                    "type": "string"
-                },
-                "cliUser": {
-                    "title": "Anchore User",
-                    "default": "admin",
-                    "type": "string"
-                },
-                "cliPass": {
-                    "title": "Anchore API password",
-                    "default": "foobar",
-                    "type": "string"
-                }
-            },
-            "required": ["enabled", "cliURL", "cliUser", "cliPass"]
-        },
         "trivy": {
             "title": "Trivy configuration",
             "type": "object",
@@ -138,6 +111,11 @@
                     "title": "Enables Trivy features",
                     "default": true,
                     "type": "boolean"
+                },
+                "registryToken": {
+                    "title": "Docker Registry v2 Bearer token",
+                    "default": "",
+                    "type": "string"
                 },
                 "timeout": {
                     "title": "Timout for trivy scans",
@@ -151,7 +129,7 @@
                     "type": "string"
                 }
             },
-            "required": ["enabled", "timeout"]
+            "required": ["enabled"]
         },
         "klustairJob": {
             "title": "KlustAIR runner",
@@ -251,5 +229,5 @@
             "default": {}
         }
     },
-    "required": ["replicaCount", "image", "klustairfrontend", "klustairJob", "trivy", "anchore", "klustair"]
+    "required": ["replicaCount", "image", "klustairfrontend", "klustairJob", "trivy", "klustair"]
 }
