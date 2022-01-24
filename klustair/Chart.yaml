@@ -3,7 +3,7 @@ appVersion: "0.6.0"
 kubeVersion: "^v1.16"
 description: Klustair is a security toolkit that provides a set of tools to detect and report on security vulnerabilities in Kubernetes clusters.
 name: klustair
-version: 0.5.1
+version: 0.6.0
 keywords:
   - security
   - vulnerability
