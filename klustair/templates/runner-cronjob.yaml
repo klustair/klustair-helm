@@ -29,7 +29,7 @@ spec:
             image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
             imagePullPolicy: {{ .Values.image.pullPolicy }}
             command:
-              - ./app/runner.py
+              - klustair-cli
               - --verbose
               {{- if .Values.trivy.enabled }}
               - -t  
