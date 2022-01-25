@@ -68,7 +68,7 @@ spec:
               value: {{ .Values.klustairJob.namespaces | quote}}
             {{ end -}}
             {{ if .Values.klustairJob.namespaceblacklist -}}
-            - name: KLUSTAIR_NAMESPACEBLACKLIST
+            - name: KLUSTAIR_NAMESPACESBLACKLIST
               value: {{ .Values.klustairJob.namespaceblacklist | quote}}
             {{ end -}}
             {{ if .Values.klustairJob.limitDate -}}
