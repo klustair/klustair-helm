@@ -26,7 +26,7 @@ annotations:
 
   artifacthub.io/images: |
     - name: klustair
-      image: klustair/klustair:v0.6.0
+      image: klustair/klustair-cli:v0.6.0
     - name: klustair-apache
       image: klustair/klustair-frontend:v0.6.0-apache
       whitelisted: true
