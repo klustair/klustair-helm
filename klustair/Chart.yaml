@@ -21,9 +21,8 @@ dependencies:
 annotations:
   category: Security
   artifacthub.io/changes: |
-    - Frontend, improved vvulnerability list 
-    - Frontend, added images list view
-    - Frontend, updated composer and npm dependencies
+    - Runner, use new Go Client (DB Migrations)
+    - Frontend, add improved acknowledgement (Old acknowledgements need to bet truncated)
 
   artifacthub.io/images: |
     - name: klustair
