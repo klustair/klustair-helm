@@ -5,9 +5,9 @@
 replicaCount: 1
 
 image:
-  repository: klustair/klustair
+  repository: klustair/klustair-cli
   repositoryFrontend: klustair/klustair-frontend
-  tag: v0.5.1
+  tag: v0.6.0
   pullPolicy: Always
 
 klustairfrontend:
@@ -76,32 +76,29 @@ klustair:
 #    kind: Config
 #    clusters:
 #      PUT THE REST OF YOUR KUBECONNFIG HERE
-  gcloudCredentials: ""
-
-anchore:
-  enabled: false
-  cliURL: "http://CHANGEME:8228"
-  cliUser: admin
-  cliPass: foobar
 
 trivy: 
   enabled: true
-  timeout: "2m0s"
   repoCredentials: ""
-  # repoCredentials: |
-  #   {
-  #       "myprivaterepo/privateimage:latest": {
-  #           "username": "foo",
-  #           "password": "bar",
-  #           "insecure": "false",
-  #           "nonSsl": "false"
-  #       },
-  #       "myprivaterepo": {
-  #           "registryToken": "asdfasdf-asdfasdf-asdfasdf-asdfasdf",
-  #           "insecure": "false",
-  #           "nonSsl": "false"
-  #       }
-  #   }
+  username: ""
+  password: ""
+  registryToken: ""
+  insecure: false
+  nonSSL: false
+  #repoCredentials: |
+  #  {
+  #      "myprivaterepo/privateimage:latest": {
+  #          "username": "foo",
+  #          "password": "bar",
+  #          "insecure": "false",
+  #          "nonSsl": "false"
+  #      },
+  #      "myprivaterepo": {
+  #          "registryToken": "asdfasdf-asdfasdf-asdfasdf-asdfasdf",
+  #          "insecure": "false",
+  #          "nonSsl": "false"
+  #      }
+  #  }
 
 
 postgresql:
@@ -121,8 +118,9 @@ postgresql:
 
 klustairJob:
   enabled: true
+  label: ""
   schedule : "15 9 * * *"
-  namespace: "klustair"
+  namespaces: "klustair"
   namespaceblacklist: "kube-system"
   kubeaudit: "all"
   keeparunner: true
@@ -134,10 +132,10 @@ klustairJob:
     #name:
   rbac:
     create: false
-  # apiHost: "" # uses a local serverice adress if not set
-  # configKey: ""
-  # limitDate: "50"
-  # limitNR: "50"
+  apiHost: "" # uses a local serverice adress if not set
+  configKey: ""
+  limitDate: ""
+  limitNR: ""
   resources: {}
     # limits:
     #   cpu: 100m
