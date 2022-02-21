@@ -18,11 +18,12 @@ dependencies:
   - name: postgresql
     version: "10.8"
     repository: "https://charts.bitnami.com/bitnami"
+    condition: postgresql.enabled
 annotations:
   category: Security
   artifacthub.io/changes: |
-    - Runner, use new Go Client (DB Migrations)
-    - Frontend, add improved acknowledgement (Old acknowledgements need to bet truncated)
+    - Helm, Make frontend optional
+    - Helm, Make database optional
 
   artifacthub.io/images: |
     - name: klustair

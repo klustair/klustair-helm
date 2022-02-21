@@ -1,3 +1,4 @@
+{{- if .Values.klustairfrontend.enabled -}}
 apiVersion: v1
 kind: Service
 metadata:
@@ -13,3 +14,4 @@ spec:
       name: http
   selector:
     app.kubernetes.io/name: {{ include "klustair.fullname" . }}-frontend
+{{- end -}}

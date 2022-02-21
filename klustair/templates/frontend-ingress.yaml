@@ -1,3 +1,4 @@
+{{- if .Values.klustairfrontend.enabled -}}
 {{- $fullName := include "klustair.fullname" . -}}
 {{- $svcPort := .Values.service.port -}}
 {{- if semverCompare ">=1.14-0" .Capabilities.KubeVersion.GitVersion -}}
@@ -29,3 +30,4 @@ spec:
           serviceName: {{ include "klustair.fullname" . }}-frontend
           servicePort: {{ $svcPort }}
         path: /
+{{- end -}}

@@ -38,6 +38,11 @@
             "title": "KlustAIR frontend application",
             "type": "object",
             "properties": {
+                "enabled": {
+                    "title": "Frontend toggle",
+                    "default": true,
+                    "type": "boolean"
+                },
                 "apachedocumentroot": {
                     "title": "apache document root",
                     "default": "/var/www/public",
