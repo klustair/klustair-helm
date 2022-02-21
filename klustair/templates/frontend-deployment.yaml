@@ -87,8 +87,8 @@ spec:
             allowPrivilegeEscalation: false
             privileged: false
             readOnlyRootFilesystem: false
-            runAsUser: 82
-            runAsGroup: 82
+            runAsUser: 101
+            runAsGroup: 101
           env:
             - name: PHP_FPM_HOST
               value: "localhost"
