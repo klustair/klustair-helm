@@ -35,7 +35,8 @@ spec:
                 - ALL
             privileged: false
             readOnlyRootFilesystem: false
-            runAsNonRoot: false
+            runAsUser: 82
+            runAsGroup: 82
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           command: ["tail", "-f", "/dev/null"]
