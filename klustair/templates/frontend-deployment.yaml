@@ -123,8 +123,8 @@ spec:
             allowPrivilegeEscalation: false
             privileged: false
             readOnlyRootFilesystem: true
-            runAsUser: 1000
-            runAsGroup: 1000
+            runAsUser: 82
+            runAsGroup: 82
           env:
             - name: LOG_CHANNEL
               value: "stderr"
