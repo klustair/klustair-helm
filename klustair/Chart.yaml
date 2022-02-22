@@ -1,5 +1,5 @@
 apiVersion: v2
-appVersion: "0.6.0"
+appVersion: "0.7.0"
 kubeVersion: "^v1.16"
 description: Klustair is a security toolkit that provides a set of tools to detect and report on security vulnerabilities in Kubernetes clusters.
 name: klustair
@@ -24,17 +24,20 @@ annotations:
   artifacthub.io/changes: |
     - Helm, Make frontend optional
     - Helm, Make database optional
+    - Frontend, Update composer and npm
+    - Frontend, Update to php 8.1
+    - Runner, Update go.mod and go.sum
 
   artifacthub.io/images: |
     - name: klustair
-      image: klustair/klustair-cli:v0.6.0
+      image: klustair/klustair-cli:v0.7.0
     - name: klustair-apache
-      image: klustair/klustair-frontend:v0.6.0-apache
+      image: klustair/klustair-frontend:v0.7.0-apache
       whitelisted: true
     - name: klustair-nginx
-      image: klustair/klustair-frontend:v0.6.0-nginx
+      image: klustair/klustair-frontend:v0.7.0-nginx
     - name: klustair-php-fpm
-      image: klustair/klustair-frontend:v0.6.0-php-fpm
+      image: klustair/klustair-frontend:v0.7.0-php-fpm
     - name: postgresql
       image: postgres:12-alpine
       whitelisted: true

@@ -35,8 +35,8 @@ spec:
             allowPrivilegeEscalation: false
             privileged: false
             readOnlyRootFilesystem: true
-            runAsUser: 1000
-            runAsGroup: 1000
+            runAsUser: 82
+            runAsGroup: 82
           command: ["sh", "init.sh"]
           env:
             - name: KLUSTAIR_ADMIN_USER
