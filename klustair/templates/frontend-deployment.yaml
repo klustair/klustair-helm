@@ -27,7 +27,7 @@ spec:
       serviceAccountName: {{ template "klustair.serviceAccountName" . }}
       initContainers:
         - name: {{ .Chart.Name }}-init
-          image: "{{ .Values.image.repositoryFrontend }}:{{ .Values.image.tag }}-php-fpm"
+          image: "{{ .Values.image.repositoryFrontend }}:{{ .Values.image.tagFrontend }}-php-fpm"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           securityContext:
             capabilities:
