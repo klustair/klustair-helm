@@ -79,7 +79,7 @@ spec:
             {{- toYaml .Values.klustairfrontend.fpm.resources | nindent 12 }}
       containers:
         - name: {{ .Chart.Name }}-nginx
-          image: "{{ .Values.image.repositoryFrontend }}:{{ .Values.image.tag }}-nginx"
+          image: "{{ .Values.image.repositoryFrontend }}:{{ .Values.image.tagFrontend }}-nginx"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           securityContext:
             capabilities:
@@ -115,7 +115,7 @@ spec:
           resources:
             {{- toYaml .Values.klustairfrontend.nginx.resources | nindent 12 }}
         - name: {{ .Chart.Name }}-php-fpm
-          image: "{{ .Values.image.repositoryFrontend }}:{{ .Values.image.tag }}-php-fpm"
+          image: "{{ .Values.image.repositoryFrontend }}:{{ .Values.image.tagFrontend }}-php-fpm"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           securityContext:
             capabilities:
