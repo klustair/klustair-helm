@@ -1,7 +1,7 @@
 {{- if .Values.klustairfrontend.enabled -}}
 {{- $fullName := include "klustair.fullname" . -}}
 {{- $svcPort := .Values.service.port -}}
-{{- if semverCompare ">=1.20.0-0" .Capabilities.KubeVersion.GitVersion -}}
+{{- if semverCompare ">=1.20-0" .Capabilities.KubeVersion.GitVersion -}}
 apiVersion: networking.k8s.io/v1
 {{- else -}}
 apiVersion: networking.k8s.io/v1beta1
@@ -26,8 +26,18 @@ spec:
   - host: {{ .Values.klustairfrontend.url }}
     http:
       paths:
-      - backend:
+      - path: /
+        {{- if semverCompare ">=1.20-0" .Capabilities.KubeVersion.GitVersion }}
+        pathType: Prefix
+        {{- end }}
+        backend:
+        {{- if semverCompare ">=1.20-0" .Capabilities.KubeVersion.GitVersion }}
+          service:
+            name: {{ include "klustair.fullname" . }}-frontend
+            port:
+              number: {{ $svcPort }}
+        {{- else }}
           serviceName: {{ include "klustair.fullname" . }}-frontend
           servicePort: {{ $svcPort }}
-        path: /
+        {{- end }}
 {{- end -}}
