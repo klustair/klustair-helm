@@ -1,5 +1,5 @@
 {{- if .Values.klustairJob.enabled -}}
-{{- if semverCompare ">=1.21" .Capabilities.KubeVersion.GitVersion -}}
+{{- if .Capabilities.APIVersions.Has "batch/v1" -}}
 apiVersion: batch/v1
 {{- else -}}
 apiVersion: batch/v1beta1
@@ -18,7 +18,7 @@ spec:
           labels:
             {{- if .Values.klustairJob.podLabels }}
             {{- toYaml .Values.klustairJob.podLabels | nindent 12 }}
-            {{- end }}        
+            {{- end }}
         spec:
           containers:
           - name: {{ .Chart.Name }}-runnerjob
@@ -37,7 +37,7 @@ spec:
               - klustair-cli
               - --verbose
               {{- if .Values.trivy.enabled }}
-              - -t  
+              - -t
               {{- end }}
             env:
               - name: KUBECONFIG
