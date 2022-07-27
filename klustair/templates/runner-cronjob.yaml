@@ -1,8 +1,8 @@
 {{- if .Values.klustairJob.enabled -}}
-{{- if eq .Values.phase "prd" -}}
-apiVersion: batch/v1beta1
-{{- else -}}
+{{- if if semverCompare ">=v1.21.0-0" .Capabilities.KubeVersion.GitVersion -}}
 apiVersion: batch/v1
+{{- else -}}
+apiVersion: batch/v1beta1
 {{- end }}
 kind: CronJob
 metadata:
