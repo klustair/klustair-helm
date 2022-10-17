@@ -1,5 +1,5 @@
 {{- if .Values.klustairJob.enabled -}}
-{{- if semverCompare ">=v1.21.0-0" .Capabilities.KubeVersion.GitVersion -}}
+{{- if semverCompare ">=v1.21.x-0" .Capabilities.KubeVersion.Version -}}
 apiVersion: batch/v1
 {{- else -}}
 apiVersion: batch/v1beta1
