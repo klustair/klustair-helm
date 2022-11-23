@@ -12,6 +12,7 @@ rules:
   - deployments
   - podtemplates
   - replicationcontrollers
+  - services
   - serviceaccounts
   verbs:
   - get
@@ -30,6 +31,7 @@ rules:
   - batch
   resources:
   - cronjobs
+  - jobs
   verbs:
   - get
   - list
