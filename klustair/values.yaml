@@ -103,6 +103,11 @@ trivy:
   #          "nonSsl": "false"
   #      }
   #  }
+  extraEnv: []
+  # - name: "TRIVY_USERNAME"
+  #   value: "username"
+  # - name: "TRIVY_PASSWORD"
+  #   value: "password"
 
 
 postgresql:
