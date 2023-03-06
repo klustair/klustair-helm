@@ -27,8 +27,8 @@ spec:
       serviceAccountName: {{ template "klustair.serviceAccountName" . }}
       initContainers:
         - name: {{ .Chart.Name }}-init
-          image: "{{ .Values.image.repositoryFrontend }}:{{ .Values.image.tagFrontend }}-php-fpm"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          image: "{{ .Values.image.frontend.repository }}:{{ .Values.image.frontend.tag }}-php-fpm"
+          imagePullPolicy: {{ .Values.image.frontend.pullPolicy }}
           securityContext:
             capabilities:
               drop: ["ALL"]
@@ -79,8 +79,8 @@ spec:
             {{- toYaml .Values.klustairfrontend.fpm.resources | nindent 12 }}
       containers:
         - name: {{ .Chart.Name }}-nginx
-          image: "{{ .Values.image.repositoryFrontend }}:{{ .Values.image.tagFrontend }}-nginx"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          image: "{{ .Values.image.frontend.repository }}:{{ .Values.image.frontend.tag }}-nginx"
+          imagePullPolicy: {{ .Values.image.frontend.pullPolicy }}
           securityContext:
             capabilities:
               drop: ["ALL"]
@@ -115,8 +115,8 @@ spec:
           resources:
             {{- toYaml .Values.klustairfrontend.nginx.resources | nindent 12 }}
         - name: {{ .Chart.Name }}-php-fpm
-          image: "{{ .Values.image.repositoryFrontend }}:{{ .Values.image.tagFrontend }}-php-fpm"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          image: "{{ .Values.image.frontend.repository }}:{{ .Values.image.frontend.tag }}-php-fpm"
+          imagePullPolicy: {{ .Values.image.frontend.pullPolicy }}
           securityContext:
             capabilities:
               drop: ["ALL"]
