@@ -2,7 +2,7 @@
 
 name: Helm validate
 
-# Controls when the action will run. 
+# Controls when the action will run.
 on:
   pull_request:
   workflow_dispatch:
@@ -18,11 +18,11 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-      - uses: azure/setup-helm@v1
+      - uses: azure/setup-helm@v3
 
       # Runs a single command using the runners shell
       - name: validate
         run: helm template klustair
 
       - name: lint
-        run : helm lint klustair 
+        run : helm lint klustair
