@@ -11,28 +11,52 @@
             "title": "Docker image informations",
             "type": "object",
             "properties": {
-                "repository": {
-                    "title": "KlustAIR runner repository",
-                    "default": "klustair/klustair",
-                    "type": "string"
+                "cli": {
+                    "title": "Docker Runner image informations",
+                    "type": "object",
+                    "properties": {
+                        "repository": {
+                            "title": "KlustAIR runner repository",
+                            "default": "klustair/klustair",
+                            "type": "string"
+                        },
+                        "tag": {
+                            "title": "Docker image tag",
+                            "default": "latest",
+                            "type": "string"
+                        },
+                        "pullPolicy": {
+                            "title": "Pod pull policy",
+                            "default": "Always",
+                            "type": "string"
+                        }
+                    },
+                    "required": ["repository", "tag", "pullPolicy"]
                 },
-                "repositoryFrontend": {
-                    "title": "KlustAIR frontend repository",
-                    "default": "klustair/klustair-frontend",
-                    "type": "string"
-                },
-                "tag": {
-                    "title": "Docker image tag",
-                    "default": "latest",
-                    "type": "string"
-                },
-                "pullPolicy": {
-                    "title": "Pod pull policy",
-                    "default": "Always",
-                    "type": "string"
+                "frontend": {
+                    "title": "Docker Frontend UI image informations",
+                    "type": "object",
+                    "properties": {
+                        "repository": {
+                            "title": "KlustAIR frontend repository",
+                            "default": "klustair/klustair-frontend",
+                            "type": "string"
+                        },
+                        "tag": {
+                            "title": "Docker image tag",
+                            "default": "latest",
+                            "type": "string"
+                        },
+                        "pullPolicy": {
+                            "title": "Pod pull policy",
+                            "default": "Always",
+                            "type": "string"
+                        }
+                    },
+                    "required": ["repository", "tag", "pullPolicy"]
                 }
             },
-            "required": ["repository", "repositoryFrontend", "tag", "pullPolicy"]
+            "required": ["cli", "frontend"]
         },
         "klustairfrontend": {
             "title": "KlustAIR frontend application",
@@ -204,7 +228,7 @@
                     "type": "integer"
                 }
             }
-        }, 
+        },
         "ingress": {
             "title": "Ingress definition",
             "type": "object",
