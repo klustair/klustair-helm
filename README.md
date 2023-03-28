@@ -115,6 +115,7 @@ https://artifacthub.io/packages/helm/klustair/klustair?modal=values-schema
 | trivy.enabled                          | boolean          | `true`              |              |
 | trivy.timeout                          | string           | `"2m0s"`            |              |
 | trivy.repoCredentials                  | multiline string | example JSON        |              |
+| trivy.extraEnv    		         | list             | `[]`                | Extra enviroment variables to pass to klustair runner |
 | postgresql.postgresqlUsername          | string           | `klustair`          |              |
 | postgresql.postgresqlDatabase          | string           | `klustair`          |              |
 | postgresql.persistence.storageClass    | string           | `"-"`               |              |

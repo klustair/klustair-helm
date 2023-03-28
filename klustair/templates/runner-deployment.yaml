@@ -45,45 +45,48 @@ spec:
               value: /etc/klustair/kube.config
             - name: KLUSTAIR_APITOKEN
               value: {{ .Values.klustairfrontend.apiToken | default "not_set" | quote}}
-            {{ if .Values.klustairJob.label -}}
+            {{- if .Values.klustairJob.label }}
             - name: KLUSTAIR_LABEL
               value: {{ .Values.klustairJob.label | quote}}
-            {{ end -}}
-            {{ if .Values.klustairJob.kubeaudit -}}
+            {{- end }}
+            {{- if .Values.klustairJob.kubeaudit }}
             - name: KLUSTAIR_KUBEAUDIT
               value: {{ .Values.klustairJob.kubeaudit | quote}}
-            {{ end -}}
-            {{ if .Values.klustairJob.apiHost -}}
+            {{- end }}
+            {{- if .Values.klustairJob.apiHost }}
             - name: KLUSTAIR_APIHOST
               value: {{ .Values.klustairJob.apiHost | quote}}
-            {{ else }}
+            {{- else }}
             - name: KLUSTAIR_APIHOST
               value: "http://{{ include "klustair.fullname" . }}-frontend"
-            {{ end -}}
-            {{ if .Values.klustairJob.configKey -}}
+            {{- end }}
+            {{- if .Values.klustairJob.configKey }}
             - name: KLUSTAIR_CONFIGKEY
               value: {{ .Values.klustairJob.configKey | quote}}
-            {{ end -}}
-            {{ if .Values.klustairJob.namespaces -}}
+            {{- end }}
+            {{- if .Values.klustairJob.namespaces }}
             - name: KLUSTAIR_NAMESPACES
               value: {{ .Values.klustairJob.namespaces | quote}}
-            {{ end -}}
-            {{ if .Values.klustairJob.namespaceblacklist -}}
+            {{- end }}
+            {{- if .Values.klustairJob.namespaceblacklist }}
             - name: KLUSTAIR_NAMESPACESBLACKLIST
               value: {{ .Values.klustairJob.namespaceblacklist | quote}}
-            {{ end -}}
-            {{ if .Values.klustairJob.limitDate -}}
+            {{- end }}
+            {{- if .Values.klustairJob.limitDate }}
             - name: KLUSTAIR_LIMITDATE
               value: {{ .Values.klustairJob.limitDate | quote}}
-            {{ end -}}
-            {{ if .Values.klustairJob.limitNR -}}
+            {{- end }}
+            {{- if .Values.klustairJob.limitNR }}
             - name: KLUSTAIR_LIMITDATE
               value: {{ .Values.klustairJob.limitNR | quote}}
-            {{ end -}}
-            {{ if .Values.trivy.registryToken -}}
+            {{- end }}
+            {{- if .Values.trivy.registryToken }}
             - name: TRIVY_REDGISTRY_TOKEN
               value: {{ .Values.trivy.registryToken | quote}}
-            {{ end }}
+            {{- end }}
+            {{- with .Values.trivy.extraEnv }}
+              {{- toYaml . | nindent 12 }}
+            {{- end }}
           volumeMounts:
             - name: configs
               mountPath: "/etc/klustair"
